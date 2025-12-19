@@ -55,7 +55,29 @@
         margin: auto;
       }
     }
+    @media (max-width: 767px) {
 
+      .lista {
+          max-height: none;      /* CLAVE */
+          height: auto;
+          min-height: 160px;     /* asegura visibilidad */
+      }
+      .lista {
+          order: 1;
+      }
+
+      .detalle {
+        order: 2;
+      }
+
+    .detalle {
+        height: auto;        /* NO usar vh en móvil */
+      max-height: 65vh;    /* limita sin aplastar */
+      }
+      .detalle-img {
+    height: 220px;
+  }
+    }    
     .lista {
       background: #161616;
       border-radius: 12px;
@@ -144,7 +166,7 @@
 
     /* PRECIO SIEMPRE ABAJO */
     .precio {
-      ont-size: 1.4rem;
+      font-size: 1.4rem;
       font-weight: bold;
       color: #ffffff;
       border-top: 1px solid #2a2a2a;
@@ -228,12 +250,15 @@
 
     <section class="detalle" id="detalle">
       <h2 id="detalle-nombre">Selecciona una bebida</h2>
+
+      <div class="detalle-img" id="detalle-img"></div>
+
       <div class="detalle-body">
-        <div class="detalle-img" id="detalle-img"></div>
-        <p id="detalle-desc"></p>
+          <p id="detalle-desc"></p>
+          <div class="precio" id="detalle-precio"></div>
       </div>
-      <div class="precio" id="detalle-precio"></div>
 </section>
+
 
   </main>
 
