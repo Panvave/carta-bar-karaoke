@@ -168,55 +168,55 @@
 
   <main class="container">
     <section class="lista">
-      <div class="item" onclick="ver('appleparadisepurple')">
+      <div class="item" onclick="ver('appleparadisepurple',this)">
         <strong>Apple Paradise Purple</strong>
         <span>Ron blanco · Refrescante</span>
       </div>
-      <div class="item" onclick="ver('appleparadisered')">
+      <div class="item" onclick="ver('appleparadisered',this)">
         <strong>Apple Paradise Red</strong>
         <span>Tequila · Clásico</span>
       </div>
-      <div class="item" onclick="ver('appleparadise')">
+      <div class="item" onclick="ver('appleparadise',this)">
         <strong>Apple Paradise</strong>
         <span>Pisco peruano</span>
       </div>
-      <div class="item" onclick="ver('besocaribeno')">
+      <div class="item" onclick="ver('besocaribeno',this)">
         <strong>Beso Caribeño</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('camaleon')">
+      <div class="item" onclick="ver('camaleon',this)">
         <strong>Camaleon</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('daiquiridedurazno')">
+      <div class="item" onclick="ver('daiquiridedurazno',this)">
         <strong>Daiquiri de Durazno</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('diabloazul')">
+      <div class="item" onclick="ver('diabloazul',this)">
         <strong>Diablo Azul</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('machupicchu')">
+      <div class="item" onclick="ver('machupicchu',this)">
         <strong>Machu Picchu</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('margaritacoronablue')">
+      <div class="item" onclick="ver('margaritacoronablue',this)">
         <strong>Margarita Corona Blue</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('margarita')">
+      <div class="item" onclick="ver('margarita',this)">
         <strong>Margarita</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('mojito')">
+      <div class="item" onclick="ver('mojito',this)">
         <strong>Mojito</strong>
         <span>Clasico - Bien helada</span>
       </div>
-      <div class="item" onclick="ver('orgasmo')">
+      <div class="item" onclick="ver('orgasmo',this)">
         <strong>Orgasmo</strong>
         <span>Bien helada</span>
       </div>
-      <div class="item" onclick="ver('sexonthebeach')">
+      <div class="item" onclick="ver('sexonthebeach',this)">
         <strong>Sex on the Beach</strong>
         <span>Bien helada</span>
       </div>
@@ -317,17 +317,16 @@
       }
     };
 
-    <script>
-  function ver(id) {
+  function ver(id, el) {
     const b = data[id];
 
     /* Quitar selección anterior */
-    document.querySelectorAll('.item').forEach(item => {
-      item.classList.remove('activo');
-    });
+    document.querySelectorAll('.item').forEach(item =>
+      item.classList.remove('activo')
+    );
 
     /* Marcar el item actual */
-    event.currentTarget.classList.add('activo');
+    el.classList.add('activo');
 
     /* Actualizar detalle */
     document.getElementById('detalle-nombre').textContent = b.nombre;
