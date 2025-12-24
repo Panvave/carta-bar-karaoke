@@ -188,7 +188,18 @@
       height: 100%;
       object-fit: cover;          /* NO DISTORSIONA */
       display: block;
+      animation: fadeZoom 0.35s ease;
     }
+    @keyframes fadeZoom {
+      from {
+        opacity: 0;
+        transform: scale(1.03);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
     /* TEXTO */
     .detalle h2 {
       margin: 12px 0 6px;
@@ -394,6 +405,12 @@
   function ver(id, el) {
   const b = data[id];
   const detalle = document.getElementById('detalle');
+  const cont = document.getElementById('detalle-img');
+
+  /* Vibración táctil */
+  if (navigator.vibrate) {
+    navigator.vibrate(15);
+  }
 
   // quitar selección
   document.querySelectorAll('.item').forEach(item =>
@@ -409,13 +426,24 @@
     document.getElementById('detalle-desc').textContent = b.desc;
     document.getElementById('detalle-precio').textContent = b.precio;
 
-    document.getElementById('detalle-img').innerHTML =
-      `<img src="${b.img}" alt="${b.nombre}" loading="lazy">`;
+    /* Skeleton primero */
+    cont.innerHTML = `<div class="skeleton"></div>`;
+
+    const img = new Image();
+    img.src = b.img;
+    img.alt = b.nombre;
+    img.loading = "lazy";
+
+    img.onload = () => {
+      cont.innerHTML = "";
+      cont.appendChild(img);
+    };
 
     // animación entrada
     detalle.classList.remove('oculto');
   }, 180);
 }
+
 </script>
 
 </body>
