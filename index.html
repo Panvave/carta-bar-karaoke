@@ -10,6 +10,7 @@
     html, body {
       height: 100%;
       margin: 0;
+      overflow: hidden;
     }
 
     body {
@@ -39,95 +40,239 @@
       font-size: 0.9rem;
     }
 
-    main.container {
+    /* CONTENEDOR PRINCIPAL */
+    .container {
       flex: 1;
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 12px;
       overflow: hidden;
     }
 
-    /* CORRECCIÓN: Agregar para que nav funcione correctamente */
+    /* VISTAS */
     .vista {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      width: 100%;
     }
 
     .vista.oculto {
       display: none;
     }
 
+    /* VISTA CARTA - DISEÑO PARA TODAS LAS PANTALLAS */
+    #vista-carta {
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      padding: 12px;
+      overflow: hidden;
+    }
+
+    /* LISTA (IZQUIERDA) */
+    .lista {
+      background: #161616;
+      border-radius: 12px;
+      padding: 8px;
+      overflow-y: auto;
+      flex: 0 0 45%;
+      min-width: 0;
+    }
+
+    /* DETALLE (DERECHA) - CON BIENVENIDA INICIAL */
+    .detalle {
+      background: #161616;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      flex: 1;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .detalle.oculto {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    /* CONTENIDO DE BIENVENIDA */
+    .bienvenida {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: 20px;
+    }
+
+    .bienvenida-icono {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .bienvenida h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .bienvenida p {
+      color: #cfcfcf;
+      font-size: 1rem;
+      line-height: 1.6;
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+
+    .bienvenida-inst {
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 10px 15px;
+      margin-top: 20px;
+      border-left: 4px solid #ffffff;
+    }
+
+    .bienvenida-inst .icono {
+      font-size: 1.5rem;
+      margin-right: 12px;
+    }
+
+    .bienvenida-inst span {
+      font-size: 0.9rem;
+      color: #bdbdbd;
+    }
+
+    /* IMAGEN DE DETALLE */
+    .detalle-img {
+      height: 160px;
+      background: #1f1f1f;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .detalle-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      animation: fadeZoom 0.35s ease;
+    }
+
+    /* TEXTO Y PRECIO */
+    .detalle h2 {
+      margin: 12px 0 6px;
+      font-size: 1.3rem;
+    }
+
+    .detalle p {
+      margin: 8px 0;
+      color: #cfcfcf;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      flex: 1;
+    }
+
+    /* PRECIO */
+    .precio {
+      margin-top: auto;
+      font-size: 1.4rem;
+      font-weight: bold;
+      border-top: 1px solid #2a2a2a;
+      padding-top: 10px;
+      color: #ffffff;
+      min-height: 50px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* MEDIA QUERIES PARA RESPONSIVIDAD */
     @media (max-width: 767px) {
-      #vista-carta.container {
-        display: flex;
-        flex-direction: column;
+      #vista-carta {
+        flex-direction: row;
+        padding: 10px;
+        gap: 6px;
       }
-
+      
       .lista {
-        flex: 0 0 40%;
-        overflow-y: auto;
+        flex: 0 0 45%;
+        font-size: 0.85rem;
       }
-
+      
       .detalle {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+        padding: 10px;
       }
-
+      
       .detalle-img {
-        height: 140px;
+        height: 150px;
       }
-
-      .detalle-body {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
+      
+      .bienvenida {
+        padding: 15px;
       }
-
-      .precio {
-        margin-top: auto;
-        font-size: 1.3rem;
+      
+      .bienvenida-icono {
+        font-size: 2.8rem;
+      }
+      
+      .bienvenida h2 {
+        font-size: 1.4rem;
+      }
+      
+      .bienvenida p {
+        font-size: 0.9rem;
       }
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
-      #vista-carta.container {
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-      }
-
       .lista {
-        overflow-y: auto;
+        flex: 0 0 35%;
       }
-
+      
       .detalle-img {
         height: 220px;
+      }
+      
+      .bienvenida {
+        padding: 30px;
       }
     }
 
     @media (min-width: 1024px) {
-      #vista-carta.container {
-        display: grid;
-        grid-template-columns: 1fr 1.3fr;
+      #vista-carta {
         max-width: 1200px;
-        margin: auto;
+        margin: 0 auto;
+        padding: 16px;
+        gap: 12px;
       }
-
+      
+      .lista {
+        flex: 0 0 30%;
+      }
+      
       .detalle-img {
-        height: 320px;
+        height: 280px;
+      }
+      
+      .bienvenida {
+        padding: 40px;
+      }
+      
+      .bienvenida-icono {
+        font-size: 4rem;
+      }
+      
+      .bienvenida h2 {
+        font-size: 2rem;
       }
     }
 
-    .lista {
-      background: #161616;
-      border-radius: 12px;
-      padding: 10px;
-      overflow-y: auto;
-    }
-
+    /* ESTILOS DE LA LISTA */
     .lista::-webkit-scrollbar {
       width: 6px;
     }
@@ -142,9 +287,10 @@
     }
 
     .item {
-      padding: 14px 10px;
+      padding: 12px 8px;
       border-bottom: 1px solid #2a2a2a;
       cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .item:hover {
@@ -166,39 +312,88 @@
 
     .item.activo span {
       color: #e0e0e0;
+      font-size: 0.8rem;
     }
 
-    .detalle {
+    .item strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 3px;
+    }
+
+    .item span {
+      color: #bdbdbd;
+      font-size: 0.8rem;
+    }
+
+    /* VISTAS SIMPLES (CONTACTO/UBICACIÓN) */
+    .vista-simple {
       background: #161616;
       border-radius: 12px;
-      padding: 14px;
+      padding: 20px;
+      margin: 12px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .vista-simple h2 {
+      margin-top: 0;
+      color: #ffffff;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .vista-simple p {
+      color: #cfcfcf;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      padding: 8px 0;
       display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      align-items: center;
     }
 
-    .detalle.oculto {
-      opacity: 0;
-      transform: translateY(6px);
+    .vista-simple .icono {
+      margin-right: 12px;
+      font-size: 1.3rem;
+      min-width: 30px;
     }
 
-    .detalle-img {
-      height: 200px;
-      background: #1f1f1f;
-      border-radius: 10px;
-      overflow: hidden;
+    /* NAVEGACIÓN */
+    .tabbar {
+      display: flex;
+      background: #161616;
+      border-top: 1px solid #2a2a2a;
       flex-shrink: 0;
     }
 
-    .detalle-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      animation: fadeZoom 0.35s ease;
+    .tabbar button {
+      flex: 1;
+      padding: 14px 0;
+      background: none;
+      border: none;
+      color: #bdbdbd;
+      font-size: 0.9rem;
+      cursor: pointer;
     }
 
+    .tabbar button.activo {
+      color: #ffffff;
+      font-weight: bold;
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8rem;
+      color: #9e9e9e;
+      background: #161616;
+      border-top: 1px solid #2a2a2a;
+      flex-shrink: 0;
+    }
+
+    /* ANIMACIONES */
     @keyframes fadeZoom {
       from {
         opacity: 0;
@@ -210,84 +405,19 @@
       }
     }
 
-    .detalle h2 {
-      margin: 12px 0 6px;
-    }
-
-    .detalle-body {
-      flex: 1;
-      display: block;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    .detalle p {
-      margin: 10px 0;
-      color: #cfcfcf;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      min-height: 3em;
-    }
-
-    .precio {
-      margin-top: 10px;
-      font-size: 1.4rem;
-      font-weight: bold;
-      border-top: 1px solid #2a2a2a;
-      padding-top: 8px;
-      color: #ffffff;
-    }
-
-    .tabbar {
-      display: flex;
-      background: #161616;
-      border-top: 1px solid #2a2a2a;
-      flex-shrink: 0;
-    }
-
-    .tabbar button {
-      flex: 1;
-      padding: 12px 0;
-      background: none;
-      border: none;
-      color: #bdbdbd;
-      font-size: 0.85rem;
-      cursor: pointer;
-    }
-
-    .tabbar button.activo {
-      color: #ffffff;
-      font-weight: bold;
-    }
-
-    /* Estilos para las otras vistas */
-    .vista-simple {
-      background: #161616;
-      border-radius: 12px;
-      padding: 20px;
-      margin: 12px;
-      flex: 1;
-    }
-
-    .vista-simple h2 {
-      margin-top: 0;
-      color: #ffffff;
-    }
-
-    .vista-simple p {
-      color: #cfcfcf;
-      font-size: 1rem;
-      line-height: 1.5;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      font-size: 0.8rem;
-      color: #9e9e9e;
-      background: #161616;
-      border-top: 1px solid #2a2a2a;
-      flex-shrink: 0;
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
     }
 
     .skeleton {
@@ -312,9 +442,9 @@
     <p>Selecciona un trago para ver el detalle</p>
   </header>
 
-  <!-- VISTA CARTA -->
-  <section id="vista-carta" class="vista">
-    <main class="container">
+  <div class="container">
+    <!-- VISTA CARTA -->
+    <section id="vista-carta" class="vista">
       <section class="lista">
         <div class="item" onclick="ver('appleparadisepurple',this)">
           <strong>Apple Paradise Purple</strong>
@@ -371,37 +501,70 @@
       </section>
 
       <section class="detalle" id="detalle">
-        <h2 id="detalle-nombre">Selecciona una bebida</h2>
-        <div class="detalle-img" id="detalle-img"></div>
-        <div class="detalle-body">
-          <p id="detalle-desc">Selecciona una bebida para ver la descripción.</p>
-          <div class="precio" id="detalle-precio">S/ --</div>
+        <!-- CONTENIDO DE BIENVENIDA INICIAL -->
+        <div class="bienvenida" id="bienvenida">
+          <div class="bienvenida-icono">🍸🎤</div>
+          <h2>¡Bienvenido a Copa Nocturna!</h2>
+          <p>Explora nuestra exclusiva carta de cócteles y bebidas premium. Cada trago es una experiencia única preparada con los mejores ingredientes.</p>
+          
+          <div class="bienvenida-inst">
+            <div class="icono">👉</div>
+            <span>Selecciona una bebida de la lista para ver su descripción, imagen y precio</span>
+          </div>
+          
+          <div style="margin-top: 30px; color: #bdbdbd; font-size: 0.9rem;">
+            <p>🎶 Karaoke disponible todas las noches</p>
+            <p>🕐 Happy Hour: 6:00 PM - 8:00 PM</p>
+            <p>⭐ Promoción especial para grupos</p>
+          </div>
+        </div>
+
+        <!-- CONTENIDO DE DETALLE (OCULTO INICIALMENTE) -->
+        <div id="contenido-detalle" style="display: none;">
+          <div class="detalle-img" id="detalle-img"></div>
+          <h2 id="detalle-nombre"></h2>
+          <p id="detalle-desc"></p>
+          <div class="precio" id="detalle-precio"></div>
         </div>
       </section>
-    </main>
-  </section>
+    </section>
 
-  <!-- VISTA CONTACTO -->
-  <section id="vista-contacto" class="vista oculto">
-    <div class="vista-simple">
-      <h2>Contacto</h2>
-      <p>📞 Teléfono: 999 999 999</p>
-      <p>📱 WhatsApp: 999 999 999</p>
-      <p>✉️ Email: contacto@copanocturna.com</p>
-      <p>🕐 Horario: Lunes a Domingo 6:00 PM - 4:00 AM</p>
-    </div>
-  </section>
+    <!-- VISTA CONTACTO -->
+    <section id="vista-contacto" class="vista oculto">
+      <div class="vista-simple">
+        <h2>📞 Contacto</h2>
+        <p><span class="icono">📞</span> Teléfono: <strong>999 999 999</strong></p>
+        <p><span class="icono">📱</span> WhatsApp: <strong>999 999 999</strong></p>
+        <p><span class="icono">✉️</span> Email: <strong>contacto@copanocturna.com</strong></p>
+        <p><span class="icono">🕐</span> Horario: <strong>Lunes a Domingo 6:00 PM - 4:00 AM</strong></p>
+        <p><span class="icono">🎉</span> Reservas: <strong>Con 24 horas de anticipación</strong></p>
+        
+        <div style="margin-top: 30px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+          <p style="color: #ffffff; font-weight: bold; margin-bottom: 10px;">¡Síguenos en redes sociales!</p>
+          <p><span class="icono">📸</span> Instagram: <strong>@copanocturna_bar</strong></p>
+          <p><span class="icono">📘</span> Facebook: <strong>Copa Nocturna Bar</strong></p>
+        </div>
+      </div>
+    </section>
 
-  <!-- VISTA UBICACIÓN -->
-  <section id="vista-ubicacion" class="vista oculto">
-    <div class="vista-simple">
-      <h2>Ubicación</h2>
-      <p>📍 Av. Principal 123 – Puerto Maldonado, Madre de Dios</p>
-      <p>🚗 Estacionamiento disponible</p>
-      <p>🚕 Fácil acceso en taxi</p>
-      <p>📍 Referencia: Frente al Parque Central</p>
-    </div>
-  </section>
+    <!-- VISTA UBICACIÓN -->
+    <section id="vista-ubicacion" class="vista oculto">
+      <div class="vista-simple">
+        <h2>📍 Ubicación</h2>
+        <p><span class="icono">📍</span> Dirección: <strong>Av. Principal 123 – Puerto Maldonado, Madre de Dios</strong></p>
+        <p><span class="icono">🚗</span> Estacionamiento: <strong>Disponible gratuito</strong></p>
+        <p><span class="icono">🚕</span> Transporte: <strong>Fácil acceso en taxi y mototaxi</strong></p>
+        <p><span class="icono">🏪</span> Referencia: <strong>Frente al Parque Central, al lado del Banco de la Nación</strong></p>
+        
+        <div style="margin-top: 30px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+          <p style="color: #ffffff; font-weight: bold; margin-bottom: 10px;">Horarios especiales:</p>
+          <p><span class="icono">🎤</span> Noches de Karaoke: <strong>Miércoles a Sábado</strong></p>
+          <p><span class="icono">🎵</span> DJ en vivo: <strong>Viernes y Sábado</strong></p>
+          <p><span class="icono">🎉</span> Eventos privados: <strong>Disponibles bajo reserva</strong></p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <!-- NAVEGACIÓN -->
   <nav class="tabbar">
@@ -419,7 +582,7 @@
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
-        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima.',
+        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisepurple.webp'
       },
@@ -443,19 +606,19 @@
       },
       camaleon: {
         nombre: 'Camaleon',
-        desc: 'Cóctel que cambia de color según los ingredientes que añadas.',
+        desc: 'Cóctel que cambia de color según los ingredientes que añadas. Una experiencia visual única.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
       },
       daiquiridedurazno: {
         nombre: 'Daiquiri de Durazno',
-        desc: 'Ron, puré de durazno fresco y jugo de limón.',
+        desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal.',
         precio: 'S/ 20.00',
         img: 'img/daiquiridedurazno.webp'
       },
       diabloazul: {
         nombre: 'Diablo Azul',
-        desc: 'Curaçao azul, vodka y sprite con un toque de lima.',
+        desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante.',
         precio: 'S/ 20.00',
         img: 'img/diabloazul.webp'
       },
@@ -517,6 +680,22 @@
 
       // Agregar clase activo al botón clickeado
       event.target.classList.add('activo');
+      
+      // Si volvemos a la vista carta, mostrar bienvenida si no hay selección
+      if (vista === 'carta' && !window.bebidaSeleccionada) {
+        mostrarBienvenida();
+      }
+    }
+
+    // Función para mostrar la pantalla de bienvenida
+    function mostrarBienvenida() {
+      document.getElementById('bienvenida').style.display = 'flex';
+      document.getElementById('contenido-detalle').style.display = 'none';
+      
+      // Remover selección de lista
+      document.querySelectorAll('.item').forEach(item => {
+        item.classList.remove('activo');
+      });
     }
 
     // Función para cargar imágenes con cache
@@ -532,9 +711,8 @@
             resolve(img.cloneNode());
           };
           img.onerror = () => {
-            // Imagen de respaldo si falla
             const fallback = new Image();
-            fallback.src = 'https://via.placeholder.com/400x200/1a1a1a/666666?text=Bebida';
+            fallback.src = 'https://via.placeholder.com/400x200/1a1a1a/666666?text=Copa+Nocturna';
             resolve(fallback);
           };
         }
@@ -542,10 +720,9 @@
     }
 
     let bloqueado = false;
-    let primeraSeleccion = true;
 
     // Función para mostrar detalle de bebida
-    function ver(id, el) {
+    async function ver(id, el) {
       if (bloqueado) return;
 
       const bebida = data[id];
@@ -558,13 +735,18 @@
       });
       el.classList.add('activo');
 
-      // Bloqueo para animaciones (excepto primera selección)
-      if (!primeraSeleccion) {
-        bloqueado = true;
-        detalle.classList.add('oculto');
-      }
+      // Guardar que hay una bebida seleccionada
+      window.bebidaSeleccionada = true;
+
+      // Animación de transición
+      bloqueado = true;
+      detalle.classList.add('oculto');
 
       setTimeout(async () => {
+        // Ocultar bienvenida y mostrar detalle
+        document.getElementById('bienvenida').style.display = 'none';
+        document.getElementById('contenido-detalle').style.display = 'block';
+
         // Actualizar información
         document.getElementById('detalle-nombre').textContent = bebida.nombre;
         document.getElementById('detalle-desc').textContent = bebida.desc;
@@ -576,26 +758,25 @@
         }
 
         // Cargar y mostrar imagen
-        const img = await getImage(bebida.img);
-        img.alt = bebida.nombre;
-
-        contenedorImg.innerHTML = "";
-        contenedorImg.appendChild(img);
+        try {
+          const img = await getImage(bebida.img);
+          img.alt = bebida.nombre;
+          contenedorImg.innerHTML = "";
+          contenedorImg.appendChild(img);
+        } catch (error) {
+          console.error('Error cargando imagen:', error);
+        }
 
         // Mostrar detalle con animación
         detalle.classList.remove('oculto');
-
         bloqueado = false;
-        primeraSeleccion = false;
-      }, primeraSeleccion ? 0 : 160);
+      }, 160);
     }
 
-    // Seleccionar primera bebida al cargar
+    // Inicializar - Mostrar bienvenida al cargar
     document.addEventListener('DOMContentLoaded', () => {
-      const primerItem = document.querySelector('.item');
-      if (primerItem) {
-        ver('appleparadisepurple', primerItem);
-      }
+      window.bebidaSeleccionada = false;
+      mostrarBienvenida();
     });
   </script>
 </body>
