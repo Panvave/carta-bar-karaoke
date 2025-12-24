@@ -209,7 +209,7 @@
       line-height: 1.4;
     }
     
-    /* SECCIÓN DETALLE (SIN SCROLL) - NUEVO DISEÑO */
+    /* SECCIÓN DETALLE - OPTIMIZADA */
     .seccion-detalle {
       background: var(--color-card);
       border-radius: 12px;
@@ -275,7 +275,7 @@
       color: var(--color-text-secondary);
     }
     
-    /* DETALLE BEBIDA - NUEVA ESTRUCTURA */
+    /* DETALLE BEBIDA - MEJORADO CON IMAGEN GRANDE */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -287,7 +287,7 @@
       display: flex;
     }
     
-    /* CONTENEDOR PRINCIPAL DEL DETALLE */
+    /* CONTENEDOR PRINCIPAL DEL DETALLE CON IMAGEN GRANDE */
     .detalle-grid {
       display: flex;
       flex-direction: column;
@@ -295,26 +295,28 @@
       gap: 20px;
     }
     
-    /* IMAGEN - MÁS CUADRADA */
-    .imagen-bebida {
-      background: var(--color-hover);
-      border-radius: 10px;
-      overflow: hidden;
+    /* IMAGEN - MÁS GRANDE Y DESTACADA */
+    .imagen-bebida-contenedor {
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      background: var(--color-hover);
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
-    .imagen-bebida img {
+    .imagen-bebida-contenedor img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
     
-    /* CONTENIDO TEXTO */
-    .detalle-texto {
+    /* CONTENIDO TEXTO AL LADO DE LA IMAGEN EN DESKTOP */
+    .detalle-contenido-principal {
       display: flex;
       flex-direction: column;
       flex: 1;
@@ -327,6 +329,15 @@
       margin: 0 0 12px;
       color: var(--color-text);
       line-height: 1.2;
+    }
+    
+    .detalle-tipo {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--color-border);
     }
     
     .detalle-descripcion {
@@ -352,7 +363,7 @@
       border-radius: 10px;
     }
     
-    /* PRECIO - SIEMPRE EN LA PARTE INFERIOR */
+    /* PRECIO */
     .precio-contenedor {
       margin-top: auto;
       padding-top: 20px;
@@ -551,16 +562,21 @@
         padding: 16px;
       }
       
-      /* IMAGEN MÁS CUADRADA EN MOBILE */
-      .imagen-bebida {
-        height: 200px;
+      /* IMAGEN GRANDE EN MOBILE TAMBIÉN */
+      .imagen-bebida-contenedor {
+        height: 220px;
         width: 100%;
         margin-bottom: 16px;
       }
       
       .detalle-nombre {
         font-size: 1.6rem;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
+      }
+      
+      .detalle-tipo {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
       }
       
       .detalle-descripcion {
@@ -603,10 +619,19 @@
         flex: 0 0 40%;
       }
       
-      .imagen-bebida {
-        height: 220px;
+      /* EN TABLET, IMAGEN MÁS GRANDE */
+      .imagen-bebida-contenedor {
+        height: 240px;
         width: 100%;
         margin-bottom: 20px;
+      }
+      
+      .detalle-nombre {
+        font-size: 1.8rem;
+      }
+      
+      .precio {
+        font-size: 2rem;
       }
       
       .mapa-contenedor {
@@ -614,10 +639,10 @@
       }
     }
     
-    /* DESKTOP - NUEVA ESTRUCTURA HORIZONTAL */
+    /* DESKTOP - ESTRUCTURA CON IMAGEN GRANDE */
     @media (min-width: 1024px) {
       .contenedor-columnas {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         width: 100%;
         padding: 20px;
@@ -628,21 +653,23 @@
         flex: 0 0 35%;
       }
       
-      /* EN DESKTOP, IMAGEN Y TEXTO EN HORIZONTAL */
+      /* EN DESKTOP, IMAGEN GRANDE CON TEXTO AL LADO */
       .detalle-grid {
         flex-direction: row;
         gap: 30px;
-        height: calc(100% - 60px); /* Deja espacio para el precio */
+        height: calc(100% - 60px);
       }
       
-      .imagen-bebida {
-        flex: 0 0 45%;
+      /* IMAGEN GRANDE (40% del espacio) */
+      .imagen-bebida-contenedor {
+        flex: 0 0 40%;
         height: auto;
-        max-height: 300px;
-        min-height: 250px;
+        max-height: 400px;
+        min-height: 350px;
       }
       
-      .detalle-texto {
+      /* TEXTO AL LADO (60% del espacio) */
+      .detalle-contenido-principal {
         flex: 1;
         padding-top: 0;
       }
@@ -650,6 +677,10 @@
       .detalle-nombre {
         font-size: 2rem;
         margin-bottom: 15px;
+      }
+      
+      .detalle-tipo {
+        font-size: 1rem;
       }
       
       .detalle-descripcion {
@@ -674,8 +705,9 @@
     
     /* DESKTOP GRANDE */
     @media (min-width: 1200px) {
-      .imagen-bebida {
-        max-height: 350px;
+      .imagen-bebida-contenedor {
+        max-height: 450px;
+        min-height: 400px;
       }
       
       .detalle-nombre {
@@ -710,8 +742,8 @@
         padding: 14px;
       }
       
-      .imagen-bebida {
-        height: 170px;
+      .imagen-bebida-contenedor {
+        height: 180px;
         margin-bottom: 14px;
       }
       
@@ -777,7 +809,7 @@
             <h2>Nuestra Carta</h2>
           </div>
           <div class="lista-contenido">
-            <div class="item-bebida" onclick="seleccionarBebida('appleparadisepurple', this)">
+            <div class="item-bebida seleccionado" onclick="seleccionarBebida('appleparadisepurple', this)">
               <h3 class="nombre-bebida">Apple Paradise Purple</h3>
               <p class="descripcion-bebida">Ron blanco · Refrescante</p>
             </div>
@@ -791,48 +823,48 @@
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('besocaribeno', this)">
               <h3 class="nombre-bebida">Beso Caribeño</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Ron dorado · Tropical</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('camaleon', this)">
               <h3 class="nombre-bebida">Camaleon</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Cambia de color · Experiencia</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('daiquiridedurazno', this)">
               <h3 class="nombre-bebida">Daiquiri de Durazno</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Ron · Frutal</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('diabloazul', this)">
               <h3 class="nombre-bebida">Diablo Azul</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Vodka · Intenso</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('machupicchu', this)">
               <h3 class="nombre-bebida">Machu Picchu</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Pisco · Peruano</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('margaritacoronablue', this)">
               <h3 class="nombre-bebida">Margarita Corona Blue</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Tequila · Cerveza</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('margarita', this)">
               <h3 class="nombre-bebida">Margarita</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Tequila · Clásico</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('mojito', this)">
               <h3 class="nombre-bebida">Mojito</h3>
-              <p class="descripcion-bebida">Clásico - Bien helada</p>
+              <p class="descripcion-bebida">Ron · Refrescante</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('orgasmo', this)">
               <h3 class="nombre-bebida">Orgasmo</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Mezcla secreta · Experiencia</p>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('sexonthebeach', this)">
               <h3 class="nombre-bebida">Sex on the Beach</h3>
-              <p class="descripcion-bebida">Bien helada</p>
+              <p class="descripcion-bebida">Vodka · Frutal</p>
             </div>
           </div>
         </section>
         
-        <!-- DETALLE DE BEBIDA (DERECHA/ABAJO) - NUEVA ESTRUCTURA -->
+        <!-- DETALLE DE BEBIDA (DERECHA/ABAJO) -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
             <!-- BIENVENIDA INICIAL -->
@@ -852,26 +884,29 @@
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA - NUEVA ESTRUCTURA -->
+            <!-- DETALLE DE BEBIDA CON IMAGEN GRANDE -->
             <div class="detalle-bebida" id="detalle-bebida">
               <div class="detalle-grid">
-                <!-- IMAGEN MÁS CUADRADA -->
-                <div class="imagen-bebida" id="imagen-bebida">
+                <!-- IMAGEN GRANDE -->
+                <div class="imagen-bebida-contenedor" id="imagen-bebida">
                   <!-- Imagen se cargará aquí -->
                 </div>
                 
-                <!-- TEXTO AL LADO (EN DESKTOP) O DEBAJO (EN MOBILE) -->
-                <div class="detalle-texto">
-                  <h2 class="detalle-nombre" id="detalle-nombre"></h2>
-                  <p class="detalle-descripcion" id="detalle-descripcion"></p>
-                </div>
-              </div>
-              
-              <!-- PRECIO SIEMPRE EN LA PARTE INFERIOR -->
-              <div class="precio-contenedor">
-                <div class="precio">
-                  <span id="precio-texto">S/ --</span>
-                  <span class="precio-badge">PRECIO</span>
+                <!-- CONTENIDO TEXTO AL LADO (EN DESKTOP) O DEBAJO (EN MOBILE) -->
+                <div class="detalle-contenido-principal">
+                  <h2 class="detalle-nombre" id="detalle-nombre">Apple Paradise Purple</h2>
+                  <div class="detalle-tipo" id="detalle-tipo">Ron blanco · Refrescante</div>
+                  <p class="detalle-descripcion" id="detalle-descripcion">
+                    Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche. Una variante del Apple Paradise clásico que consta de manzanas frescas, vodka, jugo de piña, hielo, granadina y blue curacao con un color escarchado y una fresa decorativa. Una buena opción para consentir al paladar.
+                  </p>
+                  
+                  <!-- PRECIO SIEMPRE EN LA PARTE INFERIOR -->
+                  <div class="precio-contenedor">
+                    <div class="precio">
+                      <span id="precio-texto">S/ 23.00</span>
+                      <span class="precio-badge">PRECIO</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1017,83 +1052,96 @@
   </footer>
 
   <script>
-    // Datos de las bebidas
+    // Datos de las bebidas actualizados
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
-        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche.',
+        tipo: 'Ron blanco · Refrescante',
+        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche. Una variante del Apple Paradise clásico que consta de manzanas frescas, vodka, jugo de piña, hielo, granadina y blue curacao con un color escarchado y una fresa decorativa. Una buena opción para consentir al paladar.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisepurple.webp'
       },
       appleparadisered: {
         nombre: 'Apple Paradise Red',
-        desc: 'Tequila con jugo de manzana roja y granadina, perfecto para empezar la noche.',
+        tipo: 'Tequila · Clásico',
+        desc: 'Tequila con jugo de manzana roja y granadina. Una versión clásica del Apple Paradise con un toque especial de tequila que realza el sabor de la manzana. Perfecto para los amantes de los sabores intensos y tradicionales.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisered.webp'
       },
       appleparadise: {
         nombre: 'Apple Paradise',
-        desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena.',
+        tipo: 'Pisco peruano · Especial',
+        desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena. Disco hermano del Apple Paradise clásico. Una combinación perfecta de sabores peruanos con un toque refrescante de manzana verde.',
         precio: 'S/ 20.00',
         img: 'img/appleparadise.webp'
       },
       besocaribeno: {
         nombre: 'Beso Caribeño',
-        desc: 'Ron dorado, jugo de piña y coco con un toque de maracuyá.',
+        tipo: 'Ron dorado · Tropical',
+        desc: 'Ron dorado, jugo de piña y coco con un toque de maracuyá. Una explosión de sabores tropicales que te transportarán directamente al Caribe. Dulce, cremoso y refrescante.',
         precio: 'S/ 20.00',
         img: 'img/besocaribeno.webp'
       },
       camaleon: {
         nombre: 'Camaleon',
-        desc: 'Cóctel que cambia de color según los ingredientes que añadas. Una experiencia visual única.',
+        tipo: 'Cambia de color · Experiencia',
+        desc: 'Cóctel que cambia de color según los ingredientes que añadas. Una experiencia visual única que combina diferentes licores que reaccionan entre sí creando un espectáculo de colores en tu copa.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
       },
       daiquiridedurazno: {
         nombre: 'Daiquiri de Durazno',
-        desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal.',
+        tipo: 'Ron · Frutal',
+        desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal, este daiquiri combina la acidez del limón con la dulzura del durazno en perfecta armonía.',
         precio: 'S/ 20.00',
         img: 'img/daiquiridedurazno.webp'
       },
       diabloazul: {
         nombre: 'Diablo Azul',
-        desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante.',
+        tipo: 'Vodka · Intenso',
+        desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante, su color azul vibrante es tan llamativo como su sabor. Perfecto para sorprender a tus amigos.',
         precio: 'S/ 20.00',
         img: 'img/diabloazul.webp'
       },
       machupicchu: {
         nombre: 'Machu Picchu',
-        desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en los sabores peruanos.',
+        tipo: 'Pisco · Peruano',
+        desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en los sabores peruanos. Un homenaje a nuestra cultura con ingredientes autóctonos que crean una experiencia única.',
         precio: 'S/ 20.00',
         img: 'img/machupicchu.webp'
       },
       margaritacoronablue: {
         nombre: 'Margarita Corona Blue',
-        desc: 'Tequila, cerveza Corona y licor azul con sal en el borde.',
+        tipo: 'Tequila · Cerveza',
+        desc: 'Tequila, cerveza Corona y licor azul con sal en el borde. Una combinación innovadora que une lo mejor de una margarita clásica con la frescura de la cerveza.',
         precio: 'S/ 30.00',
         img: 'img/margaritacoronablue.webp'
       },
       margarita: {
         nombre: 'Margarita',
-        desc: 'Clásico cóctel de tequila, triple sec y jugo de limón.',
+        tipo: 'Tequila · Clásico',
+        desc: 'Clásico cóctel de tequila, triple sec y jugo de limón. Simple, elegante y siempre acertado. La opción perfecta para quienes buscan un sabor tradicional bien ejecutado.',
         precio: 'S/ 20.00',
         img: 'img/margarita.webp'
       },
       mojito: {
         nombre: 'Mojito',
-        desc: 'Ron blanco, menta fresca, lima, azúcar y soda.',
+        tipo: 'Ron · Refrescante',
+        desc: 'Ron blanco, menta fresca, lima, azúcar y soda. El clásico cubano que nunca pasa de moda. Refrescante, mentolado y perfecto para cualquier ocasión.',
         precio: 'S/ 15.00',
         img: 'img/mojito.webp'
       },
       orgasmo: {
         nombre: 'Orgasmo',
-        desc: 'Mezcla secreta de licores que promete una experiencia única.',
+        tipo: 'Mezcla secreta · Experiencia',
+        desc: 'Mezcla secreta de licores que promete una experiencia única. Su nombre lo dice todo: una explosión de sabores que despierta todos tus sentidos.',
         precio: 'S/ 20.00',
         img: 'img/orgasmo.webp'
       },
       sexonthebeach: {
         nombre: 'Sex on the Beach',
-        desc: 'Vodka, licor de melocotón, jugo de arándano y naranja.',
+        tipo: 'Vodka · Frutal',
+        desc: 'Vodka, licor de melocotón, jugo de arándano y naranja. Dulce, frutal y con un toque cítrico. Un clásico moderno que siempre gusta.',
         precio: 'S/ 20.00',
         img: 'img/sexonthebeach.webp'
       }
@@ -1158,7 +1206,7 @@
         };
         img.onerror = () => {
           // Imagen de respaldo
-          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%231f1f1f"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23666666" text-anchor="middle" dy=".3em">🍸 Copa Nocturna</text></svg>';
+          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="#1f1f1f"/><circle cx="200" cy="150" r="80" fill="rgba(255,255,255,0.1)"/><text x="200" y="150" font-family="Arial" font-size="24" fill="#666666" text-anchor="middle" dy=".3em">🍸</text><text x="200" y="250" font-family="Arial" font-size="18" fill="#666" text-anchor="middle">Copa Nocturna</text></svg>';
           imageCache[src] = fallback;
           resolve(fallback);
         };
@@ -1190,6 +1238,7 @@
       
       // Actualizar información
       document.getElementById('detalle-nombre').textContent = bebida.nombre;
+      document.getElementById('detalle-tipo').textContent = bebida.tipo;
       document.getElementById('detalle-descripcion').textContent = bebida.desc;
       document.getElementById('precio-texto').textContent = bebida.precio;
       
@@ -1208,11 +1257,9 @@
     
     // Inicializar al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-      // Seleccionar primera bebida automáticamente
-      const primerItem = document.querySelector('.item-bebida');
-      if (primerItem) {
-        seleccionarBebida('appleparadisepurple', primerItem);
-      }
+      // Mostrar bienvenida inicialmente (detalle oculto)
+      document.getElementById('bienvenida').style.display = 'flex';
+      document.getElementById('detalle-bebida').style.display = 'none';
       
       // Cargar mapa si está en la vista de ubicación (por si alguien refresca la página)
       if (document.getElementById('vista-ubicacion').classList.contains('activa')) {
