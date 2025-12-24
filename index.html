@@ -209,7 +209,7 @@
       line-height: 1.4;
     }
     
-    /* SECCIÓN DETALLE (SIN SCROLL) */
+    /* SECCIÓN DETALLE (SIN SCROLL) - NUEVO DISEÑO */
     .seccion-detalle {
       background: var(--color-card);
       border-radius: 12px;
@@ -275,7 +275,7 @@
       color: var(--color-text-secondary);
     }
     
-    /* DETALLE BEBIDA (ESTRUCTURA FIJA SIN SCROLL) */
+    /* DETALLE BEBIDA - NUEVA ESTRUCTURA */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -287,13 +287,23 @@
       display: flex;
     }
     
+    /* CONTENEDOR PRINCIPAL DEL DETALLE */
+    .detalle-grid {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      gap: 20px;
+    }
+    
+    /* IMAGEN - MÁS CUADRADA */
     .imagen-bebida {
-      height: 200px;
       background: var(--color-hover);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 20px;
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     .imagen-bebida img {
@@ -303,25 +313,46 @@
       display: block;
     }
     
+    /* CONTENIDO TEXTO */
+    .detalle-texto {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+    
     .detalle-nombre {
-      font-size: 1.6rem;
-      font-weight: 600;
+      font-size: 1.8rem;
+      font-weight: 700;
       margin: 0 0 12px;
       color: var(--color-text);
-      flex-shrink: 0;
+      line-height: 1.2;
     }
     
     .detalle-descripcion {
       color: var(--color-text-secondary);
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.6;
       margin: 0 0 20px;
-      overflow-y: auto;
       flex: 1;
-      min-height: 60px;
+      overflow-y: auto;
+      padding-right: 5px;
     }
     
-    /* PRECIO - SIEMPRE VISIBLE Y FIJO */
+    .detalle-descripcion::-webkit-scrollbar {
+      width: 4px;
+    }
+    
+    .detalle-descripcion::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .detalle-descripcion::-webkit-scrollbar-thumb {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 10px;
+    }
+    
+    /* PRECIO - SIEMPRE EN LA PARTE INFERIOR */
     .precio-contenedor {
       margin-top: auto;
       padding-top: 20px;
@@ -330,8 +361,8 @@
     }
     
     .precio {
-      font-size: 1.8rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 800;
       color: var(--color-text);
       display: flex;
       align-items: center;
@@ -339,11 +370,12 @@
     }
     
     .precio-badge {
-      background: rgba(255,255,255,0.1);
-      padding: 6px 12px;
+      background: rgba(255,255,255,0.15);
+      padding: 8px 16px;
       border-radius: 20px;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
     
     /* VISTAS CONTACTO Y UBICACIÓN */
@@ -371,9 +403,10 @@
     }
     
     .tarjeta-info h3 {
-      margin: 0 0 15px;
-      font-size: 1.2rem;
+      margin: 0 0 20px;
+      font-size: 1.4rem;
       font-weight: 600;
+      text-align: center;
     }
     
     .info-item {
@@ -412,13 +445,14 @@
       line-height: 1.4;
     }
     
-    /* MAPA CON ENLACE EXACTO */
+    /* MAPA CON EL IFRAME EXACTO */
     .mapa-contenedor {
       height: 250px;
       background: var(--color-hover);
       border-radius: 10px;
       overflow: hidden;
       margin: 20px 0;
+      position: relative;
     }
     
     .mapa-contenedor iframe {
@@ -517,21 +551,31 @@
         padding: 16px;
       }
       
+      /* IMAGEN MÁS CUADRADA EN MOBILE */
       .imagen-bebida {
-        height: 180px;
+        height: 200px;
+        width: 100%;
+        margin-bottom: 16px;
       }
       
       .detalle-nombre {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
       }
       
       .detalle-descripcion {
         font-size: 0.95rem;
-        min-height: 50px;
+        margin-bottom: 16px;
+        min-height: 60px;
       }
       
       .precio {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
+      }
+      
+      .precio-badge {
+        padding: 6px 12px;
+        font-size: 0.85rem;
       }
       
       .vista-contenido {
@@ -561,6 +605,8 @@
       
       .imagen-bebida {
         height: 220px;
+        width: 100%;
+        margin-bottom: 20px;
       }
       
       .mapa-contenedor {
@@ -568,7 +614,7 @@
       }
     }
     
-    /* DESKTOP */
+    /* DESKTOP - NUEVA ESTRUCTURA HORIZONTAL */
     @media (min-width: 1024px) {
       .contenedor-columnas {
         max-width: 1200px;
@@ -582,16 +628,37 @@
         flex: 0 0 35%;
       }
       
+      /* EN DESKTOP, IMAGEN Y TEXTO EN HORIZONTAL */
+      .detalle-grid {
+        flex-direction: row;
+        gap: 30px;
+        height: calc(100% - 60px); /* Deja espacio para el precio */
+      }
+      
       .imagen-bebida {
-        height: 250px;
+        flex: 0 0 45%;
+        height: auto;
+        max-height: 300px;
+        min-height: 250px;
+      }
+      
+      .detalle-texto {
+        flex: 1;
+        padding-top: 0;
       }
       
       .detalle-nombre {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+      
+      .detalle-descripcion {
+        font-size: 1.05rem;
+        line-height: 1.7;
       }
       
       .precio {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       
       .vista-contenido {
@@ -601,7 +668,22 @@
       }
       
       .mapa-contenedor {
-        height: 300px;
+        height: 320px;
+      }
+    }
+    
+    /* DESKTOP GRANDE */
+    @media (min-width: 1200px) {
+      .imagen-bebida {
+        max-height: 350px;
+      }
+      
+      .detalle-nombre {
+        font-size: 2.2rem;
+      }
+      
+      .precio {
+        font-size: 2.4rem;
       }
     }
     
@@ -629,20 +711,26 @@
       }
       
       .imagen-bebida {
-        height: 150px;
+        height: 170px;
+        margin-bottom: 14px;
       }
       
       .detalle-nombre {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
       }
       
       .detalle-descripcion {
         font-size: 0.9rem;
-        min-height: 45px;
+        min-height: 50px;
       }
       
       .precio {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
+      }
+      
+      .precio-badge {
+        padding: 5px 10px;
+        font-size: 0.8rem;
       }
     }
     
@@ -744,7 +832,7 @@
           </div>
         </section>
         
-        <!-- DETALLE DE BEBIDA (DERECHA/ABAJO) - SIN SCROLL, ESTRUCTURA FIJA -->
+        <!-- DETALLE DE BEBIDA (DERECHA/ABAJO) - NUEVA ESTRUCTURA -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
             <!-- BIENVENIDA INICIAL -->
@@ -764,15 +852,22 @@
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA (OCULTO INICIALMENTE) - ESTRUCTURA FIJA -->
+            <!-- DETALLE DE BEBIDA - NUEVA ESTRUCTURA -->
             <div class="detalle-bebida" id="detalle-bebida">
-              <div class="imagen-bebida" id="imagen-bebida">
-                <!-- Imagen se cargará aquí -->
+              <div class="detalle-grid">
+                <!-- IMAGEN MÁS CUADRADA -->
+                <div class="imagen-bebida" id="imagen-bebida">
+                  <!-- Imagen se cargará aquí -->
+                </div>
+                
+                <!-- TEXTO AL LADO (EN DESKTOP) O DEBAJO (EN MOBILE) -->
+                <div class="detalle-texto">
+                  <h2 class="detalle-nombre" id="detalle-nombre"></h2>
+                  <p class="detalle-descripcion" id="detalle-descripcion"></p>
+                </div>
               </div>
-              <h2 class="detalle-nombre" id="detalle-nombre"></h2>
-              <p class="detalle-descripcion" id="detalle-descripcion"></p>
               
-              <!-- PRECIO SIEMPRE VISIBLE Y FIJO EN LA PARTE INFERIOR -->
+              <!-- PRECIO SIEMPRE EN LA PARTE INFERIOR -->
               <div class="precio-contenedor">
                 <div class="precio">
                   <span id="precio-texto">S/ --</span>
@@ -850,14 +945,6 @@
               <span>@copanocturna_md</span>
             </div>
           </div>
-          
-          <div class="info-item">
-            <div class="info-icono">✈️</div>
-            <div class="info-texto">
-              <strong>Instagram Reels</strong>
-              <span>Videos de nuestros eventos</span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -876,9 +963,9 @@
             </div>
           </div>
           
-          <!-- MAPA CON ENLACE EXACTO -->
+          <!-- MAPA CON EL IFRAME EXACTO PROPORCIONADO -->
           <div class="mapa-contenedor" id="mapa-contenedor">
-            <!-- Mapa se cargará aquí con el enlace exacto -->
+            <!-- Mapa se cargará aquí -->
           </div>
           
           <div class="info-item">
@@ -1036,31 +1123,24 @@
       
       // Si es la vista ubicación, cargar el mapa
       if (vista === 'ubicacion') {
-        setTimeout(cargarMapaExacto, 300);
+        setTimeout(cargarMapaExacto, 100);
       }
     }
     
-    // Función para cargar Google Maps con el enlace exacto
+    // Función para cargar el mapa exacto del iframe proporcionado
     function cargarMapaExacto() {
       const mapaContenedor = document.getElementById('mapa-contenedor');
       if (!mapaContenedor) return;
       
-      // Usar el enlace exacto proporcionado
-      const enlaceExacto = 'https://maps.app.goo.gl/97neaXMd5FM2fZsz6';
+      // Usar el iframe exacto que proporcionaste
+      const iframeCode = `<iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3893.8105678579236!2d-69.219062!3d-12.594733000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDM1JzQxLjAiUyA2OcKwMTMnMDguNiJX!5e0!3m2!1ses!2spe!4v1766614406793!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
       
-      // Crear iframe de Google Maps con el enlace exacto
-      mapaContenedor.innerHTML = `
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3799.8250850000003!2d-69.18528768571428!3d-12.600000000000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTLCsDM2JzAwLjAiUyA2OcKwMTEnMDcuMCJX!5e0!3m2!1ses!2spe!4v1690000000000"
-          width="100%" 
-          height="100%" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación exacta Copa Nocturna">
-        </iframe>
-      `;
+      // Modificar el iframe para que sea responsive
+      const iframeModificado = iframeCode
+        .replace('width="600"', 'width="100%"')
+        .replace('height="450"', 'height="100%"');
+      
+      mapaContenedor.innerHTML = iframeModificado;
     }
     
     // Función para cargar imágenes con cache
@@ -1078,7 +1158,7 @@
         };
         img.onerror = () => {
           // Imagen de respaldo
-          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"><rect width="400" height="200" fill="%231f1f1f"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23666666" text-anchor="middle" dy=".3em">🍸 Copa Nocturna</text></svg>';
+          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%231f1f1f"/><text x="50%" y="50%" font-family="Arial" font-size="24" fill="%23666666" text-anchor="middle" dy=".3em">🍸 Copa Nocturna</text></svg>';
           imageCache[src] = fallback;
           resolve(fallback);
         };
@@ -1123,12 +1203,6 @@
         imagenContenedor.innerHTML = `<img src="${imgSrc}" alt="${bebida.nombre}" loading="lazy">`;
       } catch (error) {
         console.error('Error cargando imagen:', error);
-      }
-      
-      // Asegurar que el precio sea visible
-      const precioContenedor = document.querySelector('.precio-contenedor');
-      if (precioContenedor) {
-        precioContenedor.scrollIntoView({ behavior: 'smooth', block: 'end' });
       }
     }
     
