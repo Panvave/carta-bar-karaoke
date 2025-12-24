@@ -401,16 +401,22 @@
         img: 'img/sexonthebeach.webp'
       }
     };
+const cache = {};
+
+function preload(imgSrc) {
+  if (cache[imgSrc]) return;
+  const i = new Image();
+  i.src = imgSrc;
+  cache[imgSrc] = true;
+}
 
   function ver(id, el) {
+  if (bloqueado) return;   // ⛔ bloqueo activo
+  bloqueado = true;
+
   const b = data[id];
   const detalle = document.getElementById('detalle');
   const cont = document.getElementById('detalle-img');
-
-  /* Vibración táctil */
-  if (navigator.vibrate) {
-    navigator.vibrate(15);
-  }
 
   // quitar selección
   document.querySelectorAll('.item').forEach(item =>
@@ -426,7 +432,7 @@
     document.getElementById('detalle-desc').textContent = b.desc;
     document.getElementById('detalle-precio').textContent = b.precio;
 
-    /* Skeleton primero */
+    // skeleton
     cont.innerHTML = `<div class="skeleton"></div>`;
 
     const img = new Image();
@@ -437,12 +443,20 @@
     img.onload = () => {
       cont.innerHTML = "";
       cont.appendChild(img);
-    };
+      preload(b.img);
 
-    // animación entrada
-    detalle.classList.remove('oculto');
+
+      // animación entrada
+      detalle.classList.remove('oculto');
+
+      // liberar bloqueo
+      setTimeout(() => {
+        bloqueado = false;
+      }, 120);
+    };
   }, 180);
 }
+
 
 </script>
 
