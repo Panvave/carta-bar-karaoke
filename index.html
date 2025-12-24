@@ -41,8 +41,8 @@
 
     main.container {
       flex: 1;
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;        /* NO grid en mobile */
+      flex-direction: column;
       gap: 12px;
       padding: 12px;
       overflow: hidden;
@@ -50,6 +50,7 @@
 
     @media (min-width: 768px) {
       main.container {
+        display: grid;
         grid-template-columns: 1fr 1.3fr;
         max-width: 1200px;
         margin: auto;
