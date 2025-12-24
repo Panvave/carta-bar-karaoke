@@ -55,6 +55,9 @@
         max-width: 1200px;
         margin: auto;
       }
+      .detalle-img {
+        height: 220px;
+      }
     }
     @media (max-width: 767px) {
 
@@ -78,7 +81,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-bottom: 10px;
+    min-height: 0; 
   }
 
   /* TÍTULO */
@@ -89,10 +92,8 @@
 
   /* IMAGEN */
   .detalle-img {
-    max-height: 160px;   /* CONTROL REAL */
-    width: 100%;
-    object-fit: cover;
-    flex-shrink: 0;
+    max-height: 140px;
+    height: auto; 
   }
 
   /* CUERPO */
@@ -176,7 +177,7 @@
     }
 
     .detalle-img {
-      height: 220px;              /* ALTURA FIJA */
+      width: 100%;
       background: #1f1f1f;
       border-radius: 10px;
       overflow: hidden;
@@ -298,8 +299,8 @@
       <div class="detalle-img" id="detalle-img"></div>
 
       <div class="detalle-body">
-          <p id="detalle-desc"></p>
-          <div class="precio" id="detalle-precio"></div>
+          <p id="detalle-desc">Selecciona una bebida para ver la descripción.</p>
+          <div class="precio" id="detalle-precio">S/ --</div>
       </div>
 </section>
 
