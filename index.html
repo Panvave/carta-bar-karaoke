@@ -41,77 +41,85 @@
 
     main.container {
       flex: 1;
-      display: flex;        /* NO grid en mobile */
+      display: flex;
       flex-direction: column;
       gap: 12px;
       padding: 12px;
       overflow: hidden;
     }
 
+    /* CORRECCIÓN: Agregar para que nav funcione correctamente */
+    .vista {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .vista.oculto {
+      display: none;
+    }
+
     @media (max-width: 767px) {
+      #vista-carta.container {
+        display: flex;
+        flex-direction: column;
+      }
 
-  main.container {
-    display: flex;
-    flex-direction: column;
-  }
+      .lista {
+        flex: 0 0 40%;
+        overflow-y: auto;
+      }
 
-  .lista {
-    flex: 0 0 40%;
-    overflow-y: auto;
-  }
+      .detalle {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
 
-  .detalle {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+      .detalle-img {
+        height: 140px;
+      }
 
-  .detalle-img {
-    height: 140px;
-  }
+      .detalle-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
 
-  .detalle-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .precio {
-    margin-top: auto;
-    font-size: 1.3rem;
-  }
-}
+      .precio {
+        margin-top: auto;
+        font-size: 1.3rem;
+      }
+    }
 
     @media (min-width: 768px) and (max-width: 1023px) {
+      #vista-carta.container {
+        display: grid;
+        grid-template-columns: 1fr 1.2fr;
+      }
 
-  main.container {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-  }
+      .lista {
+        overflow-y: auto;
+      }
 
-  .lista {
-    overflow-y: auto;
-  }
+      .detalle-img {
+        height: 220px;
+      }
+    }
 
-  .detalle-img {
-    height: 220px;
-  }
-}
+    @media (min-width: 1024px) {
+      #vista-carta.container {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        max-width: 1200px;
+        margin: auto;
+      }
 
-@media (min-width: 1024px) {
-
-  main.container {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    max-width: 1200px;
-    margin: auto;
-  }
-
-  .detalle-img {
-    height: 320px;
-  }
-}
-
+      .detalle-img {
+        height: 320px;
+      }
+    }
 
     .lista {
       background: #161616;
@@ -142,23 +150,24 @@
     .item:hover {
       background: #1f1f1f;
     }
-    /* ITEM SELECCIONADO */
+
     .item.activo {
-        background: linear-gradient(
-          90deg,
-          rgba(255,255,255,0.08),
-          rgba(255,255,255,0.02)
-        );
-        border-left: 4px solid #ffffff;
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.02)
+      );
+      border-left: 4px solid #ffffff;
     }
 
-  .item.activo strong {
-    color: #ffffff;
-  }
+    .item.activo strong {
+      color: #ffffff;
+    }
 
-  .item.activo span {
-    color: #e0e0e0;
-  }
+    .item.activo span {
+      color: #e0e0e0;
+    }
+
     .detalle {
       background: #161616;
       border-radius: 12px;
@@ -168,12 +177,14 @@
       overflow: hidden;
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
+
     .detalle.oculto {
       opacity: 0;
       transform: translateY(6px);
     }
+
     .detalle-img {
-      height: 200px;              /* MISMO TAMAÑO PARA TODOS */
+      height: 200px;
       background: #1f1f1f;
       border-radius: 10px;
       overflow: hidden;
@@ -183,10 +194,11 @@
     .detalle-img img {
       width: 100%;
       height: 100%;
-      object-fit: cover;          /* NO DISTORSIONA */
+      object-fit: cover;
       display: block;
       animation: fadeZoom 0.35s ease;
     }
+
     @keyframes fadeZoom {
       from {
         opacity: 0;
@@ -195,27 +207,28 @@
       to {
         opacity: 1;
         transform: scale(1);
+      }
     }
-  }
-    /* TEXTO */
+
     .detalle h2 {
       margin: 12px 0 6px;
     }
+
     .detalle-body {
       flex: 1;
       display: block;
       flex-direction: column;
       justify-content: flex-start;
     }
+
     .detalle p {
       margin: 10px 0;
       color: #cfcfcf;
       font-size: 0.95rem;
       line-height: 1.4;
-      min-height: 3em;            /* RESERVA ESPACIO */
+      min-height: 3em;
     }
 
-    /* PRECIO SIEMPRE ABAJO */
     .precio {
       margin-top: 10px;
       font-size: 1.4rem;
@@ -226,42 +239,70 @@
     }
 
     .tabbar {
-  display: flex;
-  background: #161616;
-  border-top: 1px solid #2a2a2a;
-  flex-shrink: 0;
-}
-
-.tabbar button {
-  flex: 1;
-  padding: 12px 0;
-  background: none;
-  border: none;
-  color: #bdbdbd;
-  font-size: 0.85rem;
-}
-
-.tabbar button.activo {
-  color: #ffffff;
-  font-weight: bold;
-}
-
-.oculto {
-  display: none;
-}
-
-
-    footer { 
-      text-align: center; 
-      padding: 10px; 
-      font-size: 0.8rem; 
-      color: #9e9e9e; 
-      background: #161616; 
+      display: flex;
+      background: #161616;
       border-top: 1px solid #2a2a2a;
-      border-top: 1px solid #2a2a2a; 
-      flex-shrink: 0; 
+      flex-shrink: 0;
     }
 
+    .tabbar button {
+      flex: 1;
+      padding: 12px 0;
+      background: none;
+      border: none;
+      color: #bdbdbd;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .tabbar button.activo {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    /* Estilos para las otras vistas */
+    .vista-simple {
+      background: #161616;
+      border-radius: 12px;
+      padding: 20px;
+      margin: 12px;
+      flex: 1;
+    }
+
+    .vista-simple h2 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .vista-simple p {
+      color: #cfcfcf;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.8rem;
+      color: #9e9e9e;
+      background: #161616;
+      border-top: 1px solid #2a2a2a;
+      flex-shrink: 0;
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, #2a2a2a 25%, #333 50%, #2a2a2a 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
   </style>
 </head>
 
@@ -271,253 +312,291 @@
     <p>Selecciona un trago para ver el detalle</p>
   </header>
 
-  <main class="container" id="vista-carta">
-    <section class="lista">
-      <div class="item" onclick="ver('appleparadisepurple',this)">
-        <strong>Apple Paradise Purple</strong>
-        <span>Ron blanco · Refrescante</span>
-      </div>
-      <div class="item" onclick="ver('appleparadisered',this)">
-        <strong>Apple Paradise Red</strong>
-        <span>Tequila · Clásico</span>
-      </div>
-      <div class="item" onclick="ver('appleparadise',this)">
-        <strong>Apple Paradise</strong>
-        <span>Pisco peruano</span>
-      </div>
-      <div class="item" onclick="ver('besocaribeno',this)">
-        <strong>Beso Caribeño</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('camaleon',this)">
-        <strong>Camaleon</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('daiquiridedurazno',this)">
-        <strong>Daiquiri de Durazno</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('diabloazul',this)">
-        <strong>Diablo Azul</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('machupicchu',this)">
-        <strong>Machu Picchu</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('margaritacoronablue',this)">
-        <strong>Margarita Corona Blue</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('margarita',this)">
-        <strong>Margarita</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('mojito',this)">
-        <strong>Mojito</strong>
-        <span>Clasico - Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('orgasmo',this)">
-        <strong>Orgasmo</strong>
-        <span>Bien helada</span>
-      </div>
-      <div class="item" onclick="ver('sexonthebeach',this)">
-        <strong>Sex on the Beach</strong>
-        <span>Bien helada</span>
-      </div>
-    </section>
+  <!-- VISTA CARTA -->
+  <section id="vista-carta" class="vista">
+    <main class="container">
+      <section class="lista">
+        <div class="item" onclick="ver('appleparadisepurple',this)">
+          <strong>Apple Paradise Purple</strong>
+          <span>Ron blanco · Refrescante</span>
+        </div>
+        <div class="item" onclick="ver('appleparadisered',this)">
+          <strong>Apple Paradise Red</strong>
+          <span>Tequila · Clásico</span>
+        </div>
+        <div class="item" onclick="ver('appleparadise',this)">
+          <strong>Apple Paradise</strong>
+          <span>Pisco peruano</span>
+        </div>
+        <div class="item" onclick="ver('besocaribeno',this)">
+          <strong>Beso Caribeño</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('camaleon',this)">
+          <strong>Camaleon</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('daiquiridedurazno',this)">
+          <strong>Daiquiri de Durazno</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('diabloazul',this)">
+          <strong>Diablo Azul</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('machupicchu',this)">
+          <strong>Machu Picchu</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('margaritacoronablue',this)">
+          <strong>Margarita Corona Blue</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('margarita',this)">
+          <strong>Margarita</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('mojito',this)">
+          <strong>Mojito</strong>
+          <span>Clasico - Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('orgasmo',this)">
+          <strong>Orgasmo</strong>
+          <span>Bien helada</span>
+        </div>
+        <div class="item" onclick="ver('sexonthebeach',this)">
+          <strong>Sex on the Beach</strong>
+          <span>Bien helada</span>
+        </div>
+      </section>
 
-    <section class="detalle" id="detalle">
-      <h2 id="detalle-nombre">Selecciona una bebida</h2>
-
-      <div class="detalle-img" id="detalle-img"></div>
-
-      <div class="detalle-body">
+      <section class="detalle" id="detalle">
+        <h2 id="detalle-nombre">Selecciona una bebida</h2>
+        <div class="detalle-img" id="detalle-img"></div>
+        <div class="detalle-body">
           <p id="detalle-desc">Selecciona una bebida para ver la descripción.</p>
           <div class="precio" id="detalle-precio">S/ --</div>
-      </div>
-</section>
+        </div>
+      </section>
+    </main>
+  </section>
 
+  <!-- VISTA CONTACTO -->
+  <section id="vista-contacto" class="vista oculto">
+    <div class="vista-simple">
+      <h2>Contacto</h2>
+      <p>📞 Teléfono: 999 999 999</p>
+      <p>📱 WhatsApp: 999 999 999</p>
+      <p>✉️ Email: contacto@copanocturna.com</p>
+      <p>🕐 Horario: Lunes a Domingo 6:00 PM - 4:00 AM</p>
+    </div>
+  </section>
 
-  </main>
-<main class="container oculto" id="vista-contacto">
-  <h2>Contacto</h2>
-  <p>📞 Teléfono: 999 999 999</p>
-  <p>📱 WhatsApp: 999 999 999</p>
-</main>
+  <!-- VISTA UBICACIÓN -->
+  <section id="vista-ubicacion" class="vista oculto">
+    <div class="vista-simple">
+      <h2>Ubicación</h2>
+      <p>📍 Av. Principal 123 – Puerto Maldonado, Madre de Dios</p>
+      <p>🚗 Estacionamiento disponible</p>
+      <p>🚕 Fácil acceso en taxi</p>
+      <p>📍 Referencia: Frente al Parque Central</p>
+    </div>
+  </section>
 
-<main class="container oculto" id="vista-ubicacion">
-  <h2>Ubicación</h2>
-  <p>📍 Av. Principal 123 – Puerto Maldonado</p>
-</main>
-<nav class="tabbar">
-  <button onclick="mostrarVista('carta')" class="activo">🍹 Carta</button>
-  <button onclick="mostrarVista('contacto')">📞 Contacto</button>
-  <button onclick="mostrarVista('ubicacion')">📍 Ubicación</button>
-</nav>
+  <!-- NAVEGACIÓN -->
+  <nav class="tabbar">
+    <button onclick="mostrarVista('carta')" class="activo">🍹 Carta</button>
+    <button onclick="mostrarVista('contacto')">📞 Contacto</button>
+    <button onclick="mostrarVista('ubicacion')">📍 Ubicación</button>
+  </nav>
 
   <footer class="footer">
     © 2025 – Carta digital desarrollada por Paul Anthony Valencia Vela
-</footer>
-
+  </footer>
 
   <script>
-function mostrarVista(vista) {
-  document.querySelectorAll('main.container').forEach(v =>
-    v.classList.add('oculto')
-  );
-
-  document.querySelectorAll('.tabbar button').forEach(b =>
-    b.classList.remove('activo')
-  );
-
-  document.getElementById('vista-' + vista).classList.remove('oculto');
-
-  event.target.classList.add('activo');
-}
-
+    // Datos de las bebidas
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
-        desc: 'Sin descripción',
+        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisepurple.webp'
       },
       appleparadisered: {
         nombre: 'Apple Paradise Red',
-        desc: 'Sin descripción',
+        desc: 'Tequila con jugo de manzana roja y granadina, perfecto para empezar la noche.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisered.webp'
       },
       appleparadise: {
         nombre: 'Apple Paradise',
-        desc: 'Sin descripción',
+        desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena.',
         precio: 'S/ 20.00',
         img: 'img/appleparadise.webp'
       },
       besocaribeno: {
         nombre: 'Beso Caribeño',
-        desc: 'Sin descripción',
+        desc: 'Ron dorado, jugo de piña y coco con un toque de maracuyá.',
         precio: 'S/ 20.00',
         img: 'img/besocaribeno.webp'
       },
       camaleon: {
         nombre: 'Camaleon',
-        desc: 'Sin descripción',
+        desc: 'Cóctel que cambia de color según los ingredientes que añadas.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
       },
       daiquiridedurazno: {
         nombre: 'Daiquiri de Durazno',
-        desc: 'Sin descripción',
+        desc: 'Ron, puré de durazno fresco y jugo de limón.',
         precio: 'S/ 20.00',
         img: 'img/daiquiridedurazno.webp'
       },
       diabloazul: {
         nombre: 'Diablo Azul',
-        desc: 'Sin descripción',
+        desc: 'Curaçao azul, vodka y sprite con un toque de lima.',
         precio: 'S/ 20.00',
         img: 'img/diabloazul.webp'
       },
       machupicchu: {
         nombre: 'Machu Picchu',
-        desc: 'Sin descripción',
+        desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en los sabores peruanos.',
         precio: 'S/ 20.00',
         img: 'img/machupicchu.webp'
       },
       margaritacoronablue: {
         nombre: 'Margarita Corona Blue',
-        desc: 'Sin descripción',
+        desc: 'Tequila, cerveza Corona y licor azul con sal en el borde.',
         precio: 'S/ 30.00',
         img: 'img/margaritacoronablue.webp'
       },
       margarita: {
-        nombre: 'Margaritaa',
-        desc: 'Cerveza rubia bien helada.',
+        nombre: 'Margarita',
+        desc: 'Clásico cóctel de tequila, triple sec y jugo de limón.',
         precio: 'S/ 20.00',
         img: 'img/margarita.webp'
       },
       mojito: {
         nombre: 'Mojito',
-        desc: 'Sin descripción',
+        desc: 'Ron blanco, menta fresca, lima, azúcar y soda.',
         precio: 'S/ 15.00',
         img: 'img/mojito.webp'
       },
       orgasmo: {
         nombre: 'Orgasmo',
-        desc: 'Sin descripción',
+        desc: 'Mezcla secreta de licores que promete una experiencia única.',
         precio: 'S/ 20.00',
         img: 'img/orgasmo.webp'
       },
       sexonthebeach: {
         nombre: 'Sex on the Beach',
-        desc: 'Sin descripción',
+        desc: 'Vodka, licor de melocotón, jugo de arándano y naranja.',
         precio: 'S/ 20.00',
         img: 'img/sexonthebeach.webp'
       }
     };
-const imageCache = {};
 
-function getImage(src) {
-  return new Promise(resolve => {
-    if (imageCache[src]) {
-      resolve(imageCache[src].cloneNode());
-    } else {
-      const img = new Image();
-      img.src = src;
-      img.onload = () => {
-        imageCache[src] = img;
-        resolve(img.cloneNode());
-      };
-    }
-  });
-}
-  let bloqueado = false;
-let primeraSeleccion = true;
+    // Cache de imágenes
+    const imageCache = {};
 
-  function ver(id, el) {
-  if (bloqueado) return;
+    // Función para cambiar de vista
+    function mostrarVista(vista) {
+      // Ocultar todas las vistas
+      document.querySelectorAll('.vista').forEach(v => {
+        v.classList.add('oculto');
+      });
 
-  const b = data[id];
-  const detalle = document.getElementById('detalle');
-  const cont = document.getElementById('detalle-img');
+      // Quitar clase activo de todos los botones
+      document.querySelectorAll('.tabbar button').forEach(b => {
+        b.classList.remove('activo');
+      });
 
-  /* marcar selección */
-  document.querySelectorAll('.item').forEach(item =>
-    item.classList.remove('activo')
-  );
-  el.classList.add('activo');
+      // Mostrar la vista seleccionada
+      document.getElementById('vista-' + vista).classList.remove('oculto');
 
-  /* bloqueo SOLO después de la primera selección */
-  if (!primeraSeleccion) {
-    bloqueado = true;
-    detalle.classList.add('oculto');
-  }
-
-  setTimeout(async () => {
-    document.getElementById('detalle-nombre').textContent = b.nombre;
-    document.getElementById('detalle-desc').textContent = b.desc;
-    document.getElementById('detalle-precio').textContent = b.precio;
-
-    /* skeleton SOLO si no está cacheada */
-    if (!imageCache[b.img]) {
-      cont.innerHTML = `<div class="skeleton"></div>`;
+      // Agregar clase activo al botón clickeado
+      event.target.classList.add('activo');
     }
 
-    const img = await getImage(b.img);
-    img.alt = b.nombre;
+    // Función para cargar imágenes con cache
+    function getImage(src) {
+      return new Promise(resolve => {
+        if (imageCache[src]) {
+          resolve(imageCache[src].cloneNode());
+        } else {
+          const img = new Image();
+          img.src = src;
+          img.onload = () => {
+            imageCache[src] = img;
+            resolve(img.cloneNode());
+          };
+          img.onerror = () => {
+            // Imagen de respaldo si falla
+            const fallback = new Image();
+            fallback.src = 'https://via.placeholder.com/400x200/1a1a1a/666666?text=Bebida';
+            resolve(fallback);
+          };
+        }
+      });
+    }
 
-    cont.innerHTML = "";
-    cont.appendChild(img);
+    let bloqueado = false;
+    let primeraSeleccion = true;
 
-    detalle.classList.remove('oculto');
+    // Función para mostrar detalle de bebida
+    function ver(id, el) {
+      if (bloqueado) return;
 
-    bloqueado = false;
-    primeraSeleccion = false;
-  }, primeraSeleccion ? 0 : 160);
-}
+      const bebida = data[id];
+      const detalle = document.getElementById('detalle');
+      const contenedorImg = document.getElementById('detalle-img');
 
-</script>
+      // Marcar selección en la lista
+      document.querySelectorAll('.item').forEach(item => {
+        item.classList.remove('activo');
+      });
+      el.classList.add('activo');
 
+      // Bloqueo para animaciones (excepto primera selección)
+      if (!primeraSeleccion) {
+        bloqueado = true;
+        detalle.classList.add('oculto');
+      }
+
+      setTimeout(async () => {
+        // Actualizar información
+        document.getElementById('detalle-nombre').textContent = bebida.nombre;
+        document.getElementById('detalle-desc').textContent = bebida.desc;
+        document.getElementById('detalle-precio').textContent = bebida.precio;
+
+        // Mostrar skeleton mientras carga la imagen
+        if (!imageCache[bebida.img]) {
+          contenedorImg.innerHTML = `<div class="skeleton"></div>`;
+        }
+
+        // Cargar y mostrar imagen
+        const img = await getImage(bebida.img);
+        img.alt = bebida.nombre;
+
+        contenedorImg.innerHTML = "";
+        contenedorImg.appendChild(img);
+
+        // Mostrar detalle con animación
+        detalle.classList.remove('oculto');
+
+        bloqueado = false;
+        primeraSeleccion = false;
+      }, primeraSeleccion ? 0 : 160);
+    }
+
+    // Seleccionar primera bebida al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      const primerItem = document.querySelector('.item');
+      if (primerItem) {
+        ver('appleparadisepurple', primerItem);
+      }
+    });
+  </script>
 </body>
 </html>
