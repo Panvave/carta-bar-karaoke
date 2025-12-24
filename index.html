@@ -9,16 +9,18 @@
   
   <style>
     :root {
-      --color-bg: #0f0f0f;
-      --color-card: #161616;
-      --color-border: #2a2a2a;
+      --color-bg: #0a0a0a;
+      --color-card: #111111;
+      --color-border: #222222;
       --color-text: #ffffff;
-      --color-text-secondary: #bdbdbd;
-      --color-text-muted: #9e9e9e;
-      --color-accent: #ffffff;
-      --color-hover: rgba(255,255,255,0.05);
-      --scrollbar-track: #1a1a1a;
-      --scrollbar-thumb: #444;
+      --color-text-secondary: #aaaaaa;
+      --color-text-muted: #888888;
+      --color-accent-lima: #9EFF00; /* Verde Lima vibrante */
+      --color-accent-purple: #8A2BE2; /* Púrpura Eléctrico */
+      --color-hover: rgba(158, 255, 0, 0.05); /* Verde Lima suave */
+      --color-gradient: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-lima) 100%);
+      --scrollbar-track: #151515;
+      --scrollbar-thumb: #333333;
     }
     
     * {
@@ -42,29 +44,29 @@
     
     /* SCROLLBAR ESTILIZADA */
     ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     
     ::-webkit-scrollbar-track {
       background: var(--scrollbar-track);
-      border-radius: 4px;
+      border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb {
       background: var(--scrollbar-thumb);
-      border-radius: 4px;
+      border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
-      background: #555;
+      background: var(--color-accent-purple);
     }
     
-    /* HEADER CON LOGO - MÁS COMPACTO */
+    /* HEADER CON LOGO - CON NUEVOS COLORES */
     .header-contenedor {
       background: var(--color-card);
       border-bottom: 1px solid var(--color-border);
-      padding: 10px 16px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -72,26 +74,21 @@
     }
     
     .logo-espacio {
-      width: 45px;
-      height: 45px;
-      background: var(--color-hover);
-      border-radius: 10px;
+      width: 50px;
+      height: 50px;
+      background: var(--color-gradient);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
+      box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
     }
     
     .logo-placeholder {
-      font-size: 1.5rem;
-      opacity: 0.7;
-    }
-    
-    .logo-espacio img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      font-size: 1.8rem;
+      color: white;
     }
     
     .header-texto {
@@ -101,15 +98,19 @@
     
     .header-texto h1 {
       margin: 0;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       line-height: 1.2;
-      font-weight: 600;
+      font-weight: 700;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .header-texto p {
-      margin: 3px 0 0;
+      margin: 4px 0 0;
       color: var(--color-text-secondary);
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
     
     /* CONTENEDOR PRINCIPAL */
@@ -139,35 +140,38 @@
       display: flex;
     }
     
-    /* CONTENEDOR DOS COLUMNAS - OPTIMIZADO */
+    /* CONTENEDOR DOS COLUMNAS */
     .contenedor-columnas {
       flex: 1;
       display: flex;
       overflow: hidden;
-      padding: 8px;
-      gap: 8px;
+      padding: 10px;
+      gap: 10px;
     }
     
-    /* LISTA DE BEBIDAS - MÁS COMPACTA */
+    /* LISTA DE BEBIDAS - CON NUEVOS COLORES */
     .seccion-lista {
       background: var(--color-card);
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-width: 0;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .lista-header {
-      padding: 14px 16px 10px;
+      padding: 16px 16px 12px;
       border-bottom: 1px solid var(--color-border);
       flex-shrink: 0;
     }
     
     .lista-header h2 {
       margin: 0;
-      font-size: 1rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-accent-lima);
     }
     
     .lista-contenido {
@@ -178,10 +182,10 @@
     }
     
     .item-bebida {
-      padding: 14px 16px;
+      padding: 16px;
       border-bottom: 1px solid var(--color-border);
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       flex-shrink: 0;
     }
@@ -191,42 +195,49 @@
     }
     
     .item-bebida:hover {
-      background: var(--color-hover);
+      background: rgba(158, 255, 0, 0.08);
+      transform: translateX(3px);
     }
     
     .item-bebida.seleccionado {
-      background: linear-gradient(90deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
-      border-left: 4px solid var(--color-accent);
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.15) 0%, rgba(158, 255, 0, 0.08) 100%);
+      border-left: 4px solid var(--color-accent-purple);
       margin-left: -4px;
     }
     
     .item-bebida.seleccionado .nombre-bebida {
-      color: var(--color-text);
+      color: var(--color-accent-lima);
     }
     
     .nombre-bebida {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin: 0 0 4px;
+      margin: 0 0 6px;
       color: var(--color-text);
+      transition: color 0.3s;
     }
     
     .descripcion-bebida {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--color-text-secondary);
       margin: 0;
       line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
-    /* SECCIÓN DETALLE - OPTIMIZADA CON MÁS ESPACIO */
+    /* SECCIÓN DETALLE - ESTRUCTURA CORREGIDA PARA MOBILE */
     .seccion-detalle {
       background: var(--color-card);
-      border-radius: 10px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       flex: 1;
       min-width: 0;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .detalle-contenido {
@@ -234,10 +245,10 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding: 16px;
+      padding: 20px;
     }
     
-    /* BIENVENIDA */
+    /* BIENVENIDA - CON NUEVOS COLORES */
     .bienvenida {
       display: flex;
       flex-direction: column;
@@ -250,43 +261,49 @@
     }
     
     .bienvenida-icono {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
-      opacity: 0.8;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .bienvenida h2 {
-      font-size: 1.3rem;
-      margin: 0 0 10px;
-      font-weight: 600;
+      font-size: 1.5rem;
+      margin: 0 0 12px;
+      font-weight: 700;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .bienvenida p {
       color: var(--color-text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.4;
-      max-width: 350px;
-      margin: 0 0 16px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 400px;
+      margin: 0 0 20px;
     }
     
     .bienvenida-inst {
-      background: var(--color-hover);
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-top: 16px;
-      border-left: 4px solid var(--color-accent);
+      background: rgba(158, 255, 0, 0.1);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 20px;
+      border-left: 4px solid var(--color-accent-lima);
       text-align: left;
-      max-width: 350px;
-      width: 100%;
+      border: 1px solid rgba(158, 255, 0, 0.2);
     }
     
     .bienvenida-inst p {
       margin: 0;
-      font-size: 0.85rem;
-      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      color: var(--color-text);
     }
     
-    /* DETALLE BEBIDA - NUEVA ESTRUCTURA */
+    /* DETALLE BEBIDA - ESTRUCTURA CORREGIDA */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -298,46 +315,57 @@
       display: flex;
     }
     
-    /* NOMBRE ARRIBA */
+    /* NOMBRE CON ACENTO */
     .detalle-nombre-contenedor {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       flex-shrink: 0;
+      border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+      padding-bottom: 15px;
     }
     
     .detalle-nombre {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin: 0 0 6px;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0;
       color: var(--color-text);
       line-height: 1.2;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
-    .detalle-tipo {
-      color: var(--color-text-secondary);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    
-    /* CONTENIDO PRINCIPAL: IMAGEN + DESCRIPCIÓN/PRECIO AL LADO */
+    /* CONTENIDO PRINCIPAL: IMAGEN + DESCRIPCIÓN/PRECIO */
     .detalle-contenido-principal {
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      gap: 16px;
+      gap: 20px;
     }
     
-    /* IMAGEN GRANDE */
+    /* IMAGEN GRANDE CON EFECTO */
     .imagen-bebida-contenedor {
       flex-shrink: 0;
-      background: var(--color-hover);
-      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
+      border-radius: 14px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(138, 43, 226, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    
+    .imagen-bebida-contenedor::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-gradient);
     }
     
     .imagen-bebida-contenedor img {
@@ -345,53 +373,64 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      transition: transform 0.5s ease;
     }
     
-    /* CONTENIDO AL LADO DE LA IMAGEN (DESKTOP) */
+    .imagen-bebida-contenedor:hover img {
+      transform: scale(1.05);
+    }
+    
+    /* CONTENIDO DE DESCRIPCIÓN Y PRECIO - VISIBLE EN MOBILE */
     .detalle-info-lateral {
       flex: 1;
       display: flex;
       flex-direction: column;
       min-height: 0;
+      background: rgba(17, 17, 17, 0.7);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid rgba(138, 43, 226, 0.2);
     }
     
     .detalle-descripcion {
       color: var(--color-text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin: 0 0 16px;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0 0 25px;
       flex: 1;
       overflow-y: auto;
-      padding-right: 8px;
+      padding-right: 10px;
     }
     
-    /* PRECIO - SEPARADO */
+    /* PRECIO CON NUEVOS COLORES */
     .precio-contenedor {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid var(--color-border);
+      padding-top: 20px;
+      border-top: 1px solid rgba(138, 43, 226, 0.3);
       flex-shrink: 0;
     }
     
     .precio {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--color-text);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--color-accent-lima);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      text-shadow: 0 0 10px rgba(158, 255, 0, 0.3);
     }
     
     .precio-badge {
-      background: rgba(255,255,255,0.15);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      background: var(--color-gradient);
+      color: black;
+      padding: 8px 18px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
     }
     
-    /* VISTAS CONTACTO Y UBICACIÓN - MEJORADAS */
+    /* VISTAS CONTACTO Y UBICACIÓN - FULLSCREEN MEJORADO */
     .vista-fullscreen {
       flex: 1;
       display: flex;
@@ -405,39 +444,61 @@
       padding: 0;
       display: flex;
       flex-direction: column;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(17, 17, 17, 0.95));
     }
     
     .contenido-contacto, .contenido-ubicacion {
       flex: 1;
-      padding: 24px 20px;
-      max-width: 800px;
+      padding: 30px 20px;
+      max-width: 900px;
       margin: 0 auto;
       width: 100%;
     }
     
     .tarjeta-info {
       background: var(--color-card);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-      border: 1px solid var(--color-border);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 25px;
+      border: 1px solid rgba(138, 43, 226, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tarjeta-info::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--color-gradient);
     }
     
     .tarjeta-info h3 {
-      margin: 0 0 24px;
-      font-size: 1.5rem;
-      font-weight: 600;
+      margin: 0 0 30px;
+      font-size: 1.6rem;
+      font-weight: 800;
       text-align: center;
       color: var(--color-text);
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     
     .info-item {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 16px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+      transition: transform 0.3s;
+    }
+    
+    .info-item:hover {
+      transform: translateX(5px);
     }
     
     .info-item:last-child {
@@ -447,10 +508,18 @@
     }
     
     .info-icono {
-      font-size: 1.3rem;
-      margin-right: 14px;
-      min-width: 32px;
-      color: var(--color-text-secondary);
+      font-size: 1.5rem;
+      margin-right: 16px;
+      min-width: 40px;
+      color: var(--color-accent-lima);
+      background: rgba(158, 255, 0, 0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(158, 255, 0, 0.3);
     }
     
     .info-texto {
@@ -459,26 +528,28 @@
     
     .info-texto strong {
       display: block;
-      margin-bottom: 6px;
-      font-size: 1rem;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
       color: var(--color-text);
+      font-weight: 700;
     }
     
     .info-texto span {
       color: var(--color-text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 1rem;
+      line-height: 1.6;
     }
     
     /* MAPA MEJORADO */
     .mapa-contenedor {
-      height: 280px;
-      background: var(--color-hover);
-      border-radius: 10px;
+      height: 300px;
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
+      border-radius: 12px;
       overflow: hidden;
-      margin: 20px 0 30px;
+      margin: 25px 0 35px;
       position: relative;
-      border: 1px solid var(--color-border);
+      border: 1px solid rgba(138, 43, 226, 0.3);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
     
     .mapa-contenedor iframe {
@@ -487,7 +558,7 @@
       border: none;
     }
     
-    /* NAVEGACIÓN INFERIOR - MÁS COMPACTA */
+    /* NAVEGACIÓN INFERIOR - CON NUEVOS COLORES */
     .navegacion {
       display: flex;
       background: var(--color-card);
@@ -495,54 +566,77 @@
       flex-shrink: 0;
       position: relative;
       z-index: 10;
+      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
     }
     
     .boton-nav {
       flex: 1;
-      padding: 14px 0;
+      padding: 16px 0;
       background: none;
       border: none;
       color: var(--color-text-secondary);
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      position: relative;
     }
     
     .boton-nav:hover {
-      color: var(--color-text);
+      color: var(--color-accent-lima);
+      background: rgba(158, 255, 0, 0.05);
     }
     
     .boton-nav.activo {
-      color: var(--color-text);
-      background: var(--color-hover);
+      color: var(--color-accent-lima);
+      background: rgba(158, 255, 0, 0.1);
+    }
+    
+    .boton-nav.activo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 3px;
+      background: var(--color-gradient);
+      border-radius: 3px 3px 0 0;
     }
     
     .boton-nav-icono {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      transition: transform 0.3s;
     }
     
-    /* FOOTER MÁS COMPACTO */
+    .boton-nav:hover .boton-nav-icono {
+      transform: translateY(-2px);
+    }
+    
+    .boton-nav.activo .boton-nav-icono {
+      transform: scale(1.2);
+    }
+    
+    /* FOOTER */
     footer {
       text-align: center;
-      padding: 10px 16px;
-      font-size: 0.7rem;
+      padding: 12px 16px;
+      font-size: 0.75rem;
       color: var(--color-text-muted);
       background: var(--color-card);
       border-top: 1px solid var(--color-border);
       flex-shrink: 0;
     }
     
-    /* SKELETON LOADING */
+    /* SKELETON LOADING CON NUEVOS COLORES */
     .skeleton {
       background: linear-gradient(90deg, 
-        rgba(255,255,255,0.05) 25%, 
-        rgba(255,255,255,0.1) 50%, 
-        rgba(255,255,255,0.05) 75%);
+        rgba(158, 255, 0, 0.05) 25%, 
+        rgba(138, 43, 226, 0.1) 50%, 
+        rgba(158, 255, 0, 0.05) 75%);
       background-size: 200% 100%;
       animation: loading 1.5s infinite;
       border-radius: 6px;
@@ -555,55 +649,62 @@
     
     /* ===== RESPONSIVE DESIGN ===== */
     
-    /* MOBILE (DEFAULT) - VERTICAL */
+    /* MOBILE (DEFAULT) */
     @media (max-width: 767px) {
       .contenedor-columnas {
         flex-direction: column;
-        padding: 8px;
-        gap: 8px;
+        padding: 10px;
+        gap: 10px;
       }
       
       .seccion-lista {
-        flex: 0 0 40%;
-        min-height: 200px;
+        flex: 0 0 45%;
+        min-height: 250px;
       }
       
       .seccion-detalle {
         flex: 1;
-        min-height: 300px;
+        min-height: calc(100vh - 280px);
       }
       
       .detalle-contenido {
-        padding: 14px;
+        padding: 16px;
       }
       
-      /* EN MOBILE: NOMBRE, IMAGEN DEBAJO, DESCRIPCIÓN DEBAJO */
+      /* EN MOBILE: NOMBRE, IMAGEN, DESCRIPCIÓN Y PRECIO DEBAJO - TODOS VISIBLES */
       .detalle-contenido-principal {
         flex-direction: column;
+        gap: 20px;
       }
       
       .imagen-bebida-contenedor {
-        height: 220px;
+        height: 250px; /* Imagen más grande en mobile */
         width: 100%;
-        margin-bottom: 16px;
+      }
+      
+      .detalle-info-lateral {
+        height: auto;
+        min-height: 200px;
+        background: rgba(17, 17, 17, 0.9);
+        margin-top: 0;
       }
       
       .detalle-nombre {
-        font-size: 1.4rem;
-      }
-      
-      .detalle-descripcion {
-        font-size: 0.9rem;
-        margin-bottom: 20px;
-      }
-      
-      .precio {
         font-size: 1.6rem;
       }
       
-      .precio-badge {
-        padding: 5px 12px;
-        font-size: 0.8rem;
+      .detalle-descripcion {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+        flex: 0;
+        height: auto;
+        max-height: 150px;
+        overflow-y: auto;
+      }
+      
+      .precio {
+        font-size: 1.8rem;
       }
       
       /* VISTAS FULLSCREEN MOBILE */
@@ -615,18 +716,23 @@
         padding: 20px;
       }
       
+      .info-icono {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+      }
+      
       .mapa-contenedor {
-        height: 220px;
-        margin: 16px 0 24px;
+        height: 250px;
       }
       
       .boton-nav {
-        padding: 12px 0;
+        padding: 14px 0;
         font-size: 0.8rem;
       }
       
       .boton-nav-icono {
-        font-size: 1.1rem;
+        font-size: 1.3rem;
       }
     }
     
@@ -634,8 +740,8 @@
     @media (min-width: 768px) and (max-width: 1023px) {
       .contenedor-columnas {
         flex-direction: row;
-        padding: 12px;
-        gap: 12px;
+        padding: 15px;
+        gap: 15px;
       }
       
       .seccion-lista {
@@ -650,7 +756,7 @@
       
       .imagen-bebida-contenedor {
         flex: 0 0 50%;
-        height: auto;
+        height: 300px;
       }
       
       .detalle-info-lateral {
@@ -658,26 +764,26 @@
       }
       
       .detalle-nombre {
-        font-size: 1.6rem;
-      }
-      
-      .precio {
         font-size: 1.8rem;
       }
       
+      .precio {
+        font-size: 2rem;
+      }
+      
       .mapa-contenedor {
-        height: 300px;
+        height: 320px;
       }
     }
     
-    /* DESKTOP - ESTRUCTURA OPTIMIZADA */
+    /* DESKTOP */
     @media (min-width: 1024px) {
       .contenedor-columnas {
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
-        padding: 16px;
-        gap: 16px;
+        padding: 20px;
+        gap: 20px;
       }
       
       .seccion-lista {
@@ -687,44 +793,44 @@
       /* EN DESKTOP: NOMBRE ARRIBA, IMAGEN GRANDE CON TEXTO AL LADO */
       .detalle-contenido-principal {
         flex-direction: row;
-        gap: 24px;
-        height: calc(100% - 50px);
+        gap: 30px;
+        height: calc(100% - 80px);
       }
       
-      /* IMAGEN GRANDE (55% del espacio) */
+      /* IMAGEN MUY GRANDE (60% del espacio) */
       .imagen-bebida-contenedor {
-        flex: 0 0 55%;
+        flex: 0 0 60%;
         height: auto;
-        min-height: 350px;
-        max-height: 450px;
+        min-height: 400px;
+        max-height: 500px;
       }
       
-      /* TEXTO AL LADO (45% del espacio) */
+      /* TEXTO AL LADO (40% del espacio) */
       .detalle-info-lateral {
         flex: 1;
         min-height: 0;
       }
       
       .detalle-nombre {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
       }
       
       .detalle-descripcion {
-        font-size: 1rem;
-        line-height: 1.7;
+        font-size: 1.05rem;
+        line-height: 1.8;
       }
       
       .precio {
-        font-size: 2rem;
+        font-size: 2.4rem;
       }
       
       /* VISTAS FULLSCREEN DESKTOP */
       .contenido-contacto, .contenido-ubicacion {
-        padding: 32px 24px;
+        padding: 40px 30px;
       }
       
       .tarjeta-info {
-        padding: 32px;
+        padding: 40px;
       }
       
       .mapa-contenedor {
@@ -735,60 +841,61 @@
     /* DESKTOP GRANDE */
     @media (min-width: 1200px) {
       .imagen-bebida-contenedor {
-        min-height: 400px;
-        max-height: 500px;
+        min-height: 450px;
+        max-height: 550px;
       }
       
       .detalle-nombre {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
       
       .precio {
-        font-size: 2.2rem;
+        font-size: 2.8rem;
       }
       
       .contenido-contacto, .contenido-ubicacion {
-        max-width: 900px;
+        max-width: 1000px;
       }
     }
     
     /* PANTALLAS MUY PEQUEÑAS */
     @media (max-width: 360px) {
       .header-contenedor {
-        padding: 8px 12px;
+        padding: 10px 12px;
       }
       
       .logo-espacio {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
       }
       
       .header-texto h1 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
       }
       
       .item-bebida {
-        padding: 12px 14px;
+        padding: 14px 12px;
       }
       
       .detalle-contenido {
-        padding: 12px;
+        padding: 14px;
       }
       
       .imagen-bebida-contenedor {
-        height: 180px;
+        height: 220px;
       }
       
       .detalle-nombre {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
       }
       
       .detalle-descripcion {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        max-height: 120px;
       }
       
       .precio {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
       }
       
       .contenido-contacto, .contenido-ubicacion {
@@ -796,19 +903,19 @@
       }
       
       .tarjeta-info {
-        padding: 16px;
+        padding: 18px;
       }
       
       .mapa-contenedor {
-        height: 200px;
+        height: 220px;
       }
     }
     
-    /* ANIMACIONES */
+    /* ANIMACIONES Y EFECTOS */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -817,7 +924,32 @@
     }
     
     .fade-in {
-      animation: fadeIn 0.3s ease-out;
+      animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* EFECTO DE GLOW EN ELEMENTOS SELECCIONADOS */
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 0 0 rgba(158, 255, 0, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(158, 255, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(158, 255, 0, 0);
+      }
+    }
+    
+    .item-bebida.seleccionado {
+      animation: pulseGlow 2s infinite;
+    }
+    
+    /* EFECTO DE GRADIENTE EN TEXTO */
+    .gradient-text {
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
   </style>
 </head>
@@ -901,7 +1033,7 @@
           </div>
         </section>
         
-        <!-- DETALLE DE BEBIDA -->
+        <!-- DETALLE DE BEBIDA - ESTRUCTURA CORREGIDA -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
             <!-- BIENVENIDA INICIAL -->
@@ -914,30 +1046,30 @@
                 <p>👉 Selecciona una bebida de la lista para ver su descripción, imagen y precio</p>
               </div>
               
-              <div style="margin-top: 20px; color: var(--color-text-secondary); font-size: 0.8rem;">
+              <div style="margin-top: 25px; color: var(--color-text-secondary); font-size: 0.85rem;">
                 <p>🎶 Karaoke disponible todas las noches</p>
                 <p>🕐 Happy Hour: 6:00 PM - 8:00 PM</p>
                 <p>⭐ Promoción especial para grupos</p>
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA - NUEVA ESTRUCTURA -->
+            <!-- DETALLE DE BEBIDA - TODOS LOS ELEMENTOS VISIBLES EN MOBILE -->
             <div class="detalle-bebida" id="detalle-bebida">
               <!-- NOMBRE ARRIBA -->
               <div class="detalle-nombre-contenedor">
                 <h2 class="detalle-nombre" id="detalle-nombre"></h2>
-                <div class="detalle-tipo" id="detalle-tipo"></div>
               </div>
               
-              <!-- CONTENIDO PRINCIPAL: IMAGEN + TEXTO AL LADO -->
+              <!-- CONTENIDO PRINCIPAL: IMAGEN + DESCRIPCIÓN/PRECIO -->
               <div class="detalle-contenido-principal">
                 <!-- IMAGEN GRANDE -->
                 <div class="imagen-bebida-contenedor" id="imagen-bebida">
                   <!-- Imagen se cargará aquí -->
                 </div>
                 
-                <!-- DESCRIPCIÓN Y PRECIO AL LADO -->
+                <!-- DESCRIPCIÓN Y PRECIO - AHORA VISIBLES EN MOBILE -->
                 <div class="detalle-info-lateral">
+                  <!-- DESCRIPCIÓN CON SCROLL SI ES NECESARIO -->
                   <p class="detalle-descripcion" id="detalle-descripcion"></p>
                   
                   <!-- PRECIO -->
@@ -1100,95 +1232,82 @@
   </footer>
 
   <script>
-    // Datos de las bebidas
+    // Datos de las bebidas (sin tipo, solo nombre, descripción, precio e imagen)
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
-        tipo: 'Ron blanco · Refrescante',
         desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche. Una variante del Apple Paradise clásico que consta de manzanas frescas, vodka, jugo de piña, hielo, granadina y blue curacao con un color escarchado y una fresa decorativa. Una buena opción para consentir al paladar.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisepurple.webp'
       },
       appleparadisered: {
         nombre: 'Apple Paradise Red',
-        tipo: 'Tequila · Clásico',
         desc: 'Tequila con jugo de manzana roja y granadina. Una versión clásica del Apple Paradise con un toque especial de tequila que realza el sabor de la manzana. Perfecto para los amantes de los sabores intensos y tradicionales.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisered.webp'
       },
       appleparadise: {
         nombre: 'Apple Paradise',
-        tipo: 'Pisco peruano · Especial',
         desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena. Disco hermano del Apple Paradise clásico. Una combinación perfecta de sabores peruanos con un toque refrescante de manzana verde.',
         precio: 'S/ 20.00',
         img: 'img/appleparadise.webp'
       },
       besocaribeno: {
         nombre: 'Beso Caribeño',
-        tipo: 'Ron dorado · Tropical',
         desc: 'Ron dorado, jugo de piña y coco con un toque de maracuyá. Una explosión de sabores tropicales que te transportarán directamente al Caribe. Dulce, cremoso y refrescante.',
         precio: 'S/ 20.00',
         img: 'img/besocaribeno.webp'
       },
       camaleon: {
         nombre: 'Camaleon',
-        tipo: 'Cambia de color · Experiencia',
         desc: 'Cóctel que cambia de color según los ingredientes que añadas. Una experiencia visual única que combina diferentes licores que reaccionan entre sí creando un espectáculo de colores en tu copa.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
       },
       daiquiridedurazno: {
         nombre: 'Daiquiri de Durazno',
-        tipo: 'Ron · Frutal',
         desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal, este daiquiri combina la acidez del limón con la dulzura del durazno en perfecta armonía.',
         precio: 'S/ 20.00',
         img: 'img/daiquiridedurazno.webp'
       },
       diabloazul: {
         nombre: 'Diablo Azul',
-        tipo: 'Vodka · Intenso',
         desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante, su color azul vibrante es tan llamativo como su sabor. Perfecto para sorprender a tus amigos.',
         precio: 'S/ 20.00',
         img: 'img/diabloazul.webp'
       },
       machupicchu: {
         nombre: 'Machu Picchu',
-        tipo: 'Pisco · Peruano',
         desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en los sabores peruanos. Un homenaje a nuestra cultura con ingredientes autóctonos que crean una experiencia única.',
         precio: 'S/ 20.00',
         img: 'img/machupicchu.webp'
       },
       margaritacoronablue: {
         nombre: 'Margarita Corona Blue',
-        tipo: 'Tequila · Cerveza',
         desc: 'Tequila, cerveza Corona y licor azul con sal en el borde. Una combinación innovadora que une lo mejor de una margarita clásica con la frescura de la cerveza.',
         precio: 'S/ 30.00',
         img: 'img/margaritacoronablue.webp'
       },
       margarita: {
         nombre: 'Margarita',
-        tipo: 'Tequila · Clásico',
         desc: 'Clásico cóctel de tequila, triple sec y jugo de limón. Simple, elegante y siempre acertado. La opción perfecta para quienes buscan un sabor tradicional bien ejecutado.',
         precio: 'S/ 20.00',
         img: 'img/margarita.webp'
       },
       mojito: {
         nombre: 'Mojito',
-        tipo: 'Ron · Refrescante',
         desc: 'Ron blanco, menta fresca, lima, azúcar y soda. El clásico cubano que nunca pasa de moda. Refrescante, mentolado y perfecto para cualquier ocasión.',
         precio: 'S/ 15.00',
         img: 'img/mojito.webp'
       },
       orgasmo: {
         nombre: 'Orgasmo',
-        tipo: 'Mezcla secreta · Experiencia',
         desc: 'Mezcla secreta de licores que promete una experiencia única. Su nombre lo dice todo: una explosión de sabores que despierta todos tus sentidos.',
         precio: 'S/ 20.00',
         img: 'img/orgasmo.webp'
       },
       sexonthebeach: {
         nombre: 'Sex on the Beach',
-        tipo: 'Vodka · Frutal',
         desc: 'Vodka, licor de melocotón, jugo de arándano y naranja. Dulce, frutal y con un toque cítrico. Un clásico moderno que siempre gusta.',
         precio: 'S/ 20.00',
         img: 'img/sexonthebeach.webp'
@@ -1253,8 +1372,8 @@
           resolve(img.src);
         };
         img.onerror = () => {
-          // Imagen de respaldo
-          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="#1a1a1a"/><circle cx="200" cy="150" r="80" fill="rgba(255,255,255,0.1)"/><text x="200" y="150" font-family="Arial" font-size="24" fill="#666666" text-anchor="middle" dy=".3em">🍸</text><text x="200" y="250" font-family="Arial" font-size="18" fill="#666" text-anchor="middle">Copa Nocturna</text></svg>';
+          // Imagen de respaldo con los nuevos colores
+          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8A2BE2"/><stop offset="100%" stop-color="#9EFF00"/></linearGradient></defs><rect width="400" height="400" fill="#111"/><circle cx="200" cy="150" r="80" fill="url(#grad)" opacity="0.3"/><text x="200" y="150" font-family="Arial" font-size="28" fill="url(#grad)" text-anchor="middle" dy=".3em">🍸</text><text x="200" y="250" font-family="Arial" font-size="20" fill="#9EFF00" text-anchor="middle">Copa Nocturna</text></svg>';
           imageCache[src] = fallback;
           resolve(fallback);
         };
@@ -1284,9 +1403,8 @@
       detalleElement.style.display = 'flex';
       detalleElement.classList.add('fade-in');
       
-      // Actualizar información
+      // Actualizar información (solo nombre, descripción y precio)
       document.getElementById('detalle-nombre').textContent = bebida.nombre;
-      document.getElementById('detalle-tipo').textContent = bebida.tipo;
       document.getElementById('detalle-descripcion').textContent = bebida.desc;
       document.getElementById('precio-texto').textContent = bebida.precio;
       
