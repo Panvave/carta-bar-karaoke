@@ -401,62 +401,66 @@
         img: 'img/sexonthebeach.webp'
       }
     };
-const cache = {};
+const imageCache = {};
 
-function preload(imgSrc) {
-  if (cache[imgSrc]) return;
-  const i = new Image();
-  i.src = imgSrc;
-  cache[imgSrc] = true;
+function getImage(src) {
+  return new Promise(resolve => {
+    if (imageCache[src]) {
+      resolve(imageCache[src].cloneNode());
+    } else {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        imageCache[src] = img;
+        resolve(img.cloneNode());
+      };
+    }
+  });
 }
+  let bloqueado = false;
+let primeraSeleccion = true;
 
   function ver(id, el) {
-  if (bloqueado) return;   // ⛔ bloqueo activo
-  bloqueado = true;
+  if (bloqueado) return;
 
   const b = data[id];
   const detalle = document.getElementById('detalle');
   const cont = document.getElementById('detalle-img');
 
-  // quitar selección
+  /* marcar selección */
   document.querySelectorAll('.item').forEach(item =>
     item.classList.remove('activo')
   );
   el.classList.add('activo');
 
-  // animación salida
-  detalle.classList.add('oculto');
+  /* bloqueo SOLO después de la primera selección */
+  if (!primeraSeleccion) {
+    bloqueado = true;
+    detalle.classList.add('oculto');
+  }
 
-  setTimeout(() => {
+  setTimeout(async () => {
     document.getElementById('detalle-nombre').textContent = b.nombre;
     document.getElementById('detalle-desc').textContent = b.desc;
     document.getElementById('detalle-precio').textContent = b.precio;
 
-    // skeleton
-    cont.innerHTML = `<div class="skeleton"></div>`;
+    /* skeleton SOLO si no está cacheada */
+    if (!imageCache[b.img]) {
+      cont.innerHTML = `<div class="skeleton"></div>`;
+    }
 
-    const img = new Image();
-    img.src = b.img;
+    const img = await getImage(b.img);
     img.alt = b.nombre;
-    img.loading = "lazy";
 
-    img.onload = () => {
-      cont.innerHTML = "";
-      cont.appendChild(img);
-      preload(b.img);
+    cont.innerHTML = "";
+    cont.appendChild(img);
 
+    detalle.classList.remove('oculto');
 
-      // animación entrada
-      detalle.classList.remove('oculto');
-
-      // liberar bloqueo
-      setTimeout(() => {
-        bloqueado = false;
-      }, 120);
-    };
-  }, 180);
+    bloqueado = false;
+    primeraSeleccion = false;
+  }, primeraSeleccion ? 0 : 160);
 }
-
 
 </script>
 
