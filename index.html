@@ -57,7 +57,9 @@
       }
     }
     @media (max-width: 767px) {
-
+      main.container {
+          flex-direction: column;
+      }
       .lista {
           order: 1;
           max-height: 40vh;   /* lista con scroll */
@@ -70,7 +72,7 @@
       }
 
       .detalle-img {
-        height: 160px;     /* imagen más chica */
+        height: 120px;     /* imagen más chica */
       }
 
     }
@@ -132,7 +134,7 @@
     }
 
     .detalle-img {
-      height: 300px;              /* ALTURA FIJA */
+      height: 220px;              /* ALTURA FIJA */
       background: #1f1f1f;
       border-radius: 10px;
       overflow: hidden;
@@ -156,7 +158,7 @@
       justify-content: flex-start;
     }
     .detalle p {
-      margin: 6px 0 10px;
+      margin: 10px 0;
       color: #cfcfcf;
       font-size: 0.95rem;
       line-height: 1.4;
