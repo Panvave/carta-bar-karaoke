@@ -57,44 +57,67 @@
       }
     }
     @media (max-width: 767px) {
-      main.container {
-        display: flex;
-        flex-direction: column;
-      }
-      .lista {
-          order: 1;
-          flex: 0 0 45vh;      /* ocupa SOLO esta altura */
-          max-height: 45vh;
-          overflow-y: auto;
-      }
 
-      .detalle {
-        order: 2;
-        flex: 1;              /* TOMA EL RESTO DEL ESPACIO */
-        min-height: 260px;    /* CLAVE: evita que desaparezca */
-        display: flex;
-        flex-direction: column;
-        overflow: visible;
-      }
+  main.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
 
-      .detalle-img {
-        height: 140px;     /* imagen más chica */
-        flex-shrink: 0;
-      }
-      .detalle-body {
-        flex: 1;
-      }
-      .detalle p {
-        margin: 6px 0;
-        font-size: 0.95rem;
-      }
-      .precio {
-        margin-top: auto;
-        font-size: 1.3rem;
-        padding-top: 8px;
-      }
+  /* LISTA */
+  .lista {
+    order: 1;
+    flex: 0 0 45vh;
+    max-height: 45vh;
+    overflow-y: auto;
+  }
 
-    }
+  /* DETALLE */
+  .detalle {
+    order: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+  }
+
+  /* TÍTULO */
+  .detalle h2 {
+    font-size: 1.2rem;
+    margin-bottom: 6px;
+  }
+
+  /* IMAGEN */
+  .detalle-img {
+    max-height: 160px;   /* CONTROL REAL */
+    width: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  /* CUERPO */
+  .detalle-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+  }
+
+  .detalle-body p {
+    font-size: 0.95rem;
+    margin: 4px 0;
+  }
+
+  /* PRECIO */
+  .precio {
+    margin-top: auto;     /* SIEMPRE ABAJO */
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding-top: 6px;
+  }
+
+}
+
 
     .lista {
       background: #161616;
