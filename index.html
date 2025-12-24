@@ -15,9 +15,9 @@
       --color-text: #ffffff;
       --color-text-secondary: #aaaaaa;
       --color-text-muted: #888888;
-      --color-accent-lima: #9EFF00; /* Verde Lima vibrante */
-      --color-accent-purple: #8A2BE2; /* Púrpura Eléctrico */
-      --color-hover: rgba(158, 255, 0, 0.05); /* Verde Lima suave */
+      --color-accent-lima: #9EFF00;
+      --color-accent-purple: #8A2BE2;
+      --color-hover: rgba(158, 255, 0, 0.05);
       --color-gradient: linear-gradient(135deg, var(--color-accent-purple) 0%, var(--color-accent-lima) 100%);
       --scrollbar-track: #151515;
       --scrollbar-thumb: #333333;
@@ -42,52 +42,48 @@
       flex-direction: column;
     }
     
-    /* SCROLLBAR ESTILIZADA */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     
     ::-webkit-scrollbar-track {
       background: var(--scrollbar-track);
-      border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb {
       background: var(--scrollbar-thumb);
-      border-radius: 3px;
     }
     
     ::-webkit-scrollbar-thumb:hover {
       background: var(--color-accent-purple);
     }
     
-    /* HEADER CON LOGO - CON NUEVOS COLORES */
+    /* HEADER MÁS COMPACTO */
     .header-contenedor {
       background: var(--color-card);
       border-bottom: 1px solid var(--color-border);
-      padding: 12px 16px;
+      padding: 10px 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-shrink: 0;
     }
     
     .logo-espacio {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
       background: var(--color-gradient);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex-shrink: 0;
-      box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
     }
     
     .logo-placeholder {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       color: white;
     }
     
@@ -98,8 +94,8 @@
     
     .header-texto h1 {
       margin: 0;
-      font-size: 1.3rem;
-      line-height: 1.2;
+      font-size: 1.2rem;
+      line-height: 1.1;
       font-weight: 700;
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -108,9 +104,10 @@
     }
     
     .header-texto p {
-      margin: 4px 0 0;
-      color: var(--color-text-secondary);
-      font-size: 0.85rem;
+      margin: 3px 0 0;
+      color: var(--color-accent-lima);
+      font-size: 0.8rem;
+      font-weight: 500;
     }
     
     /* CONTENEDOR PRINCIPAL */
@@ -121,14 +118,7 @@
       overflow: hidden;
     }
     
-    /* VISTA CARTA (PRINCIPAL) */
-    .vista-carta {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    
+    /* VISTAS */
     .vista {
       display: none;
       flex-direction: column;
@@ -140,36 +130,35 @@
       display: flex;
     }
     
-    /* CONTENEDOR DOS COLUMNAS */
+    /* VISTA CARTA */
     .contenedor-columnas {
       flex: 1;
       display: flex;
       overflow: hidden;
-      padding: 10px;
-      gap: 10px;
+      padding: 8px;
+      gap: 8px;
     }
     
-    /* LISTA DE BEBIDAS - CON NUEVOS COLORES */
+    /* LISTA COMPACTA */
     .seccion-lista {
       background: var(--color-card);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-width: 0;
       border: 1px solid var(--color-border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .lista-header {
-      padding: 16px 16px 12px;
+      padding: 12px 14px 8px;
       border-bottom: 1px solid var(--color-border);
       flex-shrink: 0;
     }
     
     .lista-header h2 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--color-accent-lima);
     }
@@ -182,10 +171,10 @@
     }
     
     .item-bebida {
-      padding: 16px;
+      padding: 12px 14px;
       border-bottom: 1px solid var(--color-border);
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s;
       position: relative;
       flex-shrink: 0;
     }
@@ -195,14 +184,13 @@
     }
     
     .item-bebida:hover {
-      background: rgba(158, 255, 0, 0.08);
-      transform: translateX(3px);
+      background: rgba(158, 255, 0, 0.05);
     }
     
     .item-bebida.seleccionado {
       background: linear-gradient(90deg, rgba(138, 43, 226, 0.15) 0%, rgba(158, 255, 0, 0.08) 100%);
-      border-left: 4px solid var(--color-accent-purple);
-      margin-left: -4px;
+      border-left: 3px solid var(--color-accent-purple);
+      margin-left: -3px;
     }
     
     .item-bebida.seleccionado .nombre-bebida {
@@ -210,34 +198,29 @@
     }
     
     .nombre-bebida {
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      margin: 0 0 6px;
+      margin: 0 0 4px;
       color: var(--color-text);
-      transition: color 0.3s;
     }
     
     .descripcion-bebida {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--color-text-secondary);
       margin: 0;
-      line-height: 1.4;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      line-height: 1.3;
     }
     
-    /* SECCIÓN DETALLE - ESTRUCTURA CORREGIDA PARA MOBILE */
+    /* DETALLE - MOBILE OPTIMIZADO */
     .seccion-detalle {
       background: var(--color-card);
-      border-radius: 12px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       flex: 1;
       min-width: 0;
       border: 1px solid var(--color-border);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
     
     .detalle-contenido {
@@ -245,10 +228,10 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding: 20px;
+      padding: 14px;
     }
     
-    /* BIENVENIDA - CON NUEVOS COLORES */
+    /* BIENVENIDA SIMPLIFICADA */
     .bienvenida {
       display: flex;
       flex-direction: column;
@@ -256,13 +239,13 @@
       justify-content: center;
       text-align: center;
       height: 100%;
-      padding: 20px;
+      padding: 15px;
       overflow: hidden;
     }
     
     .bienvenida-icono {
-      font-size: 3rem;
-      margin-bottom: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 12px;
       background: var(--color-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -270,8 +253,8 @@
     }
     
     .bienvenida h2 {
-      font-size: 1.5rem;
-      margin: 0 0 12px;
+      font-size: 1.3rem;
+      margin: 0 0 10px;
       font-weight: 700;
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -281,29 +264,30 @@
     
     .bienvenida p {
       color: var(--color-text-secondary);
-      font-size: 0.95rem;
-      line-height: 1.5;
-      max-width: 400px;
-      margin: 0 0 20px;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      max-width: 320px;
+      margin: 0 0 15px;
     }
     
     .bienvenida-inst {
       background: rgba(158, 255, 0, 0.1);
-      border-radius: 10px;
-      padding: 12px 16px;
-      margin-top: 20px;
-      border-left: 4px solid var(--color-accent-lima);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 15px;
+      border-left: 3px solid var(--color-accent-lima);
       text-align: left;
-      border: 1px solid rgba(158, 255, 0, 0.2);
+      max-width: 320px;
+      width: 100%;
     }
     
     .bienvenida-inst p {
       margin: 0;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--color-text);
     }
     
-    /* DETALLE BEBIDA - ESTRUCTURA CORREGIDA */
+    /* DETALLE ESTRUCTURA FIXED */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -315,57 +299,36 @@
       display: flex;
     }
     
-    /* NOMBRE CON ACENTO */
     .detalle-nombre-contenedor {
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       flex-shrink: 0;
-      border-bottom: 1px solid rgba(138, 43, 226, 0.3);
-      padding-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
     }
     
     .detalle-nombre {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       font-weight: 800;
       margin: 0;
       color: var(--color-text);
-      line-height: 1.2;
+      line-height: 1.1;
       background: var(--color-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     
-    /* CONTENIDO PRINCIPAL: IMAGEN + DESCRIPCIÓN/PRECIO */
-    .detalle-contenido-principal {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      gap: 20px;
-    }
-    
-    /* IMAGEN GRANDE CON EFECTO */
+    /* IMAGEN MÁS PEQUEÑA EN MOBILE */
     .imagen-bebida-contenedor {
       flex-shrink: 0;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
-      border-radius: 14px;
+      border-radius: 10px;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(138, 43, 226, 0.3);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-    
-    .imagen-bebida-contenedor::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-gradient);
+      border: 1px solid rgba(138, 43, 226, 0.2);
+      margin-bottom: 12px;
     }
     
     .imagen-bebida-contenedor img {
@@ -373,112 +336,81 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
     }
     
-    .imagen-bebida-contenedor:hover img {
-      transform: scale(1.05);
-    }
-    
-    /* CONTENIDO DE DESCRIPCIÓN Y PRECIO - VISIBLE EN MOBILE */
+    /* DESCRIPCIÓN Y PRECIO VISIBLES */
     .detalle-info-lateral {
-      flex: 1;
       display: flex;
       flex-direction: column;
+      flex: 1;
       min-height: 0;
       background: rgba(17, 17, 17, 0.7);
-      border-radius: 12px;
-      padding: 20px;
-      border: 1px solid rgba(138, 43, 226, 0.2);
+      border-radius: 8px;
+      padding: 14px;
+      border: 1px solid rgba(138, 43, 226, 0.1);
     }
     
     .detalle-descripcion {
       color: var(--color-text-secondary);
-      font-size: 1rem;
-      line-height: 1.7;
-      margin: 0 0 25px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin: 0 0 15px;
       flex: 1;
       overflow-y: auto;
-      padding-right: 10px;
+      padding-right: 5px;
     }
     
-    /* PRECIO CON NUEVOS COLORES */
     .precio-contenedor {
-      padding-top: 20px;
-      border-top: 1px solid rgba(138, 43, 226, 0.3);
+      padding-top: 12px;
+      border-top: 1px solid rgba(138, 43, 226, 0.2);
       flex-shrink: 0;
     }
     
     .precio {
-      font-size: 2rem;
+      font-size: 1.6rem;
       font-weight: 900;
       color: var(--color-accent-lima);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      text-shadow: 0 0 10px rgba(158, 255, 0, 0.3);
     }
     
     .precio-badge {
       background: var(--color-gradient);
       color: black;
-      padding: 8px 18px;
-      border-radius: 25px;
-      font-size: 0.9rem;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+      letter-spacing: 0.5px;
     }
     
-    /* VISTAS CONTACTO Y UBICACIÓN - FULLSCREEN MEJORADO */
-    .vista-fullscreen {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    
+    /* VISTAS CONTACTO Y UBICACIÓN - COMPACTAS */
     .vista-contenido-full {
       flex: 1;
       overflow-y: auto;
-      padding: 0;
+      padding: 15px;
       display: flex;
       flex-direction: column;
-      background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(17, 17, 17, 0.95));
     }
     
-    .contenido-contacto, .contenido-ubicacion {
+    .contenido-compacto {
       flex: 1;
-      padding: 30px 20px;
-      max-width: 900px;
-      margin: 0 auto;
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
     
-    .tarjeta-info {
+    .tarjeta-compacta {
       background: var(--color-card);
-      border-radius: 16px;
-      padding: 30px;
-      margin-bottom: 25px;
-      border: 1px solid rgba(138, 43, 226, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      position: relative;
-      overflow: hidden;
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid rgba(138, 43, 226, 0.2);
     }
     
-    .tarjeta-info::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--color-gradient);
-    }
-    
-    .tarjeta-info h3 {
-      margin: 0 0 30px;
-      font-size: 1.6rem;
+    .tarjeta-compacta h3 {
+      margin: 0 0 18px;
+      font-size: 1.3rem;
       font-weight: 800;
       text-align: center;
       color: var(--color-text);
@@ -488,77 +420,262 @@
       background-clip: text;
     }
     
-    .info-item {
+    .info-item-compacto {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
-      transition: transform 0.3s;
+      margin-bottom: 14px;
     }
     
-    .info-item:hover {
-      transform: translateX(5px);
-    }
-    
-    .info-item:last-child {
+    .info-item-compacto:last-child {
       margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
     }
     
-    .info-icono {
-      font-size: 1.5rem;
-      margin-right: 16px;
-      min-width: 40px;
+    .info-icono-compacto {
+      font-size: 1.2rem;
+      margin-right: 12px;
+      min-width: 35px;
       color: var(--color-accent-lima);
       background: rgba(158, 255, 0, 0.1);
-      width: 50px;
-      height: 50px;
-      border-radius: 12px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(158, 255, 0, 0.3);
+      flex-shrink: 0;
     }
     
-    .info-texto {
+    .info-texto-compacto {
       flex: 1;
     }
     
-    .info-texto strong {
+    .info-texto-compacto strong {
       display: block;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
       color: var(--color-text);
-      font-weight: 700;
+      font-weight: 600;
     }
     
-    .info-texto span {
+    .info-texto-compacto span {
       color: var(--color-text-secondary);
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 0.9rem;
+      line-height: 1.4;
     }
     
-    /* MAPA MEJORADO */
-    .mapa-contenedor {
-      height: 300px;
+    /* MAPA COMPACTO */
+    .mapa-compacto {
+      height: 180px;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
-      margin: 25px 0 35px;
-      position: relative;
-      border: 1px solid rgba(138, 43, 226, 0.3);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      margin: 15px 0;
+      border: 1px solid rgba(138, 43, 226, 0.2);
     }
     
-    .mapa-contenedor iframe {
+    .mapa-compacto iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
     
-    /* NAVEGACIÓN INFERIOR - CON NUEVOS COLORES */
+    /* VISTA PROMOCIONES/EVENTOS */
+    .contenedor-promociones {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      padding: 8px;
+      gap: 8px;
+    }
+    
+    .lista-promociones {
+      background: var(--color-card);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      border: 1px solid var(--color-border);
+      flex: 0 0 45%;
+    }
+    
+    .lista-promo-header {
+      padding: 12px 14px 8px;
+      border-bottom: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+    
+    .lista-promo-header h2 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-accent-lima);
+    }
+    
+    .lista-promo-contenido {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0;
+    }
+    
+    .item-promocion {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--color-border);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .item-promocion:last-child {
+      border-bottom: none;
+    }
+    
+    .item-promocion:hover {
+      background: rgba(158, 255, 0, 0.05);
+    }
+    
+    .item-promocion.seleccionado {
+      background: linear-gradient(90deg, rgba(138, 43, 226, 0.15) 0%, rgba(158, 255, 0, 0.08) 100%);
+      border-left: 3px solid var(--color-accent-purple);
+      margin-left: -3px;
+    }
+    
+    .item-promocion.seleccionado .nombre-promocion {
+      color: var(--color-accent-lima);
+    }
+    
+    .nombre-promocion {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0 0 4px;
+      color: var(--color-text);
+    }
+    
+    .tipo-promocion {
+      font-size: 0.75rem;
+      color: var(--color-accent-purple);
+      background: rgba(138, 43, 226, 0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    
+    /* DETALLE PROMOCIÓN */
+    .detalle-promocion {
+      background: var(--color-card);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      border: 1px solid var(--color-border);
+    }
+    
+    .detalle-promo-contenido {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 14px;
+    }
+    
+    .bienvenida-promo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: 15px;
+      overflow: hidden;
+    }
+    
+    .bienvenida-promo-icono {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .bienvenida-promo h2 {
+      font-size: 1.3rem;
+      margin: 0 0 10px;
+      font-weight: 700;
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .bienvenida-promo p {
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.4;
+      max-width: 320px;
+      margin: 0 0 15px;
+    }
+    
+    .promocion-detalle {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .promocion-detalle.activo {
+      display: flex;
+    }
+    
+    .promo-titulo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin: 0 0 8px;
+      color: var(--color-text);
+      background: var(--color-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .promo-tipo {
+      color: var(--color-accent-lima);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+    }
+    
+    .imagen-promo-contenedor {
+      height: 180px;
+      background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(138, 43, 226, 0.2);
+      margin-bottom: 15px;
+    }
+    
+    .imagen-promo-contenedor img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .promo-descripcion {
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 5px;
+    }
+    
+    /* NAVEGACIÓN CON 4 BOTONES */
     .navegacion {
       display: flex;
       background: var(--color-card);
@@ -566,29 +683,27 @@
       flex-shrink: 0;
       position: relative;
       z-index: 10;
-      box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
     }
     
     .boton-nav {
       flex: 1;
-      padding: 16px 0;
+      padding: 12px 0;
       background: none;
       border: none;
       color: var(--color-text-secondary);
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       position: relative;
     }
     
     .boton-nav:hover {
       color: var(--color-accent-lima);
-      background: rgba(158, 255, 0, 0.05);
     }
     
     .boton-nav.activo {
@@ -600,38 +715,29 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 10%;
-      right: 10%;
-      height: 3px;
+      left: 15%;
+      right: 15%;
+      height: 2px;
       background: var(--color-gradient);
-      border-radius: 3px 3px 0 0;
+      border-radius: 2px 2px 0 0;
     }
     
     .boton-nav-icono {
-      font-size: 1.4rem;
-      transition: transform 0.3s;
-    }
-    
-    .boton-nav:hover .boton-nav-icono {
-      transform: translateY(-2px);
-    }
-    
-    .boton-nav.activo .boton-nav-icono {
-      transform: scale(1.2);
+      font-size: 1.1rem;
     }
     
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 12px 16px;
-      font-size: 0.75rem;
+      padding: 10px 14px;
+      font-size: 0.7rem;
       color: var(--color-text-muted);
       background: var(--color-card);
       border-top: 1px solid var(--color-border);
       flex-shrink: 0;
     }
     
-    /* SKELETON LOADING CON NUEVOS COLORES */
+    /* SKELETON */
     .skeleton {
       background: linear-gradient(90deg, 
         rgba(158, 255, 0, 0.05) 25%, 
@@ -651,271 +757,201 @@
     
     /* MOBILE (DEFAULT) */
     @media (max-width: 767px) {
-      .contenedor-columnas {
+      .contenedor-columnas, .contenedor-promociones {
         flex-direction: column;
-        padding: 10px;
-        gap: 10px;
+        padding: 6px;
+        gap: 6px;
       }
       
-      .seccion-lista {
-        flex: 0 0 45%;
-        min-height: 250px;
+      .seccion-lista, .lista-promociones {
+        flex: 0 0 40%;
+        min-height: 200px;
       }
       
-      .seccion-detalle {
+      .seccion-detalle, .detalle-promocion {
         flex: 1;
-        min-height: calc(100vh - 280px);
+        min-height: calc(100vh - 250px);
       }
       
-      .detalle-contenido {
+      .detalle-contenido, .detalle-promo-contenido {
+        padding: 12px;
+      }
+      
+      /* IMAGEN MÁS PEQUEÑA EN MOBILE */
+      .imagen-bebida-contenedor {
+        height: 160px; /* Reducida para mobile */
+      }
+      
+      /* ESTRUCTURA VERTICAL COMPACTA */
+      .detalle-info-lateral {
+        padding: 12px;
+        margin-top: 0;
+      }
+      
+      .detalle-nombre {
+        font-size: 1.3rem;
+      }
+      
+      .detalle-descripcion {
+        font-size: 0.85rem;
+        max-height: 120px;
+        margin-bottom: 12px;
+      }
+      
+      .precio {
+        font-size: 1.4rem;
+      }
+      
+      /* VISTAS CONTACTO/UBICACIÓN COMPACTAS */
+      .vista-contenido-full {
+        padding: 12px;
+      }
+      
+      .contenido-compacto {
+        gap: 12px;
+      }
+      
+      .tarjeta-compacta {
         padding: 16px;
       }
       
-      /* EN MOBILE: NOMBRE, IMAGEN, DESCRIPCIÓN Y PRECIO DEBAJO - TODOS VISIBLES */
-      .detalle-contenido-principal {
+      .tarjeta-compacta h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+      }
+      
+      .info-item-compacto {
+        margin-bottom: 12px;
+      }
+      
+      .mapa-compacto {
+        height: 160px;
+        margin: 12px 0;
+      }
+      
+      /* PROMOCIONES MOBILE */
+      .lista-promociones {
+        flex: 0 0 35%;
+      }
+      
+      .imagen-promo-contenedor {
+        height: 150px;
+      }
+      
+      .promo-titulo {
+        font-size: 1.3rem;
+      }
+      
+      /* NAVEGACIÓN MÁS COMPACTA */
+      .boton-nav {
+        padding: 10px 0;
+        font-size: 0.7rem;
+      }
+      
+      .boton-nav-icono {
+        font-size: 1rem;
+      }
+    }
+    
+    /* TABLET */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .contenedor-columnas, .contenedor-promociones {
+        flex-direction: row;
+        padding: 12px;
+        gap: 12px;
+      }
+      
+      .seccion-lista, .lista-promociones {
+        flex: 0 0 35%;
+      }
+      
+      /* EN TABLET: IMAGEN Y TEXTO AL LADO */
+      .detalle-info-lateral {
         flex-direction: column;
-        gap: 20px;
       }
       
       .imagen-bebida-contenedor {
-        height: 250px; /* Imagen más grande en mobile */
-        width: 100%;
-      }
-      
-      .detalle-info-lateral {
-        height: auto;
-        min-height: 200px;
-        background: rgba(17, 17, 17, 0.9);
-        margin-top: 0;
+        height: 200px;
       }
       
       .detalle-nombre {
         font-size: 1.6rem;
       }
       
-      .detalle-descripcion {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        margin-bottom: 20px;
-        flex: 0;
-        height: auto;
-        max-height: 150px;
-        overflow-y: auto;
-      }
-      
       .precio {
         font-size: 1.8rem;
       }
       
-      /* VISTAS FULLSCREEN MOBILE */
-      .contenido-contacto, .contenido-ubicacion {
-        padding: 20px 16px;
-      }
-      
-      .tarjeta-info {
+      /* VISTAS TABLET */
+      .vista-contenido-full {
         padding: 20px;
       }
       
-      .info-icono {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
+      .mapa-compacto {
+        height: 200px;
       }
       
-      .mapa-contenedor {
-        height: 250px;
-      }
-      
-      .boton-nav {
-        padding: 14px 0;
-        font-size: 0.8rem;
-      }
-      
-      .boton-nav-icono {
-        font-size: 1.3rem;
+      .imagen-promo-contenedor {
+        height: 200px;
       }
     }
     
-    /* TABLET */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .contenedor-columnas {
-        flex-direction: row;
+    /* DESKTOP */
+    @media (min-width: 1024px) {
+      .contenedor-columnas, .contenedor-promociones {
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
         padding: 15px;
         gap: 15px;
       }
       
-      .seccion-lista {
-        flex: 0 0 35%;
+      .seccion-lista, .lista-promociones {
+        flex: 0 0 30%;
       }
       
-      /* EN TABLET: IMAGEN GRANDE CON TEXTO AL LADO */
-      .detalle-contenido-principal {
-        flex-direction: row;
-        gap: 20px;
-      }
-      
+      /* EN DESKTOP: IMAGEN GRANDE */
       .imagen-bebida-contenedor {
-        flex: 0 0 50%;
-        height: 300px;
-      }
-      
-      .detalle-info-lateral {
-        flex: 1;
+        height: 250px;
       }
       
       .detalle-nombre {
         font-size: 1.8rem;
+      }
+      
+      .detalle-descripcion {
+        font-size: 1rem;
       }
       
       .precio {
         font-size: 2rem;
       }
       
-      .mapa-contenedor {
-        height: 320px;
-      }
-    }
-    
-    /* DESKTOP */
-    @media (min-width: 1024px) {
-      .contenedor-columnas {
-        max-width: 1400px;
+      /* VISTAS DESKTOP */
+      .vista-contenido-full {
+        padding: 25px;
+        max-width: 800px;
         margin: 0 auto;
-        width: 100%;
-        padding: 20px;
-        gap: 20px;
       }
       
-      .seccion-lista {
-        flex: 0 0 30%;
+      .mapa-compacto {
+        height: 250px;
       }
       
-      /* EN DESKTOP: NOMBRE ARRIBA, IMAGEN GRANDE CON TEXTO AL LADO */
-      .detalle-contenido-principal {
-        flex-direction: row;
-        gap: 30px;
-        height: calc(100% - 80px);
+      .imagen-promo-contenedor {
+        height: 250px;
       }
       
-      /* IMAGEN MUY GRANDE (60% del espacio) */
-      .imagen-bebida-contenedor {
-        flex: 0 0 60%;
-        height: auto;
-        min-height: 400px;
-        max-height: 500px;
-      }
-      
-      /* TEXTO AL LADO (40% del espacio) */
-      .detalle-info-lateral {
-        flex: 1;
-        min-height: 0;
-      }
-      
-      .detalle-nombre {
-        font-size: 2.2rem;
-      }
-      
-      .detalle-descripcion {
-        font-size: 1.05rem;
-        line-height: 1.8;
-      }
-      
-      .precio {
-        font-size: 2.4rem;
-      }
-      
-      /* VISTAS FULLSCREEN DESKTOP */
-      .contenido-contacto, .contenido-ubicacion {
-        padding: 40px 30px;
-      }
-      
-      .tarjeta-info {
-        padding: 40px;
-      }
-      
-      .mapa-contenedor {
-        height: 350px;
+      .promo-titulo {
+        font-size: 1.8rem;
       }
     }
     
-    /* DESKTOP GRANDE */
-    @media (min-width: 1200px) {
-      .imagen-bebida-contenedor {
-        min-height: 450px;
-        max-height: 550px;
-      }
-      
-      .detalle-nombre {
-        font-size: 2.5rem;
-      }
-      
-      .precio {
-        font-size: 2.8rem;
-      }
-      
-      .contenido-contacto, .contenido-ubicacion {
-        max-width: 1000px;
-      }
-    }
-    
-    /* PANTALLAS MUY PEQUEÑAS */
-    @media (max-width: 360px) {
-      .header-contenedor {
-        padding: 10px 12px;
-      }
-      
-      .logo-espacio {
-        width: 45px;
-        height: 45px;
-      }
-      
-      .header-texto h1 {
-        font-size: 1.2rem;
-      }
-      
-      .item-bebida {
-        padding: 14px 12px;
-      }
-      
-      .detalle-contenido {
-        padding: 14px;
-      }
-      
-      .imagen-bebida-contenedor {
-        height: 220px;
-      }
-      
-      .detalle-nombre {
-        font-size: 1.5rem;
-      }
-      
-      .detalle-descripcion {
-        font-size: 0.9rem;
-        max-height: 120px;
-      }
-      
-      .precio {
-        font-size: 1.7rem;
-      }
-      
-      .contenido-contacto, .contenido-ubicacion {
-        padding: 16px 12px;
-      }
-      
-      .tarjeta-info {
-        padding: 18px;
-      }
-      
-      .mapa-contenedor {
-        height: 220px;
-      }
-    }
-    
-    /* ANIMACIONES Y EFECTOS */
+    /* ANIMACIONES */
     @keyframes fadeIn {
       from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px);
       }
       to {
         opacity: 1;
@@ -924,45 +960,20 @@
     }
     
     .fade-in {
-      animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    /* EFECTO DE GLOW EN ELEMENTOS SELECCIONADOS */
-    @keyframes pulseGlow {
-      0% {
-        box-shadow: 0 0 0 0 rgba(158, 255, 0, 0.4);
-      }
-      70% {
-        box-shadow: 0 0 0 10px rgba(158, 255, 0, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(158, 255, 0, 0);
-      }
-    }
-    
-    .item-bebida.seleccionado {
-      animation: pulseGlow 2s infinite;
-    }
-    
-    /* EFECTO DE GRADIENTE EN TEXTO */
-    .gradient-text {
-      background: var(--color-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      animation: fadeIn 0.3s ease-out;
     }
   </style>
 </head>
 
 <body>
-  <!-- HEADER CON ESPACIO PARA LOGO -->
+  <!-- HEADER COMPACTO -->
   <div class="header-contenedor">
     <div class="logo-espacio">
       <div class="logo-placeholder">🍸</div>
     </div>
     <div class="header-texto">
       <h1>Bar Karaoke COPA NOCTURNA</h1>
-      <p>Selecciona un trago para ver el detalle</p>
+      <p>Donde la noche sube de tono</p>
     </div>
   </div>
   
@@ -998,86 +1009,42 @@
               <h3 class="nombre-bebida">Camaleon</h3>
               <p class="descripcion-bebida">Cambia de color · Experiencia</p>
             </div>
-            <div class="item-bebida" onclick="seleccionarBebida('daiquiridedurazno', this)">
-              <h3 class="nombre-bebida">Daiquiri de Durazno</h3>
-              <p class="descripcion-bebida">Ron · Frutal</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('diabloazul', this)">
-              <h3 class="nombre-bebida">Diablo Azul</h3>
-              <p class="descripcion-bebida">Vodka · Intenso</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('machupicchu', this)">
-              <h3 class="nombre-bebida">Machu Picchu</h3>
-              <p class="descripcion-bebida">Pisco · Peruano</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('margaritacoronablue', this)">
-              <h3 class="nombre-bebida">Margarita Corona Blue</h3>
-              <p class="descripcion-bebida">Tequila · Cerveza</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('margarita', this)">
-              <h3 class="nombre-bebida">Margarita</h3>
-              <p class="descripcion-bebida">Tequila · Clásico</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('mojito', this)">
-              <h3 class="nombre-bebida">Mojito</h3>
-              <p class="descripcion-bebida">Ron · Refrescante</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('orgasmo', this)">
-              <h3 class="nombre-bebida">Orgasmo</h3>
-              <p class="descripcion-bebida">Mezcla secreta · Experiencia</p>
-            </div>
-            <div class="item-bebida" onclick="seleccionarBebida('sexonthebeach', this)">
-              <h3 class="nombre-bebida">Sex on the Beach</h3>
-              <p class="descripcion-bebida">Vodka · Frutal</p>
-            </div>
           </div>
         </section>
         
-        <!-- DETALLE DE BEBIDA - ESTRUCTURA CORREGIDA -->
+        <!-- DETALLE DE BEBIDA -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
-            <!-- BIENVENIDA INICIAL -->
+            <!-- BIENVENIDA SIMPLIFICADA -->
             <div class="bienvenida" id="bienvenida">
               <div class="bienvenida-icono">🍸🎤</div>
               <h2>¡Bienvenido a Copa Nocturna!</h2>
-              <p>Explora nuestra exclusiva carta de cócteles y bebidas premium. Cada trago es una experiencia única preparada con los mejores ingredientes.</p>
+              <p>Explora nuestra exclusiva carta de cócteles y bebidas premium. Cada trago es una experiencia única.</p>
               
               <div class="bienvenida-inst">
-                <p>👉 Selecciona una bebida de la lista para ver su descripción, imagen y precio</p>
-              </div>
-              
-              <div style="margin-top: 25px; color: var(--color-text-secondary); font-size: 0.85rem;">
-                <p>🎶 Karaoke disponible todas las noches</p>
-                <p>🕐 Happy Hour: 6:00 PM - 8:00 PM</p>
-                <p>⭐ Promoción especial para grupos</p>
+                <p>👉 Selecciona una bebida para ver detalles completos</p>
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA - TODOS LOS ELEMENTOS VISIBLES EN MOBILE -->
+            <!-- DETALLE DE BEBIDA -->
             <div class="detalle-bebida" id="detalle-bebida">
-              <!-- NOMBRE ARRIBA -->
               <div class="detalle-nombre-contenedor">
                 <h2 class="detalle-nombre" id="detalle-nombre"></h2>
               </div>
               
-              <!-- CONTENIDO PRINCIPAL: IMAGEN + DESCRIPCIÓN/PRECIO -->
-              <div class="detalle-contenido-principal">
-                <!-- IMAGEN GRANDE -->
-                <div class="imagen-bebida-contenedor" id="imagen-bebida">
-                  <!-- Imagen se cargará aquí -->
-                </div>
+              <!-- IMAGEN REDUCIDA -->
+              <div class="imagen-bebida-contenedor" id="imagen-bebida">
+                <!-- Imagen se cargará aquí -->
+              </div>
+              
+              <!-- DESCRIPCIÓN Y PRECIO VISIBLES -->
+              <div class="detalle-info-lateral">
+                <p class="detalle-descripcion" id="detalle-descripcion"></p>
                 
-                <!-- DESCRIPCIÓN Y PRECIO - AHORA VISIBLES EN MOBILE -->
-                <div class="detalle-info-lateral">
-                  <!-- DESCRIPCIÓN CON SCROLL SI ES NECESARIO -->
-                  <p class="detalle-descripcion" id="detalle-descripcion"></p>
-                  
-                  <!-- PRECIO -->
-                  <div class="precio-contenedor">
-                    <div class="precio">
-                      <span id="precio-texto"></span>
-                      <span class="precio-badge">PRECIO</span>
-                    </div>
+                <div class="precio-contenedor">
+                  <div class="precio">
+                    <span id="precio-texto"></span>
+                    <span class="precio-badge">PRECIO</span>
                   </div>
                 </div>
               </div>
@@ -1087,72 +1054,70 @@
       </div>
     </div>
     
-    <!-- VISTA CONTACTO - FULLSCREEN -->
+    <!-- VISTA CONTACTO -->
     <div id="vista-contacto" class="vista">
-      <div class="vista-fullscreen">
-        <div class="vista-contenido-full">
-          <div class="contenido-contacto">
-            <div class="tarjeta-info">
-              <h3>📞 Contacto</h3>
-              
-              <div class="info-item">
-                <div class="info-icono">📞</div>
-                <div class="info-texto">
-                  <strong>Teléfono Principal</strong>
-                  <span>+51 999 999 999</span>
-                </div>
-              </div>
-              
-              <div class="info-item">
-                <div class="info-icono">📱</div>
-                <div class="info-texto">
-                  <strong>WhatsApp Reservas</strong>
-                  <span>+51 999 888 777</span>
-                </div>
-              </div>
-              
-              <div class="info-item">
-                <div class="info-icono">✉️</div>
-                <div class="info-texto">
-                  <strong>Correo Electrónico</strong>
-                  <span>reservas@copanocturna.com</span>
-                </div>
-              </div>
-              
-              <div class="info-item">
-                <div class="info-icono">🕐</div>
-                <div class="info-texto">
-                  <strong>Horario de Atención</strong>
-                  <span>Lunes a Domingo: 6:00 PM - 4:00 AM</span>
-                </div>
+      <div class="vista-contenido-full">
+        <div class="contenido-compacto">
+          <div class="tarjeta-compacta">
+            <h3>📞 Contacto</h3>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📞</div>
+              <div class="info-texto-compacto">
+                <strong>Teléfono Principal</strong>
+                <span>+51 999 999 999</span>
               </div>
             </div>
             
-            <div class="tarjeta-info">
-              <h3>🌐 Redes Sociales</h3>
-              
-              <div class="info-item">
-                <div class="info-icono">📸</div>
-                <div class="info-texto">
-                  <strong>Instagram</strong>
-                  <span>@copanocturna_bar</span>
-                </div>
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📱</div>
+              <div class="info-texto-compacto">
+                <strong>WhatsApp Reservas</strong>
+                <span>+51 999 888 777</span>
               </div>
-              
-              <div class="info-item">
-                <div class="info-icono">📘</div>
-                <div class="info-texto">
-                  <strong>Facebook</strong>
-                  <span>Copa Nocturna Bar</span>
-                </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">✉️</div>
+              <div class="info-texto-compacto">
+                <strong>Correo Electrónico</strong>
+                <span>reservas@copanocturna.com</span>
               </div>
-              
-              <div class="info-item">
-                <div class="info-icono">📺</div>
-                <div class="info-texto">
-                  <strong>TikTok</strong>
-                  <span>@copanocturna_md</span>
-                </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">🕐</div>
+              <div class="info-texto-compacto">
+                <strong>Horario de Atención</strong>
+                <span>Lunes a Domingo: 6:00 PM - 4:00 AM</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tarjeta-compacta">
+            <h3>🌐 Redes Sociales</h3>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📸</div>
+              <div class="info-texto-compacto">
+                <strong>Instagram</strong>
+                <span>@copanocturna_bar</span>
+              </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📘</div>
+              <div class="info-texto-compacto">
+                <strong>Facebook</strong>
+                <span>Copa Nocturna Bar</span>
+              </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📺</div>
+              <div class="info-texto-compacto">
+                <strong>TikTok</strong>
+                <span>@copanocturna_md</span>
               </div>
             </div>
           </div>
@@ -1160,58 +1125,120 @@
       </div>
     </div>
     
-    <!-- VISTA UBICACIÓN - FULLSCREEN -->
+    <!-- VISTA UBICACIÓN -->
     <div id="vista-ubicacion" class="vista">
-      <div class="vista-fullscreen">
-        <div class="vista-contenido-full">
-          <div class="contenido-ubicacion">
-            <div class="tarjeta-info">
-              <h3>📍 Ubicación</h3>
-              
-              <div class="info-item">
-                <div class="info-icono">📍</div>
-                <div class="info-texto">
-                  <strong>Dirección Exacta</strong>
-                  <span>Av. Leoncio Prado 456, Puerto Maldonado<br>Madre de Dios, Perú</span>
-                </div>
+      <div class="vista-contenido-full">
+        <div class="contenido-compacto">
+          <div class="tarjeta-compacta">
+            <h3>📍 Ubicación</h3>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">📍</div>
+              <div class="info-texto-compacto">
+                <strong>Dirección Exacta</strong>
+                <span>Av. Leoncio Prado 456, Puerto Maldonado<br>Madre de Dios, Perú</span>
               </div>
-              
-              <!-- MAPA -->
-              <div class="mapa-contenedor" id="mapa-contenedor">
-                <!-- Mapa se cargará aquí -->
+            </div>
+            
+            <!-- MAPA COMPACTO -->
+            <div class="mapa-compacto" id="mapa-contenedor">
+              <!-- Mapa se cargará aquí -->
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">🚗</div>
+              <div class="info-texto-compacto">
+                <strong>Estacionamiento</strong>
+                <span>Parqueadero gratuito para clientes</span>
               </div>
-              
-              <div class="info-item">
-                <div class="info-icono">🚗</div>
-                <div class="info-texto">
-                  <strong>Estacionamiento</strong>
-                  <span>Parqueadero gratuito disponible para clientes</span>
-                </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">🚕</div>
+              <div class="info-texto-compacto">
+                <strong>Transporte</strong>
+                <span>Fácil acceso en taxi y mototaxi</span>
               </div>
-              
-              <div class="info-item">
-                <div class="info-icono">🚕</div>
-                <div class="info-texto">
-                  <strong>Transporte</strong>
-                  <span>Fácil acceso en taxi y mototaxi desde cualquier punto de la ciudad</span>
-                </div>
-              </div>
-              
-              <div class="info-item">
-                <div class="info-icono">🏪</div>
-                <div class="info-texto">
-                  <strong>Referencias</strong>
-                  <span>Frente al Parque Central, al lado del Hotel Wasai</span>
-                </div>
+            </div>
+            
+            <div class="info-item-compacto">
+              <div class="info-icono-compacto">🏪</div>
+              <div class="info-texto-compacto">
+                <strong>Referencias</strong>
+                <span>Frente al Parque Central</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    
+    <!-- VISTA PROMOCIONES/EVENTOS -->
+    <div id="vista-promociones" class="vista">
+      <div class="contenedor-promociones">
+        <!-- LISTA DE PROMOCIONES/EVENTOS -->
+        <section class="lista-promociones">
+          <div class="lista-promo-header">
+            <h2>Promociones & Eventos</h2>
+          </div>
+          <div class="lista-promo-contenido">
+            <div class="item-promocion" onclick="seleccionarPromocion('happyhour', this)">
+              <h3 class="nombre-promocion">Happy Hour Nocturno</h3>
+              <span class="tipo-promocion">PROMOCIÓN</span>
+            </div>
+            <div class="item-promocion" onclick="seleccionarPromocion('karaokejueves', this)">
+              <h3 class="nombre-promocion">Karaoke de Jueves</h3>
+              <span class="tipo-promocion">EVENTO</span>
+            </div>
+            <div class="item-promocion" onclick="seleccionarPromocion('cumpleanios', this)">
+              <h3 class="nombre-promocion">Pack Cumpleaños</h3>
+              <span class="tipo-promocion">PROMOCIÓN</span>
+            </div>
+            <div class="item-promocion" onclick="seleccionarPromocion('nochesabado', this)">
+              <h3 class="nombre-promocion">Noche de Sábado VIP</h3>
+              <span class="tipo-promocion">EVENTO</span>
+            </div>
+            <div class="item-promocion" onclick="seleccionarPromocion('grupos', this)">
+              <h3 class="nombre-promocion">Descuento Grupos</h3>
+              <span class="tipo-promocion">PROMOCIÓN</span>
+            </div>
+          </div>
+        </section>
+        
+        <!-- DETALLE PROMOCIÓN/EVENTO -->
+        <section class="detalle-promocion">
+          <div class="detalle-promo-contenido">
+            <!-- BIENVENIDA PROMOCIONES -->
+            <div class="bienvenida-promo" id="bienvenida-promo">
+              <div class="bienvenida-promo-icono">🎉🎤</div>
+              <h2>Promociones & Eventos</h2>
+              <p>Descubre nuestras promociones especiales y eventos semanales. Siempre hay algo nuevo en Copa Nocturna.</p>
+              
+              <div class="bienvenida-inst">
+                <p>👉 Selecciona una opción para ver todos los detalles</p>
+              </div>
+            </div>
+            
+            <!-- DETALLE PROMOCIÓN -->
+            <div class="promocion-detalle" id="promocion-detalle">
+              <h2 class="promo-titulo" id="promo-titulo"></h2>
+              <div class="promo-tipo" id="promo-tipo"></div>
+              
+              <!-- IMAGEN PROMOCIONAL -->
+              <div class="imagen-promo-contenedor" id="imagen-promo">
+                <!-- Imagen se cargará aquí -->
+              </div>
+              
+              <!-- DESCRIPCIÓN -->
+              <p class="promo-descripcion" id="promo-descripcion"></p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
   
-  <!-- NAVEGACIÓN INFERIOR -->
+  <!-- NAVEGACIÓN CON 4 BOTONES -->
   <nav class="navegacion">
     <button class="boton-nav activo" onclick="cambiarVista('carta')">
       <span class="boton-nav-icono">🍹</span>
@@ -1225,6 +1252,10 @@
       <span class="boton-nav-icono">📍</span>
       <span>Ubicación</span>
     </button>
+    <button class="boton-nav" onclick="cambiarVista('promociones')">
+      <span class="boton-nav-icono">🎉</span>
+      <span>Eventos</span>
+    </button>
   </nav>
   
   <footer>
@@ -1232,91 +1263,76 @@
   </footer>
 
   <script>
-    // Datos de las bebidas (sin tipo, solo nombre, descripción, precio e imagen)
+    // Datos de las bebidas
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
-        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche. Una variante del Apple Paradise clásico que consta de manzanas frescas, vodka, jugo de piña, hielo, granadina y blue curacao con un color escarchado y una fresa decorativa. Una buena opción para consentir al paladar.',
+        desc: 'Refrescante combinación de ron blanco con jugo de manzana morada y un toque de lima. Perfecto para empezar la noche.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisepurple.webp'
       },
       appleparadisered: {
         nombre: 'Apple Paradise Red',
-        desc: 'Tequila con jugo de manzana roja y granadina. Una versión clásica del Apple Paradise con un toque especial de tequila que realza el sabor de la manzana. Perfecto para los amantes de los sabores intensos y tradicionales.',
+        desc: 'Tequila con jugo de manzana roja y granadina. Una versión clásica con toque especial de tequila.',
         precio: 'S/ 23.00',
         img: 'img/appleparadisered.webp'
       },
       appleparadise: {
         nombre: 'Apple Paradise',
-        desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena. Disco hermano del Apple Paradise clásico. Una combinación perfecta de sabores peruanos con un toque refrescante de manzana verde.',
+        desc: 'Pisco peruano mezclado con jugo de manzana verde y hierbabuena. Combinación perfecta de sabores peruanos.',
         precio: 'S/ 20.00',
         img: 'img/appleparadise.webp'
       },
       besocaribeno: {
         nombre: 'Beso Caribeño',
-        desc: 'Ron dorado, jugo de piña y coco con un toque de maracuyá. Una explosión de sabores tropicales que te transportarán directamente al Caribe. Dulce, cremoso y refrescante.',
+        desc: 'Ron dorado, jugo de piña y coco con toque de maracuyá. Explosión de sabores tropicales.',
         precio: 'S/ 20.00',
         img: 'img/besocaribeno.webp'
       },
       camaleon: {
         nombre: 'Camaleon',
-        desc: 'Cóctel que cambia de color según los ingredientes que añadas. Una experiencia visual única que combina diferentes licores que reaccionan entre sí creando un espectáculo de colores en tu copa.',
+        desc: 'Cóctel que cambia de color según los ingredientes. Experiencia visual única en tu copa.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
+      }
+    };
+    
+    // Datos de promociones y eventos
+    const promocionesData = {
+      happyhour: {
+        nombre: 'Happy Hour Nocturno',
+        tipo: 'PROMOCIÓN ESPECIAL',
+        desc: 'De 6:00 PM a 8:00 PM todos los días. 2x1 en toda nuestra carta de cócteles clásicos. Aprovecha nuestras mejores bebidas a mitad de precio durante el Happy Hour. Válido para consumo en el local.',
+        img: 'img/promo1.webp'
       },
-      daiquiridedurazno: {
-        nombre: 'Daiquiri de Durazno',
-        desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal, este daiquiri combina la acidez del limón con la dulzura del durazno en perfecta armonía.',
-        precio: 'S/ 20.00',
-        img: 'img/daiquiridedurazno.webp'
+      karaokejueves: {
+        nombre: 'Karaoke de Jueves',
+        tipo: 'EVENTO SEMANAL',
+        desc: 'Todos los jueves desde las 9:00 PM. Participa en nuestro concurso de karaoke y gana premios especiales. Micrófono abierto, lista extensa de canciones y ambiente increíble. ¡Ven y demuestra tu talento!',
+        img: 'img/evento1.webp'
       },
-      diabloazul: {
-        nombre: 'Diablo Azul',
-        desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante, su color azul vibrante es tan llamativo como su sabor. Perfecto para sorprender a tus amigos.',
-        precio: 'S/ 20.00',
-        img: 'img/diabloazul.webp'
+      cumpleanios: {
+        nombre: 'Pack Cumpleaños',
+        tipo: 'PROMOCIÓN ESPECIAL',
+        desc: 'Celebra tu cumpleaños con nosotros y recibe: 1 botella de champagne gratis + 3 cócteles de cortesía + mesa VIP reservada. Reserva con 24 horas de anticipación. Válido para grupos de 5 o más personas.',
+        img: 'img/promo2.webp'
       },
-      machupicchu: {
-        nombre: 'Machu Picchu',
-        desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en los sabores peruanos. Un homenaje a nuestra cultura con ingredientes autóctonos que crean una experiencia única.',
-        precio: 'S/ 20.00',
-        img: 'img/machupicchu.webp'
+      nochesabado: {
+        nombre: 'Noche de Sábado VIP',
+        tipo: 'EVENTO ESPECIAL',
+        desc: 'Todos los sábados desde las 10:00 PM. DJ en vivo, luces especiales, cócteles exclusivos y zona VIP con reservación previa. Cover especial después de la medianoche.',
+        img: 'img/evento2.webp'
       },
-      margaritacoronablue: {
-        nombre: 'Margarita Corona Blue',
-        desc: 'Tequila, cerveza Corona y licor azul con sal en el borde. Una combinación innovadora que une lo mejor de una margarita clásica con la frescura de la cerveza.',
-        precio: 'S/ 30.00',
-        img: 'img/margaritacoronablue.webp'
-      },
-      margarita: {
-        nombre: 'Margarita',
-        desc: 'Clásico cóctel de tequila, triple sec y jugo de limón. Simple, elegante y siempre acertado. La opción perfecta para quienes buscan un sabor tradicional bien ejecutado.',
-        precio: 'S/ 20.00',
-        img: 'img/margarita.webp'
-      },
-      mojito: {
-        nombre: 'Mojito',
-        desc: 'Ron blanco, menta fresca, lima, azúcar y soda. El clásico cubano que nunca pasa de moda. Refrescante, mentolado y perfecto para cualquier ocasión.',
-        precio: 'S/ 15.00',
-        img: 'img/mojito.webp'
-      },
-      orgasmo: {
-        nombre: 'Orgasmo',
-        desc: 'Mezcla secreta de licores que promete una experiencia única. Su nombre lo dice todo: una explosión de sabores que despierta todos tus sentidos.',
-        precio: 'S/ 20.00',
-        img: 'img/orgasmo.webp'
-      },
-      sexonthebeach: {
-        nombre: 'Sex on the Beach',
-        desc: 'Vodka, licor de melocotón, jugo de arándano y naranja. Dulce, frutal y con un toque cítrico. Un clásico moderno que siempre gusta.',
-        precio: 'S/ 20.00',
-        img: 'img/sexonthebeach.webp'
+      grupos: {
+        nombre: 'Descuento Grupos',
+        tipo: 'PROMOCIÓN PERMANENTE',
+        desc: 'Grupos de 6 o más personas: 15% de descuento en la cuenta total. Grupos de 10 o más: 20% de descuento + 1 botella de cerveza gratis por mesa. Reserva previa requerida.',
+        img: 'img/promo3.webp'
       }
     };
     
     // Cache de imágenes
     const imageCache = {};
-    let bebidaSeleccionada = null;
     
     // Función para cambiar de vista
     function cambiarVista(vista) {
@@ -1340,17 +1356,24 @@
       if (vista === 'ubicacion') {
         setTimeout(cargarMapaExacto, 100);
       }
+      
+      // Si es promociones, mostrar bienvenida
+      if (vista === 'promociones') {
+        document.getElementById('bienvenida-promo').style.display = 'flex';
+        document.getElementById('promocion-detalle').style.display = 'none';
+        document.querySelectorAll('.item-promocion').forEach(item => {
+          item.classList.remove('seleccionado');
+        });
+      }
     }
     
-    // Función para cargar el mapa exacto del iframe proporcionado
+    // Función para cargar el mapa
     function cargarMapaExacto() {
       const mapaContenedor = document.getElementById('mapa-contenedor');
       if (!mapaContenedor) return;
       
-      // Usar el iframe exacto que proporcionaste
       const iframeCode = `<iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3893.8105678579236!2d-69.219062!3d-12.594733000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTLCsDM1JzQxLjAiUyA2OcKwMTMnMDguNiJX!5e0!3m2!1ses!2spe!4v1766614406793!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
       
-      // Modificar el iframe para que sea responsive
       const iframeModificado = iframeCode
         .replace('width="600"', 'width="100%"')
         .replace('height="450"', 'height="100%"');
@@ -1358,7 +1381,7 @@
       mapaContenedor.innerHTML = iframeModificado;
     }
     
-    // Función para cargar imágenes con cache
+    // Función para cargar imágenes
     function cargarImagen(src) {
       return new Promise(resolve => {
         if (imageCache[src]) {
@@ -1372,8 +1395,7 @@
           resolve(img.src);
         };
         img.onerror = () => {
-          // Imagen de respaldo con los nuevos colores
-          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8A2BE2"/><stop offset="100%" stop-color="#9EFF00"/></linearGradient></defs><rect width="400" height="400" fill="#111"/><circle cx="200" cy="150" r="80" fill="url(#grad)" opacity="0.3"/><text x="200" y="150" font-family="Arial" font-size="28" fill="url(#grad)" text-anchor="middle" dy=".3em">🍸</text><text x="200" y="250" font-family="Arial" font-size="20" fill="#9EFF00" text-anchor="middle">Copa Nocturna</text></svg>';
+          const fallback = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#8A2BE2"/><stop offset="100%" stop-color="#9EFF00"/></linearGradient></defs><rect width="400" height="300" fill="#111"/><rect x="50" y="50" width="300" height="200" rx="10" fill="url(#grad)" opacity="0.2"/><text x="200" y="150" font-family="Arial" font-size="24" fill="url(#grad)" text-anchor="middle" dy=".3em">🍸 Copa Nocturna</text></svg>';
           imageCache[src] = fallback;
           resolve(fallback);
         };
@@ -1395,7 +1417,6 @@
       
       // Obtener datos de la bebida
       const bebida = data[id];
-      bebidaSeleccionada = id;
       
       // Ocultar bienvenida y mostrar detalle
       document.getElementById('bienvenida').style.display = 'none';
@@ -1403,7 +1424,7 @@
       detalleElement.style.display = 'flex';
       detalleElement.classList.add('fade-in');
       
-      // Actualizar información (solo nombre, descripción y precio)
+      // Actualizar información
       document.getElementById('detalle-nombre').textContent = bebida.nombre;
       document.getElementById('detalle-descripcion').textContent = bebida.desc;
       document.getElementById('precio-texto').textContent = bebida.precio;
@@ -1421,21 +1442,57 @@
       }
     }
     
-    // Inicializar al cargar la página
-    document.addEventListener('DOMContentLoaded', () => {
-      // NO seleccionar ninguna bebida al inicio (solo mostrar bienvenida)
-      document.getElementById('bienvenida').style.display = 'flex';
-      document.getElementById('detalle-bebida').style.display = 'none';
+    // Función para seleccionar promoción/evento
+    async function seleccionarPromocion(id, elemento) {
+      if (!promocionesData[id]) return;
       
-      // Remover cualquier selección previa
-      document.querySelectorAll('.item-bebida').forEach(item => {
+      // Remover selección anterior
+      document.querySelectorAll('.item-promocion').forEach(item => {
         item.classList.remove('seleccionado');
       });
       
-      // Cargar mapa si está en la vista de ubicación (por si alguien refresca la página)
-      if (document.getElementById('vista-ubicacion').classList.contains('activa')) {
-        cargarMapaExacto();
+      // Marcar como seleccionado
+      elemento.classList.add('seleccionado');
+      
+      // Obtener datos
+      const promo = promocionesData[id];
+      
+      // Ocultar bienvenida y mostrar detalle
+      document.getElementById('bienvenida-promo').style.display = 'none';
+      const detalleElement = document.getElementById('promocion-detalle');
+      detalleElement.style.display = 'flex';
+      detalleElement.classList.add('fade-in');
+      
+      // Actualizar información
+      document.getElementById('promo-titulo').textContent = promo.nombre;
+      document.getElementById('promo-tipo').textContent = promo.tipo;
+      document.getElementById('promo-descripcion').textContent = promo.desc;
+      
+      // Mostrar skeleton loading
+      const imagenContenedor = document.getElementById('imagen-promo');
+      imagenContenedor.innerHTML = '<div class="skeleton" style="width:100%;height:100%;"></div>';
+      
+      // Cargar y mostrar imagen
+      try {
+        const imgSrc = await cargarImagen(promo.img);
+        imagenContenedor.innerHTML = `<img src="${imgSrc}" alt="${promo.nombre}" loading="lazy">`;
+      } catch (error) {
+        console.error('Error cargando imagen:', error);
       }
+    }
+    
+    // Inicializar al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      // Solo mostrar bienvenida
+      document.getElementById('bienvenida').style.display = 'flex';
+      document.getElementById('detalle-bebida').style.display = 'none';
+      document.getElementById('bienvenida-promo').style.display = 'flex';
+      document.getElementById('promocion-detalle').style.display = 'none';
+      
+      // Remover cualquier selección previa
+      document.querySelectorAll('.item-bebida, .item-promocion').forEach(item => {
+        item.classList.remove('seleccionado');
+      });
     });
   </script>
 </body>
