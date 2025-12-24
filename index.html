@@ -58,26 +58,22 @@
     @media (max-width: 767px) {
 
       .lista {
-          max-height: none;      /* CLAVE */
-          height: auto;
-          min-height: 160px;     /* asegura visibilidad */
-      }
-      .lista {
           order: 1;
+          max-height: 40vh;   /* lista con scroll */
       }
 
       .detalle {
         order: 2;
+        flex: 1;           /* ocupa el resto */
+        min-height: 0;
       }
 
-    .detalle {
-        height: auto;        /* NO usar vh en móvil */
-      max-height: 65vh;    /* limita sin aplastar */
-      }
       .detalle-img {
-    height: 220px;
-  }
-    }    
+        height: 160px;     /* imagen más chica */
+      }
+
+    }
+
     .lista {
       background: #161616;
       border-radius: 12px;
@@ -131,7 +127,6 @@
       padding: 14px;
       display: flex;
       flex-direction: column;
-      height: calc(100vh - 180px); /* CLAVE */
       overflow: hidden;
     }
 
@@ -155,6 +150,9 @@
     }
     .detalle-body {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
     .detalle p {
       margin: 6px 0 10px;
@@ -166,6 +164,7 @@
 
     /* PRECIO SIEMPRE ABAJO */
     .precio {
+      margin-top: auto;    /* CLAVE */
       font-size: 1.4rem;
       font-weight: bold;
       color: #ffffff;
