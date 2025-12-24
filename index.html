@@ -62,24 +62,31 @@
       }
       .lista {
           order: 1;
-          max-height: 40vh;   /* lista con scroll */
+          flex: 0 0 45vh;      /* ocupa SOLO esta altura */
+          max-height: 45vh;
+          overflow-y: auto;
       }
 
       .detalle {
         order: 2;
-        flex: 1;           /* ocupa el resto */
-        min-height: 0;
+        flex: 1;              /* TOMA EL RESTO DEL ESPACIO */
+        min-height: 240px;    /* CLAVE: evita que desaparezca */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
       }
 
       .detalle-img {
         height: 120px;     /* imagen más chica */
+        flex-shrink: 0;
       }
       .detalle-body {
-        flex: none;
+        flex: 1;
       }
 
       .precio {
         margin-top: 12px;
+        flex-shrink: 0;
       }
 
     }
