@@ -59,7 +59,7 @@
       background: var(--color-accent-purple);
     }
     
-    /* HEADER MÁS COMPACTO */
+    /* HEADER */
     .header-contenedor {
       background: var(--color-card);
       border-bottom: 1px solid var(--color-border);
@@ -139,7 +139,7 @@
       gap: 8px;
     }
     
-    /* LISTA COMPACTA */
+    /* LISTA DE BEBIDAS COMPLETA */
     .seccion-lista {
       background: var(--color-card);
       border-radius: 10px;
@@ -148,6 +148,7 @@
       flex-direction: column;
       min-width: 0;
       border: 1px solid var(--color-border);
+      flex: 0 0 40%;
     }
     
     .lista-header {
@@ -211,7 +212,7 @@
       line-height: 1.3;
     }
     
-    /* DETALLE - MOBILE OPTIMIZADO */
+    /* DETALLE - PRECIO SIEMPRE VISIBLE */
     .seccion-detalle {
       background: var(--color-card);
       border-radius: 10px;
@@ -231,7 +232,7 @@
       padding: 14px;
     }
     
-    /* BIENVENIDA SIMPLIFICADA */
+    /* BIENVENIDA */
     .bienvenida {
       display: flex;
       flex-direction: column;
@@ -287,7 +288,7 @@
       color: var(--color-text);
     }
     
-    /* DETALLE ESTRUCTURA FIXED */
+    /* DETALLE BEBIDA CON PRECIO VISIBLE */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -318,7 +319,7 @@
       background-clip: text;
     }
     
-    /* IMAGEN MÁS PEQUEÑA EN MOBILE */
+    /* IMAGEN MÁS PEQUEÑA */
     .imagen-bebida-contenedor {
       flex-shrink: 0;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
@@ -329,6 +330,7 @@
       justify-content: center;
       border: 1px solid rgba(138, 43, 226, 0.2);
       margin-bottom: 12px;
+      height: 160px;
     }
     
     .imagen-bebida-contenedor img {
@@ -338,16 +340,12 @@
       display: block;
     }
     
-    /* DESCRIPCIÓN Y PRECIO VISIBLES */
+    /* DESCRIPCIÓN Y PRECIO - AMBOS VISIBLES */
     .detalle-info-lateral {
       display: flex;
       flex-direction: column;
       flex: 1;
       min-height: 0;
-      background: rgba(17, 17, 17, 0.7);
-      border-radius: 8px;
-      padding: 14px;
-      border: 1px solid rgba(138, 43, 226, 0.1);
     }
     
     .detalle-descripcion {
@@ -360,9 +358,13 @@
       padding-right: 5px;
     }
     
+    /* PRECIO SIEMPRE VISIBLE - FIJADO ABAJO */
     .precio-contenedor {
-      padding-top: 12px;
-      border-top: 1px solid rgba(138, 43, 226, 0.2);
+      background: rgba(17, 17, 17, 0.9);
+      border-radius: 8px;
+      padding: 12px;
+      border: 1px solid rgba(138, 43, 226, 0.2);
+      margin-top: auto;
       flex-shrink: 0;
     }
     
@@ -385,7 +387,7 @@
       letter-spacing: 0.5px;
     }
     
-    /* VISTAS CONTACTO Y UBICACIÓN - COMPACTAS */
+    /* VISTAS CONTACTO Y UBICACIÓN COMPACTAS */
     .vista-contenido-full {
       flex: 1;
       overflow-y: auto;
@@ -559,7 +561,7 @@
       display: inline-block;
     }
     
-    /* DETALLE PROMOCIÓN */
+    /* DETALLE PROMOCIÓN - SOLO IMAGEN */
     .detalle-promocion {
       background: var(--color-card);
       border-radius: 10px;
@@ -627,10 +629,17 @@
       display: flex;
     }
     
+    .promo-titulo-contenedor {
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
+    }
+    
     .promo-titulo {
       font-size: 1.4rem;
       font-weight: 800;
-      margin: 0 0 8px;
+      margin: 0 0 4px;
       color: var(--color-text);
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -642,13 +651,11 @@
       color: var(--color-accent-lima);
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 15px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(138, 43, 226, 0.2);
     }
     
+    /* IMAGEN PROMOCIONAL GRANDE */
     .imagen-promo-contenedor {
-      height: 180px;
+      flex: 1;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
       border-radius: 10px;
       overflow: hidden;
@@ -656,7 +663,6 @@
       align-items: center;
       justify-content: center;
       border: 1px solid rgba(138, 43, 226, 0.2);
-      margin-bottom: 15px;
     }
     
     .imagen-promo-contenedor img {
@@ -666,16 +672,7 @@
       display: block;
     }
     
-    .promo-descripcion {
-      color: var(--color-text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.5;
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 5px;
-    }
-    
-    /* NAVEGACIÓN CON 4 BOTONES */
+    /* NAVEGACIÓN CON 4 BOTONES (PROMOS) */
     .navegacion {
       display: flex;
       background: var(--color-card);
@@ -765,7 +762,7 @@
       
       .seccion-lista, .lista-promociones {
         flex: 0 0 40%;
-        min-height: 200px;
+        min-height: 220px;
       }
       
       .seccion-detalle, .detalle-promocion {
@@ -777,15 +774,14 @@
         padding: 12px;
       }
       
-      /* IMAGEN MÁS PEQUEÑA EN MOBILE */
-      .imagen-bebida-contenedor {
-        height: 160px; /* Reducida para mobile */
+      /* PRECIO AHORA VISIBLE EN MOBILE */
+      .precio-contenedor {
+        position: static;
+        margin-top: 15px;
       }
       
-      /* ESTRUCTURA VERTICAL COMPACTA */
-      .detalle-info-lateral {
-        padding: 12px;
-        margin-top: 0;
+      .imagen-bebida-contenedor {
+        height: 150px;
       }
       
       .detalle-nombre {
@@ -794,15 +790,15 @@
       
       .detalle-descripcion {
         font-size: 0.85rem;
-        max-height: 120px;
+        max-height: 100px;
         margin-bottom: 12px;
       }
       
       .precio {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
       }
       
-      /* VISTAS CONTACTO/UBICACIÓN COMPACTAS */
+      /* VISTAS COMPACTAS */
       .vista-contenido-full {
         padding: 12px;
       }
@@ -829,20 +825,16 @@
         margin: 12px 0;
       }
       
-      /* PROMOCIONES MOBILE */
+      /* PROMOCIONES */
       .lista-promociones {
         flex: 0 0 35%;
-      }
-      
-      .imagen-promo-contenedor {
-        height: 150px;
       }
       
       .promo-titulo {
         font-size: 1.3rem;
       }
       
-      /* NAVEGACIÓN MÁS COMPACTA */
+      /* NAVEGACIÓN */
       .boton-nav {
         padding: 10px 0;
         font-size: 0.7rem;
@@ -865,11 +857,6 @@
         flex: 0 0 35%;
       }
       
-      /* EN TABLET: IMAGEN Y TEXTO AL LADO */
-      .detalle-info-lateral {
-        flex-direction: column;
-      }
-      
       .imagen-bebida-contenedor {
         height: 200px;
       }
@@ -882,7 +869,6 @@
         font-size: 1.8rem;
       }
       
-      /* VISTAS TABLET */
       .vista-contenido-full {
         padding: 20px;
       }
@@ -892,7 +878,7 @@
       }
       
       .imagen-promo-contenedor {
-        height: 200px;
+        min-height: 300px;
       }
     }
     
@@ -910,7 +896,6 @@
         flex: 0 0 30%;
       }
       
-      /* EN DESKTOP: IMAGEN GRANDE */
       .imagen-bebida-contenedor {
         height: 250px;
       }
@@ -927,7 +912,6 @@
         font-size: 2rem;
       }
       
-      /* VISTAS DESKTOP */
       .vista-contenido-full {
         padding: 25px;
         max-width: 800px;
@@ -939,7 +923,7 @@
       }
       
       .imagen-promo-contenedor {
-        height: 250px;
+        min-height: 400px;
       }
       
       .promo-titulo {
@@ -966,7 +950,7 @@
 </head>
 
 <body>
-  <!-- HEADER COMPACTO -->
+  <!-- HEADER -->
   <div class="header-contenedor">
     <div class="logo-espacio">
       <div class="logo-placeholder">🍸</div>
@@ -983,7 +967,7 @@
     <!-- VISTA CARTA -->
     <div id="vista-carta" class="vista activa">
       <div class="contenedor-columnas">
-        <!-- LISTA DE BEBIDAS -->
+        <!-- LISTA DE BEBIDAS COMPLETA -->
         <section class="seccion-lista">
           <div class="lista-header">
             <h2>Nuestra Carta</h2>
@@ -1009,13 +993,45 @@
               <h3 class="nombre-bebida">Camaleon</h3>
               <p class="descripcion-bebida">Cambia de color · Experiencia</p>
             </div>
+            <div class="item-bebida" onclick="seleccionarBebida('daiquiridedurazno', this)">
+              <h3 class="nombre-bebida">Daiquiri de Durazno</h3>
+              <p class="descripcion-bebida">Ron · Frutal</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('diabloazul', this)">
+              <h3 class="nombre-bebida">Diablo Azul</h3>
+              <p class="descripcion-bebida">Vodka · Intenso</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('machupicchu', this)">
+              <h3 class="nombre-bebida">Machu Picchu</h3>
+              <p class="descripcion-bebida">Pisco · Peruano</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('margaritacoronablue', this)">
+              <h3 class="nombre-bebida">Margarita Corona Blue</h3>
+              <p class="descripcion-bebida">Tequila · Cerveza</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('margarita', this)">
+              <h3 class="nombre-bebida">Margarita</h3>
+              <p class="descripcion-bebida">Tequila · Clásico</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('mojito', this)">
+              <h3 class="nombre-bebida">Mojito</h3>
+              <p class="descripcion-bebida">Ron · Refrescante</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('orgasmo', this)">
+              <h3 class="nombre-bebida">Orgasmo</h3>
+              <p class="descripcion-bebida">Mezcla secreta · Experiencia</p>
+            </div>
+            <div class="item-bebida" onclick="seleccionarBebida('sexonthebeach', this)">
+              <h3 class="nombre-bebida">Sex on the Beach</h3>
+              <p class="descripcion-bebida">Vodka · Frutal</p>
+            </div>
           </div>
         </section>
         
         <!-- DETALLE DE BEBIDA -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
-            <!-- BIENVENIDA SIMPLIFICADA -->
+            <!-- BIENVENIDA -->
             <div class="bienvenida" id="bienvenida">
               <div class="bienvenida-icono">🍸🎤</div>
               <h2>¡Bienvenido a Copa Nocturna!</h2>
@@ -1026,21 +1042,22 @@
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA -->
+            <!-- DETALLE DE BEBIDA - PRECIO VISIBLE -->
             <div class="detalle-bebida" id="detalle-bebida">
               <div class="detalle-nombre-contenedor">
                 <h2 class="detalle-nombre" id="detalle-nombre"></h2>
               </div>
               
-              <!-- IMAGEN REDUCIDA -->
+              <!-- IMAGEN -->
               <div class="imagen-bebida-contenedor" id="imagen-bebida">
                 <!-- Imagen se cargará aquí -->
               </div>
               
-              <!-- DESCRIPCIÓN Y PRECIO VISIBLES -->
+              <!-- DESCRIPCIÓN Y PRECIO -->
               <div class="detalle-info-lateral">
                 <p class="detalle-descripcion" id="detalle-descripcion"></p>
                 
+                <!-- PRECIO SIEMPRE VISIBLE -->
                 <div class="precio-contenedor">
                   <div class="precio">
                     <span id="precio-texto"></span>
@@ -1140,7 +1157,7 @@
               </div>
             </div>
             
-            <!-- MAPA COMPACTO -->
+            <!-- MAPA -->
             <div class="mapa-compacto" id="mapa-contenedor">
               <!-- Mapa se cargará aquí -->
             </div>
@@ -1173,10 +1190,10 @@
       </div>
     </div>
     
-    <!-- VISTA PROMOCIONES/EVENTOS -->
+    <!-- VISTA PROMOCIONES -->
     <div id="vista-promociones" class="vista">
       <div class="contenedor-promociones">
-        <!-- LISTA DE PROMOCIONES/EVENTOS -->
+        <!-- LISTA DE PROMOCIONES -->
         <section class="lista-promociones">
           <div class="lista-promo-header">
             <h2>Promociones & Eventos</h2>
@@ -1205,32 +1222,31 @@
           </div>
         </section>
         
-        <!-- DETALLE PROMOCIÓN/EVENTO -->
+        <!-- DETALLE PROMOCIÓN - SOLO IMAGEN -->
         <section class="detalle-promocion">
           <div class="detalle-promo-contenido">
-            <!-- BIENVENIDA PROMOCIONES -->
+            <!-- BIENVENIDA -->
             <div class="bienvenida-promo" id="bienvenida-promo">
               <div class="bienvenida-promo-icono">🎉🎤</div>
               <h2>Promociones & Eventos</h2>
-              <p>Descubre nuestras promociones especiales y eventos semanales. Siempre hay algo nuevo en Copa Nocturna.</p>
+              <p>Descubre nuestras promociones especiales y eventos semanales.</p>
               
               <div class="bienvenida-inst">
-                <p>👉 Selecciona una opción para ver todos los detalles</p>
+                <p>👉 Selecciona una opción para ver el flyer</p>
               </div>
             </div>
             
-            <!-- DETALLE PROMOCIÓN -->
+            <!-- DETALLE - SOLO TÍTULO E IMAGEN -->
             <div class="promocion-detalle" id="promocion-detalle">
-              <h2 class="promo-titulo" id="promo-titulo"></h2>
-              <div class="promo-tipo" id="promo-tipo"></div>
+              <div class="promo-titulo-contenedor">
+                <h2 class="promo-titulo" id="promo-titulo"></h2>
+                <div class="promo-tipo" id="promo-tipo"></div>
+              </div>
               
               <!-- IMAGEN PROMOCIONAL -->
               <div class="imagen-promo-contenedor" id="imagen-promo">
                 <!-- Imagen se cargará aquí -->
               </div>
-              
-              <!-- DESCRIPCIÓN -->
-              <p class="promo-descripcion" id="promo-descripcion"></p>
             </div>
           </div>
         </section>
@@ -1238,7 +1254,7 @@
     </div>
   </div>
   
-  <!-- NAVEGACIÓN CON 4 BOTONES -->
+  <!-- NAVEGACIÓN CON 4 BOTONES (PROMOS) -->
   <nav class="navegacion">
     <button class="boton-nav activo" onclick="cambiarVista('carta')">
       <span class="boton-nav-icono">🍹</span>
@@ -1254,7 +1270,7 @@
     </button>
     <button class="boton-nav" onclick="cambiarVista('promociones')">
       <span class="boton-nav-icono">🎉</span>
-      <span>Eventos</span>
+      <span>Promos</span>
     </button>
   </nav>
   
@@ -1263,7 +1279,7 @@
   </footer>
 
   <script>
-    // Datos de las bebidas
+    // Datos de TODOS los tragos
     const data = {
       appleparadisepurple: {
         nombre: 'Apple Paradise Purple',
@@ -1294,39 +1310,82 @@
         desc: 'Cóctel que cambia de color según los ingredientes. Experiencia visual única en tu copa.',
         precio: 'S/ 15.00',
         img: 'img/camaleon.webp'
+      },
+      daiquiridedurazno: {
+        nombre: 'Daiquiri de Durazno',
+        desc: 'Ron, puré de durazno fresco y jugo de limón. Suave y frutal, combina acidez y dulzura.',
+        precio: 'S/ 20.00',
+        img: 'img/daiquiridedurazno.webp'
+      },
+      diabloazul: {
+        nombre: 'Diablo Azul',
+        desc: 'Curaçao azul, vodka y sprite con un toque de lima. Intenso y refrescante, color vibrante.',
+        precio: 'S/ 20.00',
+        img: 'img/diabloazul.webp'
+      },
+      machupicchu: {
+        nombre: 'Machu Picchu',
+        desc: 'Pisco, jugo de lúcuma y chantilly, inspirado en sabores peruanos. Homenaje a nuestra cultura.',
+        precio: 'S/ 20.00',
+        img: 'img/machupicchu.webp'
+      },
+      margaritacoronablue: {
+        nombre: 'Margarita Corona Blue',
+        desc: 'Tequila, cerveza Corona y licor azul con sal en el borde. Innovadora combinación clásica.',
+        precio: 'S/ 30.00',
+        img: 'img/margaritacoronablue.webp'
+      },
+      margarita: {
+        nombre: 'Margarita',
+        desc: 'Clásico cóctel de tequila, triple sec y jugo de limón. Simple, elegante y siempre acertado.',
+        precio: 'S/ 20.00',
+        img: 'img/margarita.webp'
+      },
+      mojito: {
+        nombre: 'Mojito',
+        desc: 'Ron blanco, menta fresca, lima, azúcar y soda. Clásico cubano que nunca pasa de moda.',
+        precio: 'S/ 15.00',
+        img: 'img/mojito.webp'
+      },
+      orgasmo: {
+        nombre: 'Orgasmo',
+        desc: 'Mezcla secreta de licores que promete una experiencia única. Explosión de sabores sensorial.',
+        precio: 'S/ 20.00',
+        img: 'img/orgasmo.webp'
+      },
+      sexonthebeach: {
+        nombre: 'Sex on the Beach',
+        desc: 'Vodka, licor de melocotón, jugo de arándano y naranja. Dulce, frutal con toque cítrico.',
+        precio: 'S/ 20.00',
+        img: 'img/sexonthebeach.webp'
       }
     };
     
-    // Datos de promociones y eventos
+    // Datos de promociones/eventos (solo imagen)
     const promocionesData = {
       happyhour: {
         nombre: 'Happy Hour Nocturno',
-        tipo: 'PROMOCIÓN ESPECIAL',
-        desc: 'De 6:00 PM a 8:00 PM todos los días. 2x1 en toda nuestra carta de cócteles clásicos. Aprovecha nuestras mejores bebidas a mitad de precio durante el Happy Hour. Válido para consumo en el local.',
+        tipo: 'PROMOCIÓN - 6:00 PM a 8:00 PM',
         img: 'img/promo1.webp'
       },
       karaokejueves: {
         nombre: 'Karaoke de Jueves',
-        tipo: 'EVENTO SEMANAL',
-        desc: 'Todos los jueves desde las 9:00 PM. Participa en nuestro concurso de karaoke y gana premios especiales. Micrófono abierto, lista extensa de canciones y ambiente increíble. ¡Ven y demuestra tu talento!',
+        tipo: 'EVENTO SEMANAL - 9:00 PM',
         img: 'img/evento1.webp'
       },
       cumpleanios: {
         nombre: 'Pack Cumpleaños',
         tipo: 'PROMOCIÓN ESPECIAL',
-        desc: 'Celebra tu cumpleaños con nosotros y recibe: 1 botella de champagne gratis + 3 cócteles de cortesía + mesa VIP reservada. Reserva con 24 horas de anticipación. Válido para grupos de 5 o más personas.',
         img: 'img/promo2.webp'
       },
       nochesabado: {
         nombre: 'Noche de Sábado VIP',
-        tipo: 'EVENTO ESPECIAL',
-        desc: 'Todos los sábados desde las 10:00 PM. DJ en vivo, luces especiales, cócteles exclusivos y zona VIP con reservación previa. Cover especial después de la medianoche.',
+        tipo: 'EVENTO ESPECIAL - 10:00 PM',
         img: 'img/evento2.webp'
       },
       grupos: {
         nombre: 'Descuento Grupos',
         tipo: 'PROMOCIÓN PERMANENTE',
-        desc: 'Grupos de 6 o más personas: 15% de descuento en la cuenta total. Grupos de 10 o más: 20% de descuento + 1 botella de cerveza gratis por mesa. Reserva previa requerida.',
         img: 'img/promo3.webp'
       }
     };
@@ -1463,10 +1522,9 @@
       detalleElement.style.display = 'flex';
       detalleElement.classList.add('fade-in');
       
-      // Actualizar información
+      // Actualizar información (solo título y tipo)
       document.getElementById('promo-titulo').textContent = promo.nombre;
       document.getElementById('promo-tipo').textContent = promo.tipo;
-      document.getElementById('promo-descripcion').textContent = promo.desc;
       
       // Mostrar skeleton loading
       const imagenContenedor = document.getElementById('imagen-promo');
