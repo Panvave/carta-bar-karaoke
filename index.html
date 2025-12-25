@@ -25,12 +25,14 @@
     
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     
     html, body {
       height: 100%;
       margin: 0;
-      overflow: hidden;
+      overflow-x: hidden;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       background: var(--color-bg);
       color: var(--color-text);
@@ -68,6 +70,9 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     
     .logo-espacio {
@@ -130,8 +135,10 @@
       display: flex;
     }
     
-    /* VISTA CARTA */
-    .contenedor-columnas {
+    /* ===== VISTA CARTA ===== */
+    
+    /* CONTENEDOR PRINCIPAL DE CARTA */
+    .contenedor-carta {
       flex: 1;
       display: flex;
       overflow: hidden;
@@ -139,7 +146,7 @@
       gap: 8px;
     }
     
-    /* LISTA DE BEBIDAS COMPLETA */
+    /* LISTA DE BEBIDAS */
     .seccion-lista {
       background: var(--color-card);
       border-radius: 10px;
@@ -171,13 +178,16 @@
       padding: 0;
     }
     
+    /* ITEM DE BEBIDA CON PRECIO AL COSTADO */
     .item-bebida {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
       padding: 12px 14px;
       border-bottom: 1px solid var(--color-border);
       cursor: pointer;
       transition: all 0.2s;
-      position: relative;
-      flex-shrink: 0;
+      gap: 10px;
     }
     
     .item-bebida:last-child {
@@ -198,11 +208,17 @@
       color: var(--color-accent-lima);
     }
     
+    .bebida-info {
+      flex: 1;
+      min-width: 0;
+    }
+    
     .nombre-bebida {
       font-size: 0.95rem;
       font-weight: 600;
-      margin: 0 0 4px;
+      margin: 0 0 5px;
       color: var(--color-text);
+      line-height: 1.2;
     }
     
     .descripcion-bebida {
@@ -212,7 +228,21 @@
       line-height: 1.3;
     }
     
-    /* DETALLE - PRECIO SIEMPRE VISIBLE */
+    /* PRECIO AL COSTADO DERECHO */
+    .precio-bebida {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--color-accent-lima);
+      background: rgba(158, 255, 0, 0.1);
+      padding: 5px 8px;
+      border-radius: 6px;
+      min-width: 65px;
+      text-align: center;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    
+    /* SECCIÓN DETALLE */
     .seccion-detalle {
       background: var(--color-card);
       border-radius: 10px;
@@ -232,7 +262,7 @@
       padding: 14px;
     }
     
-    /* BIENVENIDA */
+    /* BIENVENIDA (INICIAL) - OCUPA TODO EL ESPACIO DEL DETALLE */
     .bienvenida {
       display: flex;
       flex-direction: column;
@@ -240,13 +270,13 @@
       justify-content: center;
       text-align: center;
       height: 100%;
-      padding: 15px;
+      padding: 20px;
       overflow: hidden;
     }
     
     .bienvenida-icono {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
+      font-size: 3rem;
+      margin-bottom: 15px;
       background: var(--color-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -254,8 +284,8 @@
     }
     
     .bienvenida h2 {
-      font-size: 1.3rem;
-      margin: 0 0 10px;
+      font-size: 1.5rem;
+      margin: 0 0 12px;
       font-weight: 700;
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -265,30 +295,30 @@
     
     .bienvenida p {
       color: var(--color-text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       line-height: 1.4;
-      max-width: 320px;
-      margin: 0 0 15px;
+      max-width: 400px;
+      margin: 0 0 20px;
     }
     
     .bienvenida-inst {
       background: rgba(158, 255, 0, 0.1);
       border-radius: 8px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       margin-top: 15px;
       border-left: 3px solid var(--color-accent-lima);
       text-align: left;
-      max-width: 320px;
+      max-width: 400px;
       width: 100%;
     }
     
     .bienvenida-inst p {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--color-text);
     }
     
-    /* DETALLE BEBIDA CON PRECIO VISIBLE */
+    /* DETALLE DE BEBIDA */
     .detalle-bebida {
       display: none;
       flex-direction: column;
@@ -319,7 +349,7 @@
       background-clip: text;
     }
     
-    /* IMAGEN MÁS PEQUEÑA */
+    /* IMAGEN */
     .imagen-bebida-contenedor {
       flex-shrink: 0;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
@@ -330,7 +360,7 @@
       justify-content: center;
       border: 1px solid rgba(138, 43, 226, 0.2);
       margin-bottom: 12px;
-      height: 160px;
+      height: 250px;
     }
     
     .imagen-bebida-contenedor img {
@@ -340,54 +370,20 @@
       display: block;
     }
     
-    /* DESCRIPCIÓN Y PRECIO - AMBOS VISIBLES */
-    .detalle-info-lateral {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 0;
-    }
-    
+    /* DESCRIPCIÓN */
     .detalle-descripcion {
       color: var(--color-text-secondary);
       font-size: 0.9rem;
       line-height: 1.5;
-      margin: 0 0 15px;
+      margin: 0;
       flex: 1;
       overflow-y: auto;
       padding-right: 5px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(138, 43, 226, 0.2);
     }
     
-    /* PRECIO SIEMPRE VISIBLE - FIJADO ABAJO */
-    .precio-contenedor {
-      background: rgba(17, 17, 17, 0.9);
-      border-radius: 8px;
-      padding: 12px;
-      border: 1px solid rgba(138, 43, 226, 0.2);
-      margin-top: auto;
-      flex-shrink: 0;
-    }
-    
-    .precio {
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: var(--color-accent-lima);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    
-    .precio-badge {
-      background: var(--color-gradient);
-      color: black;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-    }
-    
-    /* VISTAS CONTACTO Y UBICACIÓN COMPACTAS */
+    /* ===== VISTAS CONTACTO Y UBICACIÓN ===== */
     .vista-contenido-full {
       flex: 1;
       overflow-y: auto;
@@ -400,19 +396,19 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
     }
     
     .tarjeta-compacta {
       background: var(--color-card);
       border-radius: 10px;
-      padding: 18px;
+      padding: 16px;
       border: 1px solid rgba(138, 43, 226, 0.2);
     }
     
     .tarjeta-compacta h3 {
-      margin: 0 0 18px;
-      font-size: 1.3rem;
+      margin: 0 0 15px;
+      font-size: 1.2rem;
       font-weight: 800;
       text-align: center;
       color: var(--color-text);
@@ -425,7 +421,7 @@
     .info-item-compacto {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     
     .info-item-compacto:last-child {
@@ -433,14 +429,14 @@
     }
     
     .info-icono-compacto {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-right: 12px;
-      min-width: 35px;
+      min-width: 32px;
       color: var(--color-accent-lima);
       background: rgba(158, 255, 0, 0.1);
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -453,25 +449,25 @@
     
     .info-texto-compacto strong {
       display: block;
-      margin-bottom: 4px;
-      font-size: 0.95rem;
+      margin-bottom: 3px;
+      font-size: 0.9rem;
       color: var(--color-text);
       font-weight: 600;
     }
     
     .info-texto-compacto span {
       color: var(--color-text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.4;
     }
     
     /* MAPA COMPACTO */
     .mapa-compacto {
-      height: 180px;
+      height: 160px;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
       border-radius: 8px;
       overflow: hidden;
-      margin: 15px 0;
+      margin: 12px 0;
       border: 1px solid rgba(138, 43, 226, 0.2);
     }
     
@@ -481,7 +477,7 @@
       border: none;
     }
     
-    /* VISTA PROMOCIONES/EVENTOS */
+    /* ===== VISTA PROMOCIONES ===== */
     .contenedor-promociones {
       flex: 1;
       display: flex;
@@ -521,7 +517,7 @@
     }
     
     .item-promocion {
-      padding: 12px 14px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--color-border);
       cursor: pointer;
       transition: all 0.2s;
@@ -546,22 +542,22 @@
     }
     
     .nombre-promocion {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 600;
-      margin: 0 0 4px;
+      margin: 0 0 3px;
       color: var(--color-text);
     }
     
     .tipo-promocion {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--color-accent-purple);
       background: rgba(138, 43, 226, 0.1);
-      padding: 2px 8px;
-      border-radius: 10px;
+      padding: 2px 6px;
+      border-radius: 8px;
       display: inline-block;
     }
     
-    /* DETALLE PROMOCIÓN - SOLO IMAGEN */
+    /* DETALLE PROMOCIÓN */
     .detalle-promocion {
       background: var(--color-card);
       border-radius: 10px;
@@ -577,9 +573,10 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      padding: 14px;
+      padding: 12px;
     }
     
+    /* BIENVENIDA PROMOS */
     .bienvenida-promo {
       display: flex;
       flex-direction: column;
@@ -592,8 +589,8 @@
     }
     
     .bienvenida-promo-icono {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
+      font-size: 2rem;
+      margin-bottom: 10px;
       background: var(--color-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -601,8 +598,8 @@
     }
     
     .bienvenida-promo h2 {
-      font-size: 1.3rem;
-      margin: 0 0 10px;
+      font-size: 1.2rem;
+      margin: 0 0 8px;
       font-weight: 700;
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -612,12 +609,30 @@
     
     .bienvenida-promo p {
       color: var(--color-text-secondary);
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       line-height: 1.4;
-      max-width: 320px;
-      margin: 0 0 15px;
+      max-width: 300px;
+      margin: 0 0 12px;
     }
     
+    .promo-inst {
+      background: rgba(158, 255, 0, 0.1);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 10px;
+      border-left: 3px solid var(--color-accent-lima);
+      text-align: left;
+      max-width: 300px;
+      width: 100%;
+    }
+    
+    .promo-inst p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: var(--color-text);
+    }
+    
+    /* DETALLE PROMOCIÓN */
     .promocion-detalle {
       display: none;
       flex-direction: column;
@@ -630,16 +645,16 @@
     }
     
     .promo-titulo-contenedor {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       flex-shrink: 0;
-      padding-bottom: 10px;
+      padding-bottom: 8px;
       border-bottom: 1px solid rgba(138, 43, 226, 0.2);
     }
     
     .promo-titulo {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 800;
-      margin: 0 0 4px;
+      margin: 0 0 3px;
       color: var(--color-text);
       background: var(--color-gradient);
       -webkit-background-clip: text;
@@ -649,15 +664,16 @@
     
     .promo-tipo {
       color: var(--color-accent-lima);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 600;
     }
     
-    /* IMAGEN PROMOCIONAL GRANDE */
+    /* IMAGEN PROMOCIONAL - MÁS COMPACTA */
     .imagen-promo-contenedor {
       flex: 1;
+      min-height: 0;
       background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(158, 255, 0, 0.05));
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -668,11 +684,11 @@
     .imagen-promo-contenedor img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
     }
     
-    /* NAVEGACIÓN CON 4 BOTONES (PROMOS) */
+    /* NAVEGACIÓN */
     .navegacion {
       display: flex;
       background: var(--color-card);
@@ -754,7 +770,7 @@
     
     /* MOBILE (DEFAULT) */
     @media (max-width: 767px) {
-      .contenedor-columnas, .contenedor-promociones {
+      .contenedor-carta, .contenedor-promociones {
         flex-direction: column;
         padding: 6px;
         gap: 6px;
@@ -767,21 +783,40 @@
       
       .seccion-detalle, .detalle-promocion {
         flex: 1;
-        min-height: calc(100vh - 250px);
+        min-height: calc(100vh - 300px);
       }
       
       .detalle-contenido, .detalle-promo-contenido {
         padding: 12px;
       }
       
-      /* PRECIO AHORA VISIBLE EN MOBILE */
-      .precio-contenedor {
-        position: static;
-        margin-top: 15px;
+      /* BIENVENIDA EN MOBILE */
+      .bienvenida {
+        padding: 15px;
       }
       
+      .bienvenida-icono {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+      }
+      
+      .bienvenida h2 {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+      }
+      
+      .bienvenida p {
+        font-size: 0.9rem;
+        max-width: 320px;
+      }
+      
+      .bienvenida-inst {
+        padding: 10px 12px;
+      }
+      
+      /* IMAGEN EN MOBILE */
       .imagen-bebida-contenedor {
-        height: 150px;
+        height: 180px;
       }
       
       .detalle-nombre {
@@ -790,51 +825,83 @@
       
       .detalle-descripcion {
         font-size: 0.85rem;
-        max-height: 100px;
-        margin-bottom: 12px;
       }
       
-      .precio {
-        font-size: 1.5rem;
+      /* PRECIO EN MOBILE */
+      .nombre-bebida {
+        font-size: 0.9rem;
       }
       
-      /* VISTAS COMPACTAS */
+      .precio-bebida {
+        font-size: 0.9rem;
+        padding: 4px 7px;
+        min-width: 60px;
+      }
+      
+      /* VISTAS COMPACTAS EN MOBILE */
       .vista-contenido-full {
         padding: 12px;
       }
       
       .contenido-compacto {
-        gap: 12px;
+        gap: 10px;
       }
       
       .tarjeta-compacta {
-        padding: 16px;
+        padding: 14px;
       }
       
       .tarjeta-compacta h3 {
-        font-size: 1.2rem;
-        margin-bottom: 16px;
+        font-size: 1.1rem;
+        margin-bottom: 14px;
       }
       
       .info-item-compacto {
-        margin-bottom: 12px;
+        margin-bottom: 10px;
+      }
+      
+      .info-icono-compacto {
+        width: 34px;
+        height: 34px;
+        font-size: 1rem;
       }
       
       .mapa-compacto {
-        height: 160px;
-        margin: 12px 0;
+        height: 140px;
+        margin: 10px 0;
       }
       
-      /* PROMOCIONES */
+      /* PROMOCIONES EN MOBILE */
       .lista-promociones {
         flex: 0 0 35%;
       }
       
-      .promo-titulo {
-        font-size: 1.3rem;
+      .item-promocion {
+        padding: 8px 12px;
       }
       
-      /* NAVEGACIÓN */
+      .nombre-promocion {
+        font-size: 0.85rem;
+      }
+      
+      .tipo-promocion {
+        font-size: 0.65rem;
+        padding: 1px 5px;
+      }
+      
+      .bienvenida-promo-icono {
+        font-size: 1.8rem;
+      }
+      
+      .bienvenida-promo h2 {
+        font-size: 1.1rem;
+      }
+      
+      .promo-titulo {
+        font-size: 1.1rem;
+      }
+      
+      /* NAVEGACIÓN EN MOBILE */
       .boton-nav {
         padding: 10px 0;
         font-size: 0.7rem;
@@ -847,7 +914,7 @@
     
     /* TABLET */
     @media (min-width: 768px) and (max-width: 1023px) {
-      .contenedor-columnas, .contenedor-promociones {
+      .contenedor-carta, .contenedor-promociones {
         flex-direction: row;
         padding: 12px;
         gap: 12px;
@@ -858,15 +925,25 @@
       }
       
       .imagen-bebida-contenedor {
-        height: 200px;
+        height: 280px;
       }
       
       .detalle-nombre {
         font-size: 1.6rem;
       }
       
-      .precio {
-        font-size: 1.8rem;
+      .detalle-descripcion {
+        font-size: 1rem;
+      }
+      
+      .nombre-bebida {
+        font-size: 1rem;
+      }
+      
+      .precio-bebida {
+        font-size: 1.1rem;
+        padding: 6px 10px;
+        min-width: 70px;
       }
       
       .vista-contenido-full {
@@ -884,7 +961,7 @@
     
     /* DESKTOP */
     @media (min-width: 1024px) {
-      .contenedor-columnas, .contenedor-promociones {
+      .contenedor-carta, .contenedor-promociones {
         max-width: 1400px;
         margin: 0 auto;
         width: 100%;
@@ -894,10 +971,11 @@
       
       .seccion-lista, .lista-promociones {
         flex: 0 0 30%;
+        max-width: 450px;
       }
       
       .imagen-bebida-contenedor {
-        height: 250px;
+        height: 320px;
       }
       
       .detalle-nombre {
@@ -905,11 +983,17 @@
       }
       
       .detalle-descripcion {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
       
-      .precio {
-        font-size: 2rem;
+      .nombre-bebida {
+        font-size: 1.05rem;
+      }
+      
+      .precio-bebida {
+        font-size: 1.15rem;
+        padding: 7px 12px;
+        min-width: 80px;
       }
       
       .vista-contenido-full {
@@ -927,7 +1011,7 @@
       }
       
       .promo-titulo {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
       }
     }
     
@@ -966,64 +1050,103 @@
     
     <!-- VISTA CARTA -->
     <div id="vista-carta" class="vista activa">
-      <div class="contenedor-columnas">
-        <!-- LISTA DE BEBIDAS COMPLETA -->
+      <div class="contenedor-carta">
+        <!-- LISTA DE BEBIDAS -->
         <section class="seccion-lista">
           <div class="lista-header">
             <h2>Nuestra Carta</h2>
           </div>
           <div class="lista-contenido">
             <div class="item-bebida" onclick="seleccionarBebida('appleparadisepurple', this)">
-              <h3 class="nombre-bebida">Apple Paradise Purple</h3>
-              <p class="descripcion-bebida">Ron blanco · Refrescante</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Apple Paradise Purple</h3>
+                <p class="descripcion-bebida">Ron blanco · Refrescante</p>
+              </div>
+              <div class="precio-bebida">S/ 23.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('appleparadisered', this)">
-              <h3 class="nombre-bebida">Apple Paradise Red</h3>
-              <p class="descripcion-bebida">Tequila · Clásico</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Apple Paradise Red</h3>
+                <p class="descripcion-bebida">Tequila · Clásico</p>
+              </div>
+              <div class="precio-bebida">S/ 23.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('appleparadise', this)">
-              <h3 class="nombre-bebida">Apple Paradise</h3>
-              <p class="descripcion-bebida">Pisco peruano</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Apple Paradise</h3>
+                <p class="descripcion-bebida">Pisco peruano</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('besocaribeno', this)">
-              <h3 class="nombre-bebida">Beso Caribeño</h3>
-              <p class="descripcion-bebida">Ron dorado · Tropical</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Beso Caribeño</h3>
+                <p class="descripcion-bebida">Ron dorado · Tropical</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('camaleon', this)">
-              <h3 class="nombre-bebida">Camaleon</h3>
-              <p class="descripcion-bebida">Cambia de color · Experiencia</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Camaleon</h3>
+                <p class="descripcion-bebida">Cambia de color · Experiencia</p>
+              </div>
+              <div class="precio-bebida">S/ 15.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('daiquiridedurazno', this)">
-              <h3 class="nombre-bebida">Daiquiri de Durazno</h3>
-              <p class="descripcion-bebida">Ron · Frutal</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Daiquiri de Durazno</h3>
+                <p class="descripcion-bebida">Ron · Frutal</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('diabloazul', this)">
-              <h3 class="nombre-bebida">Diablo Azul</h3>
-              <p class="descripcion-bebida">Vodka · Intenso</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Diablo Azul</h3>
+                <p class="descripcion-bebida">Vodka · Intenso</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('machupicchu', this)">
-              <h3 class="nombre-bebida">Machu Picchu</h3>
-              <p class="descripcion-bebida">Pisco · Peruano</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Machu Picchu</h3>
+                <p class="descripcion-bebida">Pisco · Peruano</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('margaritacoronablue', this)">
-              <h3 class="nombre-bebida">Margarita Corona Blue</h3>
-              <p class="descripcion-bebida">Tequila · Cerveza</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Margarita Corona Blue</h3>
+                <p class="descripcion-bebida">Tequila · Cerveza</p>
+              </div>
+              <div class="precio-bebida">S/ 30.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('margarita', this)">
-              <h3 class="nombre-bebida">Margarita</h3>
-              <p class="descripcion-bebida">Tequila · Clásico</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Margarita</h3>
+                <p class="descripcion-bebida">Tequila · Clásico</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('mojito', this)">
-              <h3 class="nombre-bebida">Mojito</h3>
-              <p class="descripcion-bebida">Ron · Refrescante</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Mojito</h3>
+                <p class="descripcion-bebida">Ron · Refrescante</p>
+              </div>
+              <div class="precio-bebida">S/ 15.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('orgasmo', this)">
-              <h3 class="nombre-bebida">Orgasmo</h3>
-              <p class="descripcion-bebida">Mezcla secreta · Experiencia</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Orgasmo</h3>
+                <p class="descripcion-bebida">Mezcla secreta · Experiencia</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
             <div class="item-bebida" onclick="seleccionarBebida('sexonthebeach', this)">
-              <h3 class="nombre-bebida">Sex on the Beach</h3>
-              <p class="descripcion-bebida">Vodka · Frutal</p>
+              <div class="bebida-info">
+                <h3 class="nombre-bebida">Sex on the Beach</h3>
+                <p class="descripcion-bebida">Vodka · Frutal</p>
+              </div>
+              <div class="precio-bebida">S/ 20.00</div>
             </div>
           </div>
         </section>
@@ -1031,7 +1154,7 @@
         <!-- DETALLE DE BEBIDA -->
         <section class="seccion-detalle">
           <div class="detalle-contenido">
-            <!-- BIENVENIDA -->
+            <!-- BIENVENIDA (INICIAL) - OCUPA TODO EL ESPACIO DEL DETALLE -->
             <div class="bienvenida" id="bienvenida">
               <div class="bienvenida-icono">🍸🎤</div>
               <h2>¡Bienvenido a Copa Nocturna!</h2>
@@ -1042,7 +1165,7 @@
               </div>
             </div>
             
-            <!-- DETALLE DE BEBIDA - PRECIO VISIBLE -->
+            <!-- DETALLE DE BEBIDA (CUANDO SE SELECCIONA) -->
             <div class="detalle-bebida" id="detalle-bebida">
               <div class="detalle-nombre-contenedor">
                 <h2 class="detalle-nombre" id="detalle-nombre"></h2>
@@ -1053,18 +1176,8 @@
                 <!-- Imagen se cargará aquí -->
               </div>
               
-              <!-- DESCRIPCIÓN Y PRECIO -->
-              <div class="detalle-info-lateral">
-                <p class="detalle-descripcion" id="detalle-descripcion"></p>
-                
-                <!-- PRECIO SIEMPRE VISIBLE -->
-                <div class="precio-contenedor">
-                  <div class="precio">
-                    <span id="precio-texto"></span>
-                    <span class="precio-badge">PRECIO</span>
-                  </div>
-                </div>
-              </div>
+              <!-- DESCRIPCIÓN -->
+              <p class="detalle-descripcion" id="detalle-descripcion"></p>
             </div>
           </div>
         </section>
@@ -1106,7 +1219,7 @@
               <div class="info-icono-compacto">🕐</div>
               <div class="info-texto-compacto">
                 <strong>Horario de Atención</strong>
-                <span>Lunes a Domingo: 6:00 PM - 4:00 AM</span>
+                <span>Lunes a Domingo: 4:00 PM - 4:00 AM</span>
               </div>
             </div>
           </div>
@@ -1222,21 +1335,21 @@
           </div>
         </section>
         
-        <!-- DETALLE PROMOCIÓN - SOLO IMAGEN -->
+        <!-- DETALLE PROMOCIÓN -->
         <section class="detalle-promocion">
           <div class="detalle-promo-contenido">
-            <!-- BIENVENIDA -->
+            <!-- BIENVENIDA PROMOS -->
             <div class="bienvenida-promo" id="bienvenida-promo">
               <div class="bienvenida-promo-icono">🎉🎤</div>
               <h2>Promociones & Eventos</h2>
               <p>Descubre nuestras promociones especiales y eventos semanales.</p>
               
-              <div class="bienvenida-inst">
+              <div class="promo-inst">
                 <p>👉 Selecciona una opción para ver el flyer</p>
               </div>
             </div>
             
-            <!-- DETALLE - SOLO TÍTULO E IMAGEN -->
+            <!-- DETALLE PROMOCIÓN -->
             <div class="promocion-detalle" id="promocion-detalle">
               <div class="promo-titulo-contenedor">
                 <h2 class="promo-titulo" id="promo-titulo"></h2>
@@ -1254,7 +1367,7 @@
     </div>
   </div>
   
-  <!-- NAVEGACIÓN CON 4 BOTONES (PROMOS) -->
+  <!-- NAVEGACIÓN -->
   <nav class="navegacion">
     <button class="boton-nav activo" onclick="cambiarVista('carta')">
       <span class="boton-nav-icono">🍹</span>
@@ -1393,6 +1506,10 @@
     // Cache de imágenes
     const imageCache = {};
     
+    // Variables para controlar selecciones
+    let bebidaSeleccionada = null;
+    let promocionSeleccionada = null;
+    
     // Función para cambiar de vista
     function cambiarVista(vista) {
       // Ocultar todas las vistas
@@ -1416,13 +1533,24 @@
         setTimeout(cargarMapaExacto, 100);
       }
       
-      // Si es promociones, mostrar bienvenida
+      // Si es promociones, restaurar estado
       if (vista === 'promociones') {
-        document.getElementById('bienvenida-promo').style.display = 'flex';
-        document.getElementById('promocion-detalle').style.display = 'none';
-        document.querySelectorAll('.item-promocion').forEach(item => {
-          item.classList.remove('seleccionado');
-        });
+        if (promocionSeleccionada && promocionesData[promocionSeleccionada]) {
+          const promo = promocionesData[promocionSeleccionada];
+          mostrarDetallePromocion(promo);
+        } else {
+          mostrarBienvenidaPromos();
+        }
+      }
+      
+      // Si es carta, restaurar estado
+      if (vista === 'carta') {
+        if (bebidaSeleccionada && data[bebidaSeleccionada]) {
+          const bebida = data[bebidaSeleccionada];
+          mostrarDetalleBebida(bebida);
+        } else {
+          mostrarBienvenidaCarta();
+        }
       }
     }
     
@@ -1462,9 +1590,24 @@
       });
     }
     
+    // Función para mostrar bienvenida en carta
+    function mostrarBienvenidaCarta() {
+      document.getElementById('bienvenida').style.display = 'flex';
+      document.getElementById('detalle-bebida').style.display = 'none';
+      bebidaSeleccionada = null;
+      
+      // Deseleccionar items
+      document.querySelectorAll('.item-bebida').forEach(item => {
+        item.classList.remove('seleccionado');
+      });
+    }
+    
     // Función para seleccionar una bebida
     async function seleccionarBebida(id, elemento) {
       if (!data[id]) return;
+      
+      // Guardar bebida seleccionada
+      bebidaSeleccionada = id;
       
       // Remover selección anterior
       document.querySelectorAll('.item-bebida').forEach(item => {
@@ -1477,6 +1620,12 @@
       // Obtener datos de la bebida
       const bebida = data[id];
       
+      // Mostrar detalle de la bebida
+      await mostrarDetalleBebida(bebida);
+    }
+    
+    // Función para mostrar el detalle de una bebida
+    async function mostrarDetalleBebida(bebida) {
       // Ocultar bienvenida y mostrar detalle
       document.getElementById('bienvenida').style.display = 'none';
       const detalleElement = document.getElementById('detalle-bebida');
@@ -1486,7 +1635,6 @@
       // Actualizar información
       document.getElementById('detalle-nombre').textContent = bebida.nombre;
       document.getElementById('detalle-descripcion').textContent = bebida.desc;
-      document.getElementById('precio-texto').textContent = bebida.precio;
       
       // Mostrar skeleton loading
       const imagenContenedor = document.getElementById('imagen-bebida');
@@ -1499,11 +1647,36 @@
       } catch (error) {
         console.error('Error cargando imagen:', error);
       }
+      
+      // En mobile, hacer scroll suave hacia el detalle
+      if (window.innerWidth < 768) {
+        setTimeout(() => {
+          const detalleSection = document.querySelector('.seccion-detalle');
+          if (detalleSection) {
+            detalleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 300);
+      }
+    }
+    
+    // Función para mostrar bienvenida en promos
+    function mostrarBienvenidaPromos() {
+      document.getElementById('bienvenida-promo').style.display = 'flex';
+      document.getElementById('promocion-detalle').style.display = 'none';
+      promocionSeleccionada = null;
+      
+      // Deseleccionar items
+      document.querySelectorAll('.item-promocion').forEach(item => {
+        item.classList.remove('seleccionado');
+      });
     }
     
     // Función para seleccionar promoción/evento
     async function seleccionarPromocion(id, elemento) {
       if (!promocionesData[id]) return;
+      
+      // Guardar promoción seleccionada
+      promocionSeleccionada = id;
       
       // Remover selección anterior
       document.querySelectorAll('.item-promocion').forEach(item => {
@@ -1516,13 +1689,19 @@
       // Obtener datos
       const promo = promocionesData[id];
       
+      // Mostrar detalle de la promoción
+      await mostrarDetallePromocion(promo);
+    }
+    
+    // Función para mostrar el detalle de una promoción
+    async function mostrarDetallePromocion(promo) {
       // Ocultar bienvenida y mostrar detalle
       document.getElementById('bienvenida-promo').style.display = 'none';
       const detalleElement = document.getElementById('promocion-detalle');
       detalleElement.style.display = 'flex';
       detalleElement.classList.add('fade-in');
       
-      // Actualizar información (solo título y tipo)
+      // Actualizar información
       document.getElementById('promo-titulo').textContent = promo.nombre;
       document.getElementById('promo-tipo').textContent = promo.tipo;
       
@@ -1541,16 +1720,20 @@
     
     // Inicializar al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-      // Solo mostrar bienvenida
-      document.getElementById('bienvenida').style.display = 'flex';
-      document.getElementById('detalle-bebida').style.display = 'none';
-      document.getElementById('bienvenida-promo').style.display = 'flex';
-      document.getElementById('promocion-detalle').style.display = 'none';
+      // Mostrar bienvenida inicial en carta
+      mostrarBienvenidaCarta();
       
-      // Remover cualquier selección previa
-      document.querySelectorAll('.item-bebida, .item-promocion').forEach(item => {
-        item.classList.remove('seleccionado');
-      });
+      // Mostrar bienvenida inicial en promos
+      mostrarBienvenidaPromos();
+      
+      // Cargar mapa al iniciar si estamos en vista ubicación (por si acaso)
+      setTimeout(cargarMapaExacto, 500);
+    });
+    
+    // Resetear selecciones al recargar la página
+    window.addEventListener('beforeunload', () => {
+      bebidaSeleccionada = null;
+      promocionSeleccionada = null;
     });
   </script>
 </body>
